@@ -66,7 +66,7 @@ public FormateListe(int [] taillesColonnes, java.util.ArrayList metiers, String 
 	this(taillesColonnes,metiers, nomAttributs, null, separateur);
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
  */
 public void ajouteLigne(String [] aLigne) {
@@ -83,16 +83,16 @@ public void ajouteLigne(String [] aLigne) {
 			if (champ.length() > longueur) {
 				champ = champ.substring(0,longueur);
 			} else if (champ.length() < longueur) {
-				//	Si padding = null alors on colle � gauche sinon Si D ou R � droite sinon le caract�re pass�
+				//	Si padding = null alors on colle à gauche sinon Si D ou R à droite sinon le caractère passé
 				char pos = (padding == null ? 'L' : (padding[j].charAt(0) == 'D' ? 'R' : padding[j].charAt(0)));
 				switch (pos) {
 					//ALT 255
 					case 'R' : {
-						champ = Services.lpad(champ, longueur, "�");break;
+						champ = Services.lpad(champ, longueur, " ");break;
 					}case 'C' : {
-						champ = Services.cpad(champ, longueur, "�");break;
+						champ = Services.cpad(champ, longueur, " ");break;
 					} default : {
-						champ = Services.rpad(champ, longueur, "�");break;
+						champ = Services.rpad(champ, longueur, " ");break;
 					}
 				}
 				
@@ -115,7 +115,7 @@ public void ajouteLigne(String [] aLigne) {
 	
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (31/10/2002 07:40:57)
  * @return java.util.Hashtable
  */
@@ -124,27 +124,27 @@ private java.util.Hashtable getHash() {
 		hash = new java.util.Hashtable();
 		hash.put("\"","&quot;");
 //		hash.put(" ","&nbsp;"); //Espace en &nbsp
-//		hash.put("�","&nbsp;"); //Alt 255 en &nbsp
-		hash.put(" ","�");//espace en ALT 255
+//		hash.put(" ","&nbsp;"); //Alt 255 en &nbsp
+		hash.put(" "," ");//espace en ALT 255
 	}
 	return hash;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
  */
 public String [] getListeFormatee() {
 
-	//Alimentation r�sultat
+	//Alimentation résultat
 	return getListeFormatee(false);
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
  */
 public String [] getListeFormatee(boolean ligneZeroVide) {
 
-	//Alimentation r�sultat
+	//Alimentation résultat
 	Object o [] = getResultat().toArray();
 	int decalage = (ligneZeroVide ? 1 : 0);
 
@@ -154,7 +154,7 @@ public String [] getListeFormatee(boolean ligneZeroVide) {
 	try {
 		result [0] = "";
 	} catch (Exception e) {
-		// Le nb d'�l�ment est vide alors on renvoie null
+		// Le nb d'élément est vide alors on renvoie null
 		return null;
 	}
 
@@ -163,7 +163,7 @@ public String [] getListeFormatee(boolean ligneZeroVide) {
 	return result;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:54:12)
  * @return java.util.ArrayList[]
  */
@@ -171,7 +171,7 @@ private java.util.ArrayList getResultat() {
 	return resultat;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
  * @return int[]
  */
