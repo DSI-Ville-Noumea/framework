@@ -9,7 +9,7 @@ public abstract class BasicProcess {
 	protected static String [] LBVide = {""};
 	private int statut;
 	private java.util.Hashtable zonesDeSaisie;
-	private nc.mairie.technique.Transaction transaction;
+	private Transaction transaction;
 	private boolean autoReaffecteZones = true;
 
 	//Les statuts de base
@@ -17,7 +17,7 @@ public abstract class BasicProcess {
 	public static final int STATUT_PROCESS_APPELANT = 888888 ;
 	public static final int STATUT_MESSAGE_INFO = 777777 ;		
 
-	private java.lang.String activite;
+	private String activite;
 	private boolean veutRetour = false;
 	private BasicProcess processAppelant = null;
 	private java.lang.String nomFichierImpression;
