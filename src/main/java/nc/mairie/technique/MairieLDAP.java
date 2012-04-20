@@ -1,12 +1,12 @@
 package nc.mairie.technique;
 
-import nc.mairie.servlets.Frontale;
-
 import java.util.Hashtable;
-
-
-import javax.naming.*;
+import javax.naming.AuthenticationException;
+import javax.naming.Context;
+import javax.naming.NameNotFoundException;
+import javax.naming.NamingEnumeration;
 import javax.naming.directory.*;
+import nc.mairie.servlets.Frontale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -116,7 +116,7 @@ public class MairieLDAP {
      * Methode controlerHabilitation qui retourne
      * true ou false
      */
-    public static boolean controlerHabilitation(java.util.Hashtable parametres, String userName, String userPassword) {
+    public static boolean controlerHabilitation(Hashtable parametres, String userName, String userPassword) {
 
         // Contrôles de base
         if ((userName == null) || (userName.length() == 0) || (userPassword == null) || (userPassword.length() == 0)) {

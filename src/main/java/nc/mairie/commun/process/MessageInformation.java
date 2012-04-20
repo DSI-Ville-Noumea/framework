@@ -25,7 +25,7 @@ public String getJSP() {
  Retourne le nom d'un bouton pour la JSP :
  PB_OK
  */
-public java.lang.String getNOM_PB_OK() {
+public String getNOM_PB_OK() {
 	return "NOM_PB_OK";
 }
 /**
@@ -34,7 +34,7 @@ public java.lang.String getNOM_PB_OK() {
  * Date de création : (07/11/02 08:59:41)
  * @author : G�n�rateur de process
  */
-public java.lang.String getNOM_ST_MESSAGE() {
+public String getNOM_ST_MESSAGE() {
 	return "NOM_ST_MESSAGE";
 }
 /**
@@ -43,7 +43,7 @@ public java.lang.String getNOM_ST_MESSAGE() {
  * Date de création : (07/11/02 08:59:41)
  * @author : G�n�rateur de process
  */
-public java.lang.String getVAL_ST_MESSAGE() {
+public String getVAL_ST_MESSAGE() {
 	return getZone(getNOM_ST_MESSAGE());
 }
 /**
@@ -69,7 +69,7 @@ public void initialiseZones(javax.servlet.http.HttpServletRequest request) {
 	}
 }
 /**
-	M�thode qui : 
+	Méthode qui : 
 	- Traite et affecte les zones saisies dans la JSP.
 	- Impl�mente les r�gles de gestion du process
 	- Positionne un statut en fonction de ces r�gles :
