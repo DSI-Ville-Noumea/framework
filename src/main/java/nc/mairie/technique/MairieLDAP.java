@@ -16,6 +16,13 @@ import org.slf4j.LoggerFactory;
  * @author:
  */
 public class MairieLDAP {
+    public final static String INITCTX_LDAP = "INITCTX_LDAP";
+    public final static String HOST_LDAP="HOST_LDAP";
+    public final static String BASE_LDAP="BASE_LDAP";
+    public final static String HOST_LDAP_ADMIN="HOST_LDAP_ADMIN";
+    public final static String HOST_LDAP_PASSWORD="HOST_LDAP_PASSWORD";
+    public final static String CRITERE_RECHERCHE_LDAP="CRITERE_RECHERCHE_LDAP";
+    
     
     private static Logger logger = LoggerFactory.getLogger(MairieLDAP.class);
 
@@ -70,8 +77,8 @@ public class MairieLDAP {
             constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
             // hurle NamingEnumeration enum = ctx.search(BASE_LDAP, "(cn="+user+")", constraints);
-            String            critere = (String) parametres.get("CRITERE_RECHERCHE_LDAP");
-            NamingEnumeration enume   = contextAdmin.search((String) parametres.get("BASE_LDAP"),
+            String            critere = (String) parametres.get(MairieLDAP.CRITERE_RECHERCHE_LDAP);
+            NamingEnumeration enume   = contextAdmin.search((String) parametres.get(MairieLDAP.BASE_LDAP),
                                           "(" + critere + "=" + userName + ")", constraints);
 
             if (enume.hasMore()) {
@@ -134,8 +141,8 @@ public class MairieLDAP {
             constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
             // hurle NamingEnumeration enum = ctx.search(BASE_LDAP, "(cn="+user+")", constraints);
-            String            critere = (String) parametres.get("CRITERE_RECHERCHE_LDAP");
-            NamingEnumeration enume   = contextAdmin.search((String) parametres.get("BASE_LDAP"),
+            String            critere = (String) parametres.get(MairieLDAP.CRITERE_RECHERCHE_LDAP);
+            NamingEnumeration enume   = contextAdmin.search((String) parametres.get(MairieLDAP.BASE_LDAP),
                                           "(" + critere + "=" + userName + ")", constraints);
             String dn = "";
 
@@ -152,15 +159,15 @@ public class MairieLDAP {
             java.util.Hashtable newEnv = new java.util.Hashtable();
 
             // initialisation du contexte
-            newEnv.put(Context.INITIAL_CONTEXT_FACTORY, (String) parametres.get("INITCTX_LDAP"));
+            newEnv.put(Context.INITIAL_CONTEXT_FACTORY, (String) parametres.get(MairieLDAP.INITCTX_LDAP));
 
-            String hostLDAP = (String) parametres.get("HOST_LDAP");
+            String hostLDAP = (String) parametres.get(MairieLDAP.HOST_LDAP);
 
             newEnv.put(Context.PROVIDER_URL, hostLDAP);
 
             // initialisation de l'utilisateur
             newEnv.put(Context.SECURITY_AUTHENTICATION, "simple");
-            newEnv.put(Context.SECURITY_PRINCIPAL, dn + "," + (String) parametres.get("BASE_LDAP"));
+            newEnv.put(Context.SECURITY_PRINCIPAL, dn + "," + (String) parametres.get(MairieLDAP.BASE_LDAP));
             newEnv.put(Context.SECURITY_CREDENTIALS, userPassword);
 
             try {
@@ -191,15 +198,15 @@ public class MairieLDAP {
         java.util.Hashtable envAdmin = new java.util.Hashtable();
 
         // initialisation du contexte
-        String initctx_ldap = (String) parametres.get("INITCTX_LDAP");
+        String initctx_ldap = (String) parametres.get(MairieLDAP.INITCTX_LDAP);
 
         if (initctx_ldap == null) {
-            throw new Exception("Paramètre INITCTX_LDAP non trouvé.");
+            throw new Exception("Paramètre " + MairieLDAP.INITCTX_LDAP + " non trouvé.");
         }
 
         envAdmin.put(Context.INITIAL_CONTEXT_FACTORY, initctx_ldap);
 
-        String hostLDAP = (String) parametres.get("HOST_LDAP");
+        String hostLDAP = (String) parametres.get(MairieLDAP.HOST_LDAP);
 
         if (hostLDAP == null) {
             throw new Exception("Paramètre HOST_LDAP non trouvé.");
@@ -210,25 +217,25 @@ public class MairieLDAP {
         // initialisation de l'utilisateur
         envAdmin.put(Context.SECURITY_AUTHENTICATION, "simple");
 
-        String baseLDAP = (String) parametres.get("BASE_LDAP");
+        String baseLDAP = (String) parametres.get(MairieLDAP.BASE_LDAP);
 
         if (baseLDAP == null) {
-            throw new Exception("Paramètre BASE_LDAP non trouvé.");
+            throw new Exception("Paramètre " + MairieLDAP.BASE_LDAP + " non trouvé.");
         }
 
         // String critere = (String)parametres.get("CRITERE_RECHERCHE_LDAP");
-        String admin = (String) parametres.get("HOST_LDAP_ADMIN");
+        String admin = (String) parametres.get(MairieLDAP.HOST_LDAP_ADMIN);
 
         if (admin == null) {
-            throw new Exception("Paramètre HOST_LDAP_ADMIN non trouvé.");
+            throw new Exception("Paramètre " + MairieLDAP.HOST_LDAP_ADMIN  + " non trouvé.");
         }
 
         admin = mettreGuillemet(admin);
 
-        String pwd = (String) parametres.get("HOST_LDAP_PASSWORD");
+        String pwd = (String) parametres.get(MairieLDAP.HOST_LDAP_PASSWORD);
 
         if (pwd == null) {
-            throw new Exception("Paramètre HOST_LDAP_PASSWORD non trouvé.");
+            throw new Exception("Paramètre " + MairieLDAP.HOST_LDAP_PASSWORD + " non trouvé.");
         }
 
         envAdmin.put(Context.SECURITY_PRINCIPAL, admin + ", " + baseLDAP);
@@ -268,8 +275,9 @@ public class MairieLDAP {
         return dn;
     }
     
+
 /*
-public static void main(String[] args){
+ * public static void main(String[] args){
     //mairieLdap = new MairieLDAP();
         
         Hashtable<String, String> parameters = new Hashtable<String, String>();
@@ -281,9 +289,10 @@ public static void main(String[] args){
         parameters.put("CRITERE_RECHERCHE_LDAP", "samaccountname");
         
         Hashtable<String,String> test = MairieLDAP.chercherUserLDAPAttributs(parameters, "salad74");
-        logger.info(test.size() + "");
-}
-*/
+        logger.info("Nombre d'attributs remontés : " + test.size() + "");
+}*/
+    
+
 }
 
 
