@@ -338,7 +338,7 @@ protected void performAuthentification(javax.servlet.http.HttpServletRequest req
 	response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); 
 	response.setHeader("WWW-Authenticate","BASIC realm=\"Habilitation HTTP pour la Mairie\"");
 	javax.servlet.ServletContext sc= getServletContext();
-	javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("ConnectionInsulte.jsp");
+	javax.servlet.RequestDispatcher rd = sc.getRequestDispatcher("/ConnectionInsulte.jsp");
 	rd.forward(request,response);
 
 	return;
@@ -423,7 +423,7 @@ protected void performException(javax.servlet.http.HttpServletRequest request, j
 		try {newProcess.initialiseZones(request);} catch (Exception hhhh) {}
 		//On remet le process dans la session
 		VariableGlobale.ajouter(request,VariableGlobale.GLOBAL_PROCESS,newProcess);
-		rd = sc.getRequestDispatcher(newProcess.getJSP());
+		rd = sc.getRequestDispatcher("/" + newProcess.getJSP());
 		setNoCache(request, response);
 		rd.forward(request, response);
 	} catch (Exception eeee) {
@@ -505,7 +505,7 @@ protected void performJSP(javax.servlet.http.HttpServletRequest request, javax.s
 	//On forwarde la JSP du process en cours
 	javax.servlet.ServletContext sc= getServletContext();
 	javax.servlet.RequestDispatcher rd = null;
-	rd = sc.getRequestDispatcher(processCourant.getJSP());
+	rd = sc.getRequestDispatcher("/" + processCourant.getJSP());
 	setNoCache(request, response);
 	rd.forward(request, response);
 	return;
