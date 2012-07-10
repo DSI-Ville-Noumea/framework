@@ -1,11 +1,13 @@
 package nc.mairie.technique;
 
+import java.io.Serializable;
+
 /**
  * Ins�rez la description du type ici.
  * Date de création : (22/10/2002 08:20:16)
  * @author: 
  */
-public class UserAppli {
+public class UserAppli implements Serializable {
 	private java.lang.String userName;
 	private java.lang.String userPassword;
 	private java.lang.String serverName;

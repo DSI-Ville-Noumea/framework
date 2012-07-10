@@ -1,6 +1,8 @@
 package nc.mairie.technique;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Ins�rez la description du type ici. Date de création : (16/10/2002 11:25:10)
@@ -497,6 +499,7 @@ public abstract class BasicBroker implements Cloneable {
 		if (getHashDataSource().get(serveurName) == null) {
 			try {
 
+				System.out.println("Serveur name : " + STANDARD_JDBC_CONTEXT + serveurName);
 				getHashDataSource().put(serveurName, (javax.sql.DataSource) getInitialContext().lookup(STANDARD_JDBC_CONTEXT + serveurName));
 				System.out.println("serveur ok (jboss ou websphere) : [" + STANDARD_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
@@ -515,10 +518,10 @@ public abstract class BasicBroker implements Cloneable {
 	 */
 	private static javax.sql.DataSource getDataSource(String serveurName) throws Exception {
 		try {
-			return getDataSourceDefault(serveurName);
+			return getDataSourceTomcat(serveurName);
 		} catch (Exception e) {
 			try {
-				return getDataSourceTomcat(serveurName);
+				return getDataSourceDefault(serveurName);
 			} catch (Exception ex) {
 				System.err.println("Aucun datasource envisagé : " + ex.getMessage());
 				throw ex;
@@ -536,7 +539,11 @@ public abstract class BasicBroker implements Cloneable {
 	private static javax.sql.DataSource getDataSourceTomcat(String serveurName) throws Exception {
 		if (getHashDataSource().get(serveurName) == null) {
 			try {
-
+				System.out.println("Serveur name : " + TOMCAT_JDBC_CONTEXT + serveurName);
+				/*InitialContext ctx = new InitialContext();
+				DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/"+serveurName);
+				Connection con = ds.getConnection();
+				System.out.println("Connexion : " + con.getMetaData().getDatabaseMajorVersion())*/
 				getHashDataSource().put(serveurName, (javax.sql.DataSource) getInitialContext().lookup(TOMCAT_JDBC_CONTEXT + serveurName));
 				System.out.println("serveur ok (tomcat) : [" + TOMCAT_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {

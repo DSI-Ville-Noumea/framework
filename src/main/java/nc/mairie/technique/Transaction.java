@@ -1,11 +1,13 @@
 package nc.mairie.technique;
 
+import java.io.Serializable;
+
 /**
  * Insérez la description du type � cet endroit.
  *  Date de création : (22/10/2002 14:46:17)
  * @author : Luc Bourdil
  */
-public class Transaction {
+public class Transaction implements Serializable {
 	private java.lang.String messageErreur;
 	private boolean erreur;
 	private java.sql.Connection connection;

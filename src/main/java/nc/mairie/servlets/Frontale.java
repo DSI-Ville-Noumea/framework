@@ -8,7 +8,14 @@ import java.util.zip.GZIPInputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
-import nc.mairie.technique.*;
+import nc.mairie.technique.BasicBatch;
+import nc.mairie.technique.BasicBroker;
+import nc.mairie.technique.BasicProcess;
+import nc.mairie.technique.EtatSession;
+import nc.mairie.technique.MairieLDAP;
+import nc.mairie.technique.Transaction;
+import nc.mairie.technique.UserAppli;
+import nc.mairie.technique.VariableGlobale;
 
 /**
  * Insérez la description du type ici.
@@ -218,7 +225,7 @@ private void initialiseParametreHab(){
 			String cleParametre = (String)e.nextElement();
 			String valParametre = prop.getProperty(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			System.out.println("Chargement de la cl� : "+cleParametre+" avec "+valParametre);
+			System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 		}
 		
 	} catch (Exception e) {
@@ -237,7 +244,7 @@ private void initialiseParametreInitiaux() {
 
 	boolean doitPrendreInit = getServletContext().getInitParameterNames().hasMoreElements();
 
-	System.out.println("Chargement des param�tres initiaux dans la servlet : "+getClass().getName());
+	System.out.println("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 	if (getMesParametres().size() == 0) {
 
 		//Initialisation des parametres dans le fichier properties
@@ -251,7 +258,7 @@ private void initialiseParametreInitiaux() {
 				if (cleParametre != null && ! cleParametre.startsWith("com.ibm.websphere") ) {
 					String valParametre = doitPrendreInit ? (String)getServletContext().getInitParameter(cleParametre) : (String)getServletContext().getAttribute(cleParametre);
 					getMesParametres().put(cleParametre,valParametre);
-					System.out.println("Chargement de la cl� : "+cleParametre+" avec "+valParametre);
+					System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 				}
 			} catch (Exception e) {
 				continue;
@@ -264,11 +271,11 @@ private void initialiseParametreInitiaux() {
 			String cleParametre = (String)enumServlet.nextElement();
 			String valParametre = (String)getInitParameter(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			System.out.println("Chargement de la cl� : "+cleParametre+" avec "+valParametre);
+			System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 		}
 	}
 	
-	System.out.println("Fin de chargement des param�tres initiaux dans la servlet : "+getClass().getName());
+	System.out.println("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 }
 /**
  * Insérez la description de la m�thode � cet endroit.

@@ -1,5 +1,7 @@
 package nc.mairie.robot;
 
+import java.io.Serializable;
+
 import nc.mairie.technique.BasicProcess;
 
 /**
@@ -7,7 +9,7 @@ import nc.mairie.technique.BasicProcess;
  *  Date de création : (28/10/02 10:14:36)
  * @author : Luc Bourdil
  */
-public abstract class Robot extends Object{ 
+public abstract class Robot extends Object implements Serializable{ 
 	private java.util.Hashtable navigation;
 	private Testeur myTesteur;
 /**

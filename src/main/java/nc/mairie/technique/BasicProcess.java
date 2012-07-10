@@ -1,11 +1,13 @@
 package nc.mairie.technique;
 
+import java.io.Serializable;
+
 /**
  * Insérez la description du type ici.
  * Date de création : (21/10/2002 10:27:37)
  * @author: Luc Bourdil
  */
-public abstract class BasicProcess {
+public abstract class BasicProcess implements Serializable {
 	protected static String [] LBVide = {""};
 	private int statut;
 	private java.util.Hashtable zonesDeSaisie;
