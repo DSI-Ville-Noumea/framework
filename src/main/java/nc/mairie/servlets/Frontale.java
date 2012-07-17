@@ -5,17 +5,9 @@ import java.io.ObjectInputStream;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
-
 import javax.servlet.http.HttpServletResponse;
-
-import nc.mairie.technique.BasicBatch;
-import nc.mairie.technique.BasicBroker;
-import nc.mairie.technique.BasicProcess;
-import nc.mairie.technique.EtatSession;
-import nc.mairie.technique.MairieLDAP;
-import nc.mairie.technique.Transaction;
-import nc.mairie.technique.UserAppli;
-import nc.mairie.technique.VariableGlobale;
+import nc.mairie.technique.*;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Insérez la description du type ici.
@@ -57,13 +49,14 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 	// V�rification du sch�ma d'authentification
 	String startString = "basic ";
 	if (auth.toLowerCase().startsWith(startString)) {
-		// Extraction et d�codage du user
+		// Extraction et décodage du user
 		String creditB64 = auth.substring(startString.length());
-		sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
+		//sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
 		
 		// Extraction du nom d'utilisateur et du mot de passe
 		try {
-			byte[] credit = decoder.decodeBuffer(creditB64);
+			//byte[] credit = decoder.decodeBuffer(creditB64);
+                        byte[] credit = Base64.decodeBase64(creditB64);
 			str = new String(credit);
 
 			//D�coupage du nom user:passwd
