@@ -1,4 +1,5 @@
-﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>nc.mairie</groupId>
@@ -8,12 +9,12 @@
     <name>Framework Mairie</name>
     <url>http://maven.apache.org</url>
 	
-	    <description>
+    <description>
         Le framework Mairie est un ensemble de classes utiles pour simpifier le développement
-		des applications Mairies (Websphere et Ligne de commande).
+        des applications Mairies (Websphere et Ligne de commande).
 		
-		Cette version mavenisée est actuellement utilisée par SIRH et a  pour vocation
-		à moderniser les applications existantes.
+        Cette version mavenisée est actuellement utilisée par SIRH et a  pour vocation
+        à moderniser les applications existantes.
     </description>
 	
 	
@@ -109,11 +110,11 @@
                             <version>2.4</version>
                         </plugin>
 						
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-changelog-plugin</artifactId>
-							<version>2.2</version>
-						</plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-changelog-plugin</artifactId>
+                            <version>2.2</version>
+                        </plugin>
 						
                         <plugin>
                             <groupId>org.codehaus.mojo</groupId>
@@ -133,29 +134,16 @@
         </dependency>
         
         <dependency>
-	<groupId>commons-lang</groupId>
-	<artifactId>commons-lang</artifactId>
-	<version>2.6</version>
-</dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.6</version>
+        </dependency>
             
-            
-        
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
-            <version>1.0.4</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.4</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.0.4</version>
-        </dependency>
-        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
