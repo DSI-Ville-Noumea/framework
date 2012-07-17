@@ -1,6 +1,7 @@
 package nc.mairie.technique;
 
 import java.util.*;
+import java.util.logging.Logger;
 import javax.naming.AuthenticationException;
 import javax.naming.Context;
 import javax.naming.NameNotFoundException;
@@ -8,8 +9,7 @@ import javax.naming.NamingEnumeration;
 import javax.naming.directory.*;
 import nc.mairie.servlets.Frontale;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 /**
  * Insérez la description du type ici. Date de création : (22/11/2002 10:05:43)
@@ -24,7 +24,8 @@ public class MairieLDAP {
     public final static String HOST_LDAP_ADMIN = "HOST_LDAP_ADMIN";
     public final static String HOST_LDAP_PASSWORD = "HOST_LDAP_PASSWORD";
     public final static String CRITERE_RECHERCHE_LDAP = "CRITERE_RECHERCHE_LDAP";
-    private static Logger logger = LoggerFactory.getLogger(MairieLDAP.class);
+    private final static Logger logger = Logger.getLogger(MairieLDAP.class .getName());
+//    private static Logger logger = LoggerFactory.getLogger(MairieLDAP.class);
 
 // Initialisation du contexte
 //  Pour WTE      public static String INITCTX_LDAP = "com.ibm.jndi.LDAPCtxFactory";
@@ -91,7 +92,7 @@ public class MairieLDAP {
             try {
                 contextAdmin = getAdminContext(parametres);
             } catch (Exception admin) {
-                logger.error("MairieLDAP : Impossible de récupérer le contexte admin");
+                logger.severe("MairieLDAP : Impossible de récupérer le contexte admin");
 
                 throw admin;
             }
@@ -119,7 +120,7 @@ public class MairieLDAP {
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.severe(e.getMessage());
 
             return null;
         }
@@ -153,7 +154,7 @@ public class MairieLDAP {
             try {
                 contextAdmin = getAdminContext(parametres);
             } catch (Exception admin) {
-                logger.error("MairieLDAP : Impossible de récupérer le contexte admin");
+                logger.severe("MairieLDAP : Impossible de récupérer le contexte admin");
 
                 throw admin;
             }
@@ -197,18 +198,18 @@ public class MairieLDAP {
             try {
                 new InitialDirContext(newEnv);
             } catch (AuthenticationException auth) {    // Mauvais password
-                logger.error("MairieLDAP : Mauvais mot de passe pour le user " + userName + " --> " + auth);
+                logger.warning("MairieLDAP : Mauvais mot de passe pour le user " + userName + " --> " + auth);
 
                 return false;
             } catch (NameNotFoundException auth2) {     // Nom inexistant
-                logger.error("MairieLDAP : User " + userName + " inexistant dans ldap --> " + auth2);
+                logger.warning("MairieLDAP : User " + userName + " inexistant dans ldap --> " + auth2);
 
                 return false;
             }
 
             return true;
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            logger.severe(e.getMessage());
 
             return false;
         }

@@ -5,14 +5,14 @@
 package nc.mairie.technique;
 
 import java.util.*;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 
 
@@ -23,7 +23,9 @@ import org.slf4j.LoggerFactory;
 public class MairieLdapTest {
 
     //private MairieLDAP mairieLdap  = null;
-    private static Logger logger = LoggerFactory.getLogger(MairieLdapTest.class);
+    //private static Logger logger = LoggerFactory.getLogger(MairieLdapTest.class);
+    private final static Logger logger = Logger.getLogger(MairieLdapTest.class .getName());
+    
     private Hashtable<String, String> parameters = null;
     private Configuration configuration = null;
 
@@ -71,7 +73,7 @@ public class MairieLdapTest {
 
         } catch (Exception ex) {
             confException = ex;
-            logger.error("Impossible d'ouvrir le fichier de conf pour effectuer les tests : " + ex.getMessage());
+            logger.severe("Impossible d'ouvrir le fichier de conf pour effectuer les tests : " + ex.getMessage());
         }
         Assert.assertNull(confException);
 
@@ -101,7 +103,7 @@ public class MairieLdapTest {
             Assert.assertTrue("Impossible de trouver l'entrée sAmaccountName = [" + sAmaccountName + "] ", test != null);
             if (test != null) {
                 Assert.assertTrue(test.size() > 0);
-                logger.debug(test + "");
+                logger.fine(test + "");
             }
         }
 
@@ -116,8 +118,8 @@ public class MairieLdapTest {
     @Test
     public void testLdapServersRandomList(){
         
-        logger.debug("Input ldap servers from conf : [" + parameters.get(MairieLDAP.HOST_LDAP) + "]");
-        logger.debug("randomized list : [" + MairieLDAP.randomizeLdapServersList(parameters.get(MairieLDAP.HOST_LDAP)));
+        logger.fine("Input ldap servers from conf : [" + parameters.get(MairieLDAP.HOST_LDAP) + "]");
+        logger.fine("randomized list : [" + MairieLDAP.randomizeLdapServersList(parameters.get(MairieLDAP.HOST_LDAP)));
         Assert.assertTrue(true);
     }
     
