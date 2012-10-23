@@ -4,7 +4,7 @@
   <groupId>nc.mairie</groupId>
   <artifactId>framework</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <name>Framework</name>
 
 
@@ -144,7 +144,7 @@
 <dependency>
     <groupId>nc.mairie</groupId>
 	<artifactId>commun</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
     </dependency>
   </dependencies>
     <properties>
