@@ -1,6 +1,8 @@
 package nc.mairie.technique;
 
 import java.sql.*;
+import javax.sql.DataSource;
+
 
 /**
  * Insérez la description du type ici.
@@ -462,8 +464,20 @@ private static javax.sql.DataSource getDataSource(String serveurName) throws Exc
 	if (getHashDataSource().get(serveurName) == null) {
 		try {
 
-		getHashDataSource().put(serveurName, (javax.sql.DataSource)getInitialContext().lookup("jdbc/"+serveurName));
-		//Si on veut mettre e java:comp/env/jdbc/ il faut créer un refRessource dans le web.xml de la webapp
+			javax.sql.DataSource datasource = null;
+			
+			try {
+				//tentative du comp env
+				datasource = (javax.sql.DataSource)getInitialContext().lookup("java:comp/env/jdbc/"+serveurName);
+			} catch (Exception e) {
+				//tentative du direct
+				datasource = (javax.sql.DataSource)getInitialContext().lookup("jdbc/"+serveurName);
+				// TODO: handle exception
+			}
+			
+		//Avec RAD, si pas de linkresource, sans java:comp
+		//getHashDataSource().put(serveurName, (javax.sql.DataSource)getInitialContext().lookup("jdbc/"+serveurName));
+		//Si on veut mettre e java:comp/env/jdbc/ il faut cr?er un refRessource dans le web.xml de la webapp
 		//<resource-ref id="ResourceRef_1349238965552">
 		//<description>
 		//</description>
@@ -472,8 +486,11 @@ private static javax.sql.DataSource getDataSource(String serveurName) throws Exc
 		//<res-auth>Application</res-auth>
 		//<res-sharing-scope>Shareable</res-sharing-scope>
 		//</resource-ref>
-		//Attention dene pas oublier le Nom JNDI dans Liaison websphere dasn l'onglet références
+		//Attention dene pas oublier le Nom JNDI dans Liaison websphere dasn l'onglet r?f?rences
+			
+		//avec tomvcat
 		//getHashDataSource().put(serveurName, (javax.sql.DataSource)getInitialContext().lookup("java:comp/env/jdbc/"+serveurName));
+			getHashDataSource().put(serveurName, datasource);
 		} catch (Exception e) {
 			System.err.println("Exception dans 'getDataSource' : " +e );
 			throw e;
@@ -566,12 +583,15 @@ public String getTable() {
 public static Connection getUneConnexion(String nom, String password, String serveurName) throws Exception {
 	Connection conn = null;
 	try {
-		//Si param débile alors on retourne null
-		if (nom == null || password == null)
-			return null;
+		DataSource datasource =getDataSource(serveurName); 
 
-		conn = getDataSource(serveurName).getConnection(nom,password);
-
+		try {
+			//peut-être géré par un user unique
+			conn = datasource.getConnection();
+		} catch (Exception e) {
+			conn = datasource.getConnection(nom,password);
+		}
+		
 		conn.setAutoCommit(false);
 		//Enlevé le 05/09/11 par LB car pas en mode transactionnel !!!
 		//conn.setTransactionIsolation( java.sql.Connection.TRANSACTION_NONE);
