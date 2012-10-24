@@ -5,8 +5,8 @@ import javax.sql.DataSource;
 
 
 /**
- * Insérez la description du type ici.
- * Date de création : (16/10/2002 11:25:10)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (16/10/2002 11:25:10)
  * @author: 
  */
 public abstract class BasicBroker implements Cloneable{
@@ -54,7 +54,7 @@ public Object clone() throws CloneNotSupportedException {
 	return super.clone();
 }
 /**
- * Methode à implémenter et qui retourne le nom de la table de l'objet métier et sa valeur
+ * Methode Ã  implÃ©menter et qui retourne le nom de la table de l'objet mÃ©tier et sa valeur
  * @author Luc Bourdil
  */
 private java.util.Hashtable construitColonneValeur(boolean recupIdentity) throws Exception {
@@ -97,7 +97,7 @@ private java.util.Hashtable construitColonneValeur(boolean recupIdentity) throws
 				
 		}
 
-		//Si attribut type Date et champ numérique
+		//Si attribut type Date et champ numÃ©rique
 		if (aTypeAttribut.equals("DATE") && aType.equals("NUMERIC")) {
 			aValeur = (Services.estUneDate(aValeur) ? Services.convertitDate(Services.formateDate(aValeur),"dd/MM/yy","yyyyMMdd") : "0");
 		//Si type Date
@@ -116,7 +116,7 @@ private java.util.Hashtable construitColonneValeur(boolean recupIdentity) throws
 			if (!"NUMERIC".equals(aType) &&
 				!"DECIMAL".equals(aType) && 
 				!"INTEGER".equals(aType) ) {
-				//On formate pour la base (on créé '' pour ') et on met 'xxx'
+				//On formate pour la base (on crÃ©Ã© '' pour ') et on met 'xxx'
 				aValeur=Services.stringForBase(aValeur);
 			}else {
 				if (aValeur.length()==0) 
@@ -133,7 +133,7 @@ private java.util.Hashtable construitColonneValeur(boolean recupIdentity) throws
 	return result;
 }
 /**
- * Methode générique qui enregistre en base de donnée l'objet métier en cours.
+ * Methode gÃ©nÃ©rique qui enregistre en base de donnÃ©e l'objet mÃ©tier en cours.
  * @author Luc Bourdil
  */
 protected boolean creer(Transaction aTransaction) throws Exception{
@@ -141,7 +141,7 @@ protected boolean creer(Transaction aTransaction) throws Exception{
 	try{
 		conn = aTransaction.getConnection();
 
-		//On récupère une HashTable qui contient le nom de colonne et sa valeur
+		//On rÃ©cupÃ¨re une HashTable qui contient le nom de colonne et sa valeur
 		java.util.Hashtable colonneValeur = construitColonneValeur(false);
 
 		//Je construit la liste des champs
@@ -154,7 +154,7 @@ protected boolean creer(Transaction aTransaction) throws Exception{
 			clauseValues = clauseValues + (String)colonneValeur.get(key) +",";
 		}
 		
-		//On enlève la dernière virgule
+		//On enlÃ¨ve la derniÃ¨re virgule
 		clauseColonnes = clauseColonnes.substring(0,clauseColonnes.length()-1) +")";
 		clauseValues = clauseValues.substring(0,clauseValues.length()-1) +")";
 
@@ -163,7 +163,7 @@ protected boolean creer(Transaction aTransaction) throws Exception{
 		stmt.executeUpdate("insert into "+getTable() + " " + clauseColonnes + " values " + clauseValues, Statement.RETURN_GENERATED_KEYS);
 	
 		
-		//Si un champ identity a été généré
+		//Si un champ identity a Ã©tÃ© gÃ©nÃ©rÃ©
 		ResultSet rs = stmt.getGeneratedKeys();
 		if (rs.next()) {
 				String generatedKey = rs.getString(1);
@@ -171,7 +171,7 @@ protected boolean creer(Transaction aTransaction) throws Exception{
 				BasicRecord identityBR = getIdentityBasicRecord();
 				// S'il est null, Exception
 				if (identityBR == null) {
-					throw new Exception("Exception dans 'creer' du basicBroker pour la classe "+getClass().getName()+" : La table contient un champ déclaré dans le broker" );
+					throw new Exception("Exception dans 'creer' du basicBroker pour la classe "+getClass().getName()+" : La table contient un champ dÃ©clarÃ© dans le broker" );
 				}
 				identityBR.getAttribut().set(getMyBasicMetier(), generatedKey);
 		}
@@ -193,26 +193,26 @@ protected boolean creer(Transaction aTransaction) throws Exception{
 
 }
 /**
- * Methode à définir dans chaque objet Broker pour déclarer la liste des colonnes et leur type
+ * Methode Ã  dÃ©finir dans chaque objet Broker pour dÃ©clarer la liste des colonnes et leur type
  * @author Luc Bourdil
  */
 protected abstract java.util.Hashtable definirMappageTable() throws NoSuchFieldException;
 /**
- *  Methode à définir dans chaque objet Broker pour pouvoir instancier un métier
+ *  Methode Ã  dÃ©finir dans chaque objet Broker pour pouvoir instancier un mÃ©tier
  * @author Luc Bourdil
  */
 protected abstract BasicMetier definirMyMetier();
 /**
- * Methode à définir dans chaque objet Broker pour déclarer le nom de la table
+ * Methode Ã  dÃ©finir dans chaque objet Broker pour dÃ©clarer le nom de la table
  * @author Luc Bourdil
  */
 protected abstract String definirNomTable();
 /**
- * Cette méthode permet de compter un nombre d'enregistrements.
- * Le paramètre 'requeteSQL' est du type "select count(*) from ....."
- * La méthode retourne -1 si une erreur a été rencontrée.
+ * Cette mÃ©thode permet de compter un nombre d'enregistrements.
+ * Le paramÃ¨tre 'requeteSQL' est du type "select count(*) from ....."
+ * La mÃ©thode retourne -1 si une erreur a Ã©tÃ© rencontrÃ©e.
  * @author Luc Bourdil
- * @return résultat de la requete
+ * @return rÃ©sultat de la requete
  */
 protected int executeCompter(Transaction aTransaction,String requeteSQL) throws Exception {
 
@@ -233,35 +233,35 @@ protected int executeCompter(Transaction aTransaction,String requeteSQL) throws 
 
 }
 /**
- * Cette méthode permet de compter un nombre d'enregistrements.
- * Le paramètre 'requeteSQL' est du type "select count(*) from ....."
- * La méthode retourne null si une erreur a été rencontrée.
+ * Cette mÃ©thode permet de compter un nombre d'enregistrements.
+ * Le paramÃ¨tre 'requeteSQL' est du type "select count(*) from ....."
+ * La mÃ©thode retourne null si une erreur a Ã©tÃ© rencontrÃ©e.
  * @author Luc Bourdil
- * @return résultat de la requete
+ * @return rÃ©sultat de la requete
  */
 protected String executeCumuler(Transaction aTransaction,String requeteSQL) throws Exception {
 	java.sql.Connection conn = aTransaction.getConnection();
 	try{
 		//Controle de la Transaction
 		if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-			throw new Exception("La connexion de la transaction est fermée ou nulle.");
+			throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
 		}
 
-		//Nombre à retourner
+		//Nombre Ã  retourner
 		String nombre = "";
 
 		java.sql.Statement stmt = conn.createStatement();
 		java.sql.ResultSet result = stmt.executeQuery(requeteSQL);
 
 
-		//Si pas trouvé
+		//Si pas trouvÃ©
 		if ( ! result.next()) {
 
 			//Fermeture du resultSet
 			result.close();
 			stmt.close();
 
-			aTransaction.declarerErreur("La requete '"+requeteSQL+"' n'a ramené aucun élément.");
+			aTransaction.declarerErreur("La requete '"+requeteSQL+"' n'a ramenÃ© aucun Ã©lÃ©ment.");
 			return null; 
 		}
 
@@ -275,7 +275,7 @@ protected String executeCumuler(Transaction aTransaction,String requeteSQL) thro
 			return null; 
 		}			
 		
-		//On alimente l'objet à retourner
+		//On alimente l'objet Ã  retourner
 		nombre =result.getString(1);
 
 		//Fermeture du resultSet
@@ -294,11 +294,11 @@ protected String executeCumuler(Transaction aTransaction,String requeteSQL) thro
 
 }
 /**
- * Execute une requête SQL et mappe le résultat 
- * de la requête dans l'objet.
+ * Execute une requÃªte SQL et mappe le rÃ©sultat 
+ * de la requÃªte dans l'objet.
  * @author Luc Bourdil
  * @param Transaction
- * @param String requête SQL
+ * @param String requÃªte SQL
  * @return BasicMetier
  */
 protected BasicMetier executeSelect(Transaction aTransaction,String requeteSQL) throws Exception {
@@ -306,17 +306,17 @@ protected BasicMetier executeSelect(Transaction aTransaction,String requeteSQL) 
 	try{
 		//Controle de la Transaction
 		if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-			throw new Exception("La connexion de la transaction est fermée ou nulle.");
+			throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
 		}
 
-		//Objet à retourner
+		//Objet Ã  retourner
 		BasicMetier aBasicMetier = definirMyMetier();
 
 		java.sql.Statement stmt = conn.createStatement();
 		java.sql.ResultSet result = stmt.executeQuery(requeteSQL);
 
 
-		//Si pas trouvé
+		//Si pas trouvÃ©
 		if ( ! result.next()) {
 
 			//Fermeture du resultSet
@@ -327,17 +327,17 @@ protected BasicMetier executeSelect(Transaction aTransaction,String requeteSQL) 
 			return aBasicMetier; 
 		}
 
-		//On alimente l'objet à retourner
+		//On alimente l'objet Ã  retourner
 		mappeResultToMetier(result,aBasicMetier);
 
 		//Fermeture du resultSet
 		result.close();
 		stmt.close();
 
-		//Mémorise le métier base
+		//MÃ©morise le mÃ©tier base
 		aBasicMetier.majBasicMetierBase();
 
-		//Retourne l'objet métier
+		//Retourne l'objet mÃ©tier
 		return aBasicMetier;
 		
 	}catch (Exception e) {
@@ -350,11 +350,11 @@ protected BasicMetier executeSelect(Transaction aTransaction,String requeteSQL) 
 
 }
 /**
- * Execute une requête SQL et mappe le résultat 
- * de la requête dans un tableau de BAsicMetier.
+ * Execute une requÃªte SQL et mappe le rÃ©sultat 
+ * de la requÃªte dans un tableau de BAsicMetier.
  * @author Luc Bourdil
  * @param Transaction
- * @param String requête SQL
+ * @param String requÃªte SQL
  * @return BasicMetier
  */
 protected java.util.ArrayList executeSelectListe(Transaction aTransaction,String requeteSQL) throws Exception {
@@ -363,7 +363,7 @@ protected java.util.ArrayList executeSelectListe(Transaction aTransaction,String
 	try{
 		//Controle de la Transaction
 		if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-			throw new Exception("La connexion de la transaction est fermée ou nulle.");
+			throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
 		}
 
 		java.sql.Statement stmt = conn.createStatement();
@@ -374,10 +374,10 @@ protected java.util.ArrayList executeSelectListe(Transaction aTransaction,String
 			BasicMetier aBasicMetier = definirMyMetier();
 			mappeResultToMetier(rs,aBasicMetier);
 			
-			//Mémorise le métier base
+			//MÃ©morise le mÃ©tier base
 			aBasicMetier.majBasicMetierBase();
 
-			//Ajoute l'objet métier
+			//Ajoute l'objet mÃ©tier
 			result.add(aBasicMetier);
 		}
 
@@ -398,7 +398,7 @@ protected java.util.ArrayList executeSelectListe(Transaction aTransaction,String
 
 }
 /**
- * Met à jour un Insert, update ou delete
+ * Met Ã  jour un Insert, update ou delete
  * @author Luc Bourdil
  * @return boolean
  */
@@ -409,7 +409,7 @@ protected boolean executeTesteExiste(Transaction aTransaction,String requeteSQL)
 	try {
 		//Controle de la Transaction
 		if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-			throw new Exception("La connexion de la transaction est fermée ou nulle.");
+			throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
 		}
 
 		java.sql.Statement stmt = conn.createStatement();
@@ -430,7 +430,7 @@ protected boolean executeTesteExiste(Transaction aTransaction,String requeteSQL)
 	return existe;
 }
 /**
- * Met à jour un Insert, update ou delete
+ * Met Ã  jour un Insert, update ou delete
  * @author Luc Bourdil
  * @return boolean
  */
@@ -439,7 +439,7 @@ protected boolean executeUpdate(Transaction aTransaction,String requeteSQL) thro
 	try {
 		//Controle de la Transaction
 		if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-			throw new Exception("La connexion de la transaction est fermée ou nulle.");
+			throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
 		}
 
 		java.sql.Statement stmt = conn.createStatement();
@@ -455,8 +455,8 @@ protected boolean executeUpdate(Transaction aTransaction,String requeteSQL) thro
 	}
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (17/10/2002 13:37:12)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (17/10/2002 13:37:12)
  * @author Luc Bourdil
  * @return javax.sql.DataSource
  */
@@ -499,7 +499,7 @@ private static javax.sql.DataSource getDataSource(String serveurName) throws Exc
 	return (javax.sql.DataSource)getHashDataSource().get(serveurName);
 }
 /**
- 	Transforme une date récupérée de la base au format SSAA/MM/JJ vers le format JJ/MM/SSAA
+ 	Transforme une date rÃ©cupÃ©rÃ©e de la base au format SSAA/MM/JJ vers le format JJ/MM/SSAA
  */
 public static String getFrenchFormattedDate(String pDate) {
 	if (pDate.length()>0 && pDate !=null)
@@ -508,8 +508,8 @@ public static String getFrenchFormattedDate(String pDate) {
 		return pDate;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (07/05/2004 11:10:05)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (07/05/2004 11:10:05)
  * @return java.util.Hashtable
  */
 private static java.util.Hashtable getHashDataSource() {
@@ -519,8 +519,8 @@ private static java.util.Hashtable getHashDataSource() {
 	return hashDataSource;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (17/10/2002 13:36:26)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (17/10/2002 13:36:26)
  * @author Luc Bourdil
  * @return javax.naming.Context
  */
@@ -542,7 +542,7 @@ private static javax.naming.Context getInitialContext() throws Exception {
 /**
  * Retourne les colonnes de la table
  * @author Luc Bourdil
- * Date de création : (04/12/2002 14:19:26)
+ * Date de crÃ©ation : (04/12/2002 14:19:26)
  */
 protected java.util.Hashtable getMappageTable() throws NoSuchFieldException {
 	if (mappageTable == null) {
@@ -551,8 +551,8 @@ protected java.util.Hashtable getMappageTable() throws NoSuchFieldException {
 	return mappageTable;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (18/11/2002 09:21:37)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (18/11/2002 09:21:37)
  * @author Luc Bourdil
  * @return nc.mairie.technique.BasicMetier
  */
@@ -560,7 +560,7 @@ public BasicMetier getMyBasicMetier() {
 	return myBasicMetier;
 }
 /**
- * Methode à implémenter et qui retourne le nom de la table de l'objet métier
+ * Methode Ã  implÃ©menter et qui retourne le nom de la table de l'objet mÃ©tier
  * @author Luc Bourdil
  */
 private String getNomTable() {
@@ -570,14 +570,14 @@ private String getNomTable() {
 	return nomTable;
 }
 /**
- * Methode qui retourne le nom de la table de l'objet métier
+ * Methode qui retourne le nom de la table de l'objet mÃ©tier
  * @author Luc Bourdil
  */
 public String getTable() {
 	return getNomTable();
 }
 /**
- * Retourne une connection au SGBD pour un user/pwd donné
+ * Retourne une connection au SGBD pour un user/pwd donnÃ©
  * @author Luc Bourdil
  */
 public static Connection getUneConnexion(String nom, String password, String serveurName) throws Exception {
@@ -586,14 +586,14 @@ public static Connection getUneConnexion(String nom, String password, String ser
 		DataSource datasource =getDataSource(serveurName); 
 
 		try {
-			//peut-être géré par un user unique
+			//peut-Ãªtre gÃ©rÃ© par un user unique
 			conn = datasource.getConnection();
 		} catch (Exception e) {
 			conn = datasource.getConnection(nom,password);
 		}
 		
 		conn.setAutoCommit(false);
-		//Enlevé le 05/09/11 par LB car pas en mode transactionnel !!!
+		//EnlevÃ© le 05/09/11 par LB car pas en mode transactionnel !!!
 		//conn.setTransactionIsolation( java.sql.Connection.TRANSACTION_NONE);
 	} catch (Exception e) {
 		System.err.println("Exception dans getUneConnexion : "+e);
@@ -603,11 +603,11 @@ public static Connection getUneConnexion(String nom, String password, String ser
 	return conn;
 }
 /**
- * Retourne une connection au SGBD pour un userrAppli donné
+ * Retourne une connection au SGBD pour un userrAppli donnÃ©
  * @author Luc Bourdil
  */
 public static Connection getUneConnexion(UserAppli aUserAppli) throws Exception {
-	//Si param débile alors on retourne null
+	//Si param dÃ©bile alors on retourne null
 	if (aUserAppli == null)
 		return null;
 
@@ -631,7 +631,7 @@ public static Connection getUneConnexionJDBC(String nom, String password) {
 	return con;
 }
 /**
- * Fait le mappage entre un résultset et l'objet métier
+ * Fait le mappage entre un rÃ©sultset et l'objet mÃ©tier
  * @author Luc Bourdil
  */
 private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) throws Exception{
@@ -649,7 +649,7 @@ private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) 
 		aField = aBasicRecord.getAttribut();
 		aTypeAttribut = aBasicRecord.getTypeAttribut();
 
-		//On recherche l'indice de la colonne correspondant à l'attribut
+		//On recherche l'indice de la colonne correspondant Ã  l'attribut
 		int indiceColonneTable=-1;
 		try {
 			indiceColonneTable= result.findColumn(aColonne);
@@ -657,7 +657,7 @@ private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) 
 			indiceColonneTable = -1;
 		}
 
-		//Si on l'a trouvé dans la table
+		//Si on l'a trouvÃ© dans la table
 		if (indiceColonneTable > 0) {
 			//Affectation de la valeur de la table dans l'attribut
 			String valeur = result.getString(indiceColonneTable);
@@ -665,7 +665,7 @@ private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) 
 					
 			//Si l'attribut de l'objet est de type boolean
 			if (aField.getType().equals(boolean.class))
-				//On affecte le champs avec true si la valeur est égale à 1
+				//On affecte le champs avec true si la valeur est Ã©gale Ã  1
 				try {
 					aField.setBoolean(object,valeur.equals("1"));	
 				} catch (Exception setBoolean) {
@@ -684,7 +684,7 @@ private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) 
 			} else
 				switch (typeColonne) {
 					case java.sql.Types.TIMESTAMP: {
-						//On récupère la date au format français et on enlève le time
+						//On rÃ©cupÃ¨re la date au format franÃ§ais et on enlÃ¨ve le time
 						String uneDate = new String();
 						if (valeur != null && valeur.length()> 0) 
 						    uneDate= getFrenchFormattedDate(valeur).substring(0,10);
@@ -697,7 +697,7 @@ private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) 
 						break;
 					}
 					case java.sql.Types.DATE: {
-						//On récupère la date au format français et on enlève le time
+						//On rÃ©cupÃ¨re la date au format franÃ§ais et on enlÃ¨ve le time
 						String uneDate = new String();
 						if (valeur != null && valeur.length()> 0)
 							uneDate =  Services.convertitDate(result.getDate(indiceColonneTable).toString(),"yyyy-MM-dd","dd/MM/yyyy");
@@ -737,14 +737,14 @@ private void mappeResultToMetier(java.sql.ResultSet result, BasicMetier object) 
 
 }
 /**
- * Methode générique qui modifie en base de donnée l'objet métier en cours.
+ * Methode gÃ©nÃ©rique qui modifie en base de donnÃ©e l'objet mÃ©tier en cours.
  * @author Luc Bourdil
  */
 protected boolean modifier(Transaction aTransaction) throws Exception{
 
- 	// Contrôle si l'objet vient de la base
+ 	// ContrÃ´le si l'objet vient de la base
  	if ( getMyBasicMetier().getBasicMetierBase()==null ) {
-		aTransaction.declarerErreur("Modification impossible. L'objet n'a pas été récupéré du référentiel.");
+		aTransaction.declarerErreur("Modification impossible. L'objet n'a pas Ã©tÃ© rÃ©cupÃ©rÃ© du rÃ©fÃ©rentiel.");
  		return false;
  	}
 
@@ -755,7 +755,7 @@ protected boolean modifier(Transaction aTransaction) throws Exception{
 	 	// Recuperation du TimeStamp
 		conn = aTransaction.getConnection();
 	
-		//On récupère une HashTable qui contient le nom de colonne et sa valeur
+		//On rÃ©cupÃ¨re une HashTable qui contient le nom de colonne et sa valeur
 		java.util.Hashtable colonneValeur = construitColonneValeur(false);
 		java.util.Hashtable colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
 		
@@ -777,10 +777,10 @@ protected boolean modifier(Transaction aTransaction) throws Exception{
 			clauseWhere = clauseWhere + " "+ key + (oldValeur.equals("null") ? " is ":"=") + oldValeur+" and ";
 		}
 
-		//On enlève la dernière virgule
+		//On enlÃ¨ve la derniÃ¨re virgule
 		clauseUpdate = clauseUpdate.substring(0,clauseUpdate.length()-1);
 
-		//On enlève le dernier and
+		//On enlÃ¨ve le dernier and
 		clauseWhere = clauseWhere.substring(0,clauseWhere.length()-5);
 
 		//On lance la requete
@@ -791,9 +791,9 @@ protected boolean modifier(Transaction aTransaction) throws Exception{
 		//Rajout du propertychange
 		aTransaction.addPropertyChangeListener(getMyBasicMetier());
 
-		//Si aucune mise à jour
+		//Si aucune mise Ã  jour
 		if ( nbMaj == 0 ) {
-			aTransaction.declarerErreur("L'objet de la table "+getTable()+" n'a pu être mis à jour. Il est introuvable ou a peut-être été modifié par quelqu'un d'autre.");
+			aTransaction.declarerErreur("L'objet de la table "+getTable()+" n'a pu Ãªtre mis Ã  jour. Il est introuvable ou a peut-Ãªtre Ã©tÃ© modifiÃ© par quelqu'un d'autre.");
 			aTransaction.rollbackTransaction();
 			aTransaction.fermerConnexion();
 			return false; 
@@ -808,8 +808,8 @@ protected boolean modifier(Transaction aTransaction) throws Exception{
 
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (18/11/2002 09:21:37)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (18/11/2002 09:21:37)
  * @author Luc Bourdil
  * @param newMyBAsicMetier nc.mairie.technique.BasicMetier
  */
@@ -817,14 +817,14 @@ protected void setMyBasicMetier(BasicMetier newMyBasicMetier) {
 	myBasicMetier = newMyBasicMetier;
 }
 /**
- * Methode générique qui supprime en base de donnée l'objet métier en cours.
+ * Methode gÃ©nÃ©rique qui supprime en base de donnÃ©e l'objet mÃ©tier en cours.
  * @author Luc Bourdil
  */
 protected boolean supprimer(Transaction aTransaction) throws Exception{
 
- 	// Contrôle si l'objet vient de la base
+ 	// ContrÃ´le si l'objet vient de la base
  	if ( getMyBasicMetier().getBasicMetierBase()==null ) {
-		aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas été récupéré du référentiel.");
+		aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas Ã©tÃ© rÃ©cupÃ©rÃ© du rÃ©fÃ©rentiel.");
  		return false;
  	}
 
@@ -835,7 +835,7 @@ protected boolean supprimer(Transaction aTransaction) throws Exception{
 	 	// Recuperation du TimeStamp
 		conn = aTransaction.getConnection();
 	
-		//On récupère une HashTable qui contient le nom de colonne et sa valeur
+		//On rÃ©cupÃ¨re une HashTable qui contient le nom de colonne et sa valeur
 		java.util.Hashtable colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
 
 		//Je construit la liste des champs
@@ -848,7 +848,7 @@ protected boolean supprimer(Transaction aTransaction) throws Exception{
 			clauseWhere = clauseWhere + " "+ key + (oldValeur.equals("null") ? " is ":"=") + oldValeur+" and ";
 		}
 
-		//On enlève le dernier and
+		//On enlÃ¨ve le dernier and
 		clauseWhere = clauseWhere.substring(0,clauseWhere.length()-5);
 
 		//On lance la requete
@@ -859,9 +859,9 @@ protected boolean supprimer(Transaction aTransaction) throws Exception{
 		//Rajout du propertychange
 		aTransaction.addPropertyChangeListener(getMyBasicMetier());
 		
-		//Si aucune mise à jour
+		//Si aucune mise Ã  jour
 		if ( nbMaj == 0 ) {
-			aTransaction.declarerErreur("L'objet de la table "+getTable()+" n'a pu être mis à jour. Il est introuvable ou a peut-être été modifié par quelqu'un d'autre.");
+			aTransaction.declarerErreur("L'objet de la table "+getTable()+" n'a pu Ãªtre mis Ã  jour. Il est introuvable ou a peut-Ãªtre Ã©tÃ© modifiÃ© par quelqu'un d'autre.");
 			aTransaction.rollbackTransaction();
 			aTransaction.fermerConnexion();
 			return false; 

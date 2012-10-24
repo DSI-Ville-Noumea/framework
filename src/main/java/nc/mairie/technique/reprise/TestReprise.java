@@ -60,7 +60,7 @@ public class TestReprise {
 					"AWA_REQUESTS", champsTo);
 			
 			//objetFrom.CopieTable(objetTo,"where com.COD_ORG = 'VDN' and com.cod_bud = '01' and com.SER_DES = 1078", true);
-			//On supprime avec truncate (optimisé) et pas DELETE, donc false...
+			//On supprime avec truncate (optimisÃ©) et pas DELETE, donc false...
 			objetTo.execute("call SP_TRUNCATE_AWA_REQUESTS()");
 			objetFrom.CopieTable(objetTo,"", false);
 
@@ -88,7 +88,7 @@ public class TestReprise {
 					"AWA_RESPONSES", champsTo);
 			
 			//objetFrom.CopieTable(objetTo,"where com.COD_ORG = 'VDN' and com.cod_bud = '01' and com.SER_DES = 1078", true);
-			//On supprime avec truncate (optimisé) et pas DELETE, donc false...
+			//On supprime avec truncate (optimisÃ©) et pas DELETE, donc false...
 			objetTo.execute("call SP_TRUNCATE_AWA_RESPONSES()");
 			objetFrom.CopieTable(objetTo,"", false);
 
@@ -113,7 +113,7 @@ public class TestReprise {
 					"AWA_USERS", champsTo);
 			
 			//objetFrom.CopieTable(objetTo,"where com.COD_ORG = 'VDN' and com.cod_bud = '01' and com.SER_DES = 1078", true);
-			//On supprime avec truncate (optimisé) et pas DELETE, donc false...
+			//On supprime avec truncate (optimisÃ©) et pas DELETE, donc false...
 			objetTo.execute("call SP_TRUNCATE_AWA_USERS()");
 			objetFrom.CopieTable(objetTo,"", false);
 
@@ -144,8 +144,8 @@ public class TestReprise {
 		TestReprise passerelle = new TestReprise();
 		try {
 
-			//log démarrage
-			String txt = "Démarrage de la passerelle par "+System.getProperty("user.name");
+			//log dÃ©marrage
+			String txt = "DÃ©marrage de la passerelle par "+System.getProperty("user.name");
 			passerelle.log("--------------------------------------------------------");
 			passerelle.log(txt);
 			
@@ -164,7 +164,7 @@ public class TestReprise {
 	}
 
 	public void init() {
-	//	lecture des propriétés
+	//	lecture des propriÃ©tÃ©s
 		try {
 			properties = new Properties();
 			
@@ -177,7 +177,7 @@ public class TestReprise {
 			InputStream is = new FileInputStream(root+className+".properties");
 			properties.load(is);
 			is.close();
-			log("Lecture des propriétés : "+properties);
+			log("Lecture des propriÃ©tÃ©s : "+properties);
 	      
 		} catch (Exception e) {
 			log("Impossible de lire le fichier properties : "+e.getMessage());

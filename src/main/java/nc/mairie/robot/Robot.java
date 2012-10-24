@@ -3,8 +3,8 @@ package nc.mairie.robot;
 import nc.mairie.technique.BasicProcess;
 
 /**
- * Insérez la description du type à cet endroit.
- *  Date de création : (28/10/02 10:14:36)
+ * InsÃ©rez la description du type Ã  cet endroit.
+ *  Date de crÃ©ation : (28/10/02 10:14:36)
  * @author : Luc Bourdil
  */
 public abstract class Robot extends Object{ 
@@ -17,33 +17,33 @@ public Robot() {
 	super();
 }
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (28/10/02 10:16:34)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (28/10/02 10:16:34)
  */
 public abstract BasicProcess getDefaultProcess() throws Exception;
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (28/10/02 10:16:34)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (28/10/02 10:16:34)
  */
 public abstract BasicProcess getFirstProcess(String activite) throws Exception ;
 
 
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (28/10/02 10:16:34)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (28/10/02 10:16:34)
  */
 public BasicProcess getFirstProcessActivite(String activite) throws Exception {
 	//Si null alors erreur
 	BasicProcess aProcess = getFirstProcess(activite);
 	if (aProcess == null){
-		throw new Exception("Activite "+activite+" non déclarée dans le robot de navigation");
+		throw new Exception("Activite "+activite+" non dÃ©clarÃ©e dans le robot de navigation");
 	}
 	return aProcess;
 }
 
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (21/05/2003 15:29:59)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (21/05/2003 15:29:59)
  * @return nc.mairie.robot.Testeur
  */
 private Testeur getMyTesteur() {
@@ -53,8 +53,8 @@ private Testeur getMyTesteur() {
 	return myTesteur;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (28/10/2002 11:59:52)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (28/10/2002 11:59:52)
  * @return java.util.Hashtable
  */
 private java.util.Hashtable getNavigation() {
@@ -64,8 +64,8 @@ private java.util.Hashtable getNavigation() {
 	return navigation;
 }
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (31/10/99 10:16:34)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (31/10/99 10:16:34)
  */
 public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 
@@ -85,7 +85,7 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 		nomClasse = (String)getNavigation().get(process.getClass().getName()+process.etatStatut());
 	}
 	if (nomClasse == null)
-		throw new Exception("Navigation du robot non déterminée avec le process " + process.getClass() +" et le statut "+process.etatStatut());
+		throw new Exception("Navigation du robot non dÃ©terminÃ©e avec le process " + process.getClass() +" et le statut "+process.etatStatut());
 	
 	Class c;
 	try {
@@ -97,18 +97,18 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 	return (BasicProcess)c.newInstance();
 }
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (28/10/02 10:16:34)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (28/10/02 10:16:34)
  */
 protected abstract java.util.Hashtable initialiseNavigation() ;
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (28/10/02 10:16:34)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (28/10/02 10:16:34)
  */
 protected abstract Testeur initialiseTesteur() ;
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (21/05/2003 15:29:59)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (21/05/2003 15:29:59)
  * @param newMyTesteur nc.mairie.robot.Testeur
  */
 private void setMyTesteur(Testeur newMyTesteur) {

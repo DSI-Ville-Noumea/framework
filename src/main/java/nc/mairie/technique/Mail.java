@@ -96,7 +96,7 @@ public class Mail {
 		aMail.ajouteDestinataireTO("f066457@gmail.com");
 		
 		//ajout du corps
-		aMail.ajouteMessage("Le message est\nterminé ;-)");
+		aMail.ajouteMessage("Le message est\nterminÃ© ;-)");
 
 		//ajout des fichiers
 		aMail.ajouteFichier("/Mortalite/toto.txt","toto.txt");

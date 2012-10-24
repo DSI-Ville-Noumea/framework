@@ -6,8 +6,8 @@ import com.lowagie.text.Document;
 import java.io.File;
 import com.lowagie.text.Image;
 /**
- * Insérez la description du type ici.
- * Date de création : (06/04/2004 13:01:32)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (06/04/2004 13:01:32)
  * @author: Administrator
  */
 public class ConvertImageToPDF {

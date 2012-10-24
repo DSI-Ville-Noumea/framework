@@ -1,14 +1,14 @@
 package nc.mairie.technique;
 
 /**
- * Insérez la description du type ici.
- * Date de création : (08/11/2002 14:27:54)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (08/11/2002 14:27:54)
  * @author: Luc Bourdil
  */
 public class VariableGlobale implements nc.mairie.commun.technique.ListeVariableGlobale{
 /**
- * Méthode qui ajoute dans la session une variable globale
- * Date de création : (08/11/2002 14:53:28)
+ * MÃ©thode qui ajoute dans la session une variable globale
+ * Date de crÃ©ation : (08/11/2002 14:53:28)
  * @ Author : Luc Bourdil
  */
 public static void ajouter(javax.servlet.http.HttpServletRequest request, String cle, Object valeur) {
@@ -16,8 +16,8 @@ public static void ajouter(javax.servlet.http.HttpServletRequest request, String
 	//request.getSession().setAttribute(cle,valeur);
 }
 /**
- * Méthode qui enlève de la session une variable globale
- * Date de création : (08/11/2002 14:53:28)
+ * MÃ©thode qui enlÃ¨ve de la session une variable globale
+ * Date de crÃ©ation : (08/11/2002 14:53:28)
  * @ Author : Luc Bourdil
  */
 public static void enlever(javax.servlet.http.HttpServletRequest request, String cle) {
@@ -25,8 +25,8 @@ public static void enlever(javax.servlet.http.HttpServletRequest request, String
 	//request.getSession().removeAttribute(cle);
 }
 /**
- * Méthode qui recupere dans la session une variable globale
- * Date de création : (08/11/2002 14:53:28)
+ * MÃ©thode qui recupere dans la session une variable globale
+ * Date de crÃ©ation : (08/11/2002 14:53:28)
  * @ Author : Luc Bourdil
  */
 public static Object recuperer(javax.servlet.http.HttpServletRequest request, String cle) {

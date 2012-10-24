@@ -1,13 +1,13 @@
 package nc.mairie.technique;
 
 /**
- * Insérez la description du type ici.
- * Date de création : (30/10/2002 14:48:55)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (30/10/2002 14:48:55)
  * @author: 
  */
 public class FormateListe {
 	//	String vide = "ALT+255"
-	final String vide = "                                                                                                          ";
+	final String vide = "Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â ";
 
 	private int[] taillesColonnes;
 	private String[] padding;
@@ -66,8 +66,8 @@ public FormateListe(int [] taillesColonnes, java.util.ArrayList metiers, String 
 	this(taillesColonnes,metiers, nomAttributs, null, separateur);
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (30/10/2002 14:50:53)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (30/10/2002 14:50:53)
  */
 public void ajouteLigne(String [] aLigne) {
 	//nombre de zones dans la chaine
@@ -83,16 +83,16 @@ public void ajouteLigne(String [] aLigne) {
 			if (champ.length() > longueur) {
 				champ = champ.substring(0,longueur);
 			} else if (champ.length() < longueur) {
-				//	Si padding = null alors on colle à gauche sinon Si D ou R à droite sinon le caractère passé
+				//	Si padding = null alors on colle Ã  gauche sinon Si D ou R Ã  droite sinon le caractÃ¨re passÃ©
 				char pos = (padding == null ? 'L' : (padding[j].charAt(0) == 'D' ? 'R' : padding[j].charAt(0)));
 				switch (pos) {
 					//ALT 255
 					case 'R' : {
-						champ = Services.lpad(champ, longueur, " ");break;
+						champ = Services.lpad(champ, longueur, "Â ");break;
 					}case 'C' : {
-						champ = Services.cpad(champ, longueur, " ");break;
+						champ = Services.cpad(champ, longueur, "Â ");break;
 					} default : {
-						champ = Services.rpad(champ, longueur, " ");break;
+						champ = Services.rpad(champ, longueur, "Â ");break;
 					}
 				}
 				
@@ -115,8 +115,8 @@ public void ajouteLigne(String [] aLigne) {
 	
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (31/10/2002 07:40:57)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (31/10/2002 07:40:57)
  * @return java.util.Hashtable
  */
 private java.util.Hashtable getHash() {
@@ -124,27 +124,27 @@ private java.util.Hashtable getHash() {
 		hash = new java.util.Hashtable();
 		hash.put("\"","&quot;");
 //		hash.put(" ","&nbsp;"); //Espace en &nbsp
-//		hash.put(" ","&nbsp;"); //Alt 255 en &nbsp
-		hash.put(" "," ");//espace en ALT 255
+//		hash.put("Â ","&nbsp;"); //Alt 255 en &nbsp
+		hash.put(" ","Â ");//espace en ALT 255
 	}
 	return hash;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (30/10/2002 14:50:53)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (30/10/2002 14:50:53)
  */
 public String [] getListeFormatee() {
 
-	//Alimentation résultat
+	//Alimentation rÃ©sultat
 	return getListeFormatee(false);
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (30/10/2002 14:50:53)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (30/10/2002 14:50:53)
  */
 public String [] getListeFormatee(boolean ligneZeroVide) {
 
-	//Alimentation résultat
+	//Alimentation rÃ©sultat
 	Object o [] = getResultat().toArray();
 	int decalage = (ligneZeroVide ? 1 : 0);
 
@@ -154,7 +154,7 @@ public String [] getListeFormatee(boolean ligneZeroVide) {
 	try {
 		result [0] = "";
 	} catch (Exception e) {
-		// Le nb d'élément est vide alors on renvoie null
+		// Le nb d'Ã©lÃ©ment est vide alors on renvoie null
 		return null;
 	}
 
@@ -163,16 +163,16 @@ public String [] getListeFormatee(boolean ligneZeroVide) {
 	return result;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (30/10/2002 14:54:12)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (30/10/2002 14:54:12)
  * @return java.util.ArrayList[]
  */
 private java.util.ArrayList getResultat() {
 	return resultat;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (30/10/2002 14:50:53)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (30/10/2002 14:50:53)
  * @return int[]
  */
 private int[] getTaillesColonnes() {

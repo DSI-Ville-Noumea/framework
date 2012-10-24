@@ -10,8 +10,8 @@ import javax.naming.*;
 import nc.mairie.servlets.Frontale;
 
 /**
- * Insérez la description du type ici.
- * Date de création : (22/11/2002 10:05:43)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (22/11/2002 10:05:43)
  * @author: 
  */
 public class MairieLDAP {
@@ -50,7 +50,7 @@ public static Hashtable chercherUserLDAPAttributs(Hashtable parametres, String u
 		try {
 			 contextAdmin= getAdminContext(parametres);
 		} catch (Exception admin) {
-			System.out.println("MairieLDAP : Impossible de récupérer le contexte admin");
+			System.out.println("MairieLDAP : Impossible de rÃ©cupÃ©rer le contexte admin");
 			throw admin;
 		}
 	
@@ -99,7 +99,7 @@ public static  boolean controlerHabilitation(String userName, String userPasswor
  */
 public static  boolean controlerHabilitation(java.util.Hashtable parametres, String userName, String userPassword)  {
 
-	//Contrôles de base
+	//ContrÃ´les de base
 	if (userName == null || userName.length() == 0 || userPassword == null || userPassword.length() == 0)
 		return false;
 	
@@ -110,7 +110,7 @@ public static  boolean controlerHabilitation(java.util.Hashtable parametres, Str
 		try {
 			 contextAdmin= getAdminContext(parametres);
 		} catch (Exception admin) {
-			System.out.println("MairieLDAP : Impossible de récupérer le contexte admin");
+			System.out.println("MairieLDAP : Impossible de rÃ©cupÃ©rer le contexte admin");
 			throw admin;
 		}
 	
@@ -164,7 +164,7 @@ public static  boolean controlerHabilitation(java.util.Hashtable parametres, Str
 }
 
 /**
- * Construit de facon random la liste des HostLDAP disponibles trouvés dans 
+ * Construit de facon random la liste des HostLDAP disponibles trouvÃ©s dans 
  * le fichier hab.Properties
  */
 private static ArrayList construitListeHostLDAP(java.util.Hashtable parametres){
@@ -203,34 +203,34 @@ private static DirContext getAdminContext(java.util.Hashtable parametres)  throw
 
 		//initialisation du contexte
 		String initctx_ldap = (String)parametres.get("INITCTX_LDAP");
-		if (initctx_ldap == null) throw new Exception("Paramètre INITCTX_LDAP non trouvé.");
+		if (initctx_ldap == null) throw new Exception("ParamÃ¨tre INITCTX_LDAP non trouvÃ©.");
 		envAdmin.put(Context.INITIAL_CONTEXT_FACTORY, initctx_ldap );
 
 		// initialisation de l'utilisateur
 		envAdmin.put(Context.SECURITY_AUTHENTICATION, "simple");
 		String baseLDAP = (String)parametres.get("BASE_LDAP");
-		if (baseLDAP == null) throw new Exception("Paramètre BASE_LDAP non trouvé.");
+		if (baseLDAP == null) throw new Exception("ParamÃ¨tre BASE_LDAP non trouvÃ©.");
 		//String critere = (String)parametres.get("CRITERE_RECHERCHE_LDAP");
 		String admin = (String)parametres.get("HOST_LDAP_ADMIN");
-		if (admin == null) throw new Exception("Paramètre HOST_LDAP_ADMIN non trouvé.");
+		if (admin == null) throw new Exception("ParamÃ¨tre HOST_LDAP_ADMIN non trouvÃ©.");
 		admin = mettreGuillemet(admin);
 		String pwd = (String)parametres.get("HOST_LDAP_PASSWORD");
-		if (pwd == null) throw new Exception("Paramètre HOST_LDAP_PASSWORD non trouvé.");
+		if (pwd == null) throw new Exception("ParamÃ¨tre HOST_LDAP_PASSWORD non trouvÃ©.");
 		envAdmin.put(Context.SECURITY_PRINCIPAL, admin+", " + baseLDAP);
 		envAdmin.put(Context.SECURITY_CREDENTIALS,pwd);	
 	
 		
-		//si déjà trouvé host, on reste sur le même
+		//si dÃ©jÃ  trouvÃ© host, on reste sur le mÃªme
 		if (HOST_LDAP != null) {
 			envAdmin.put(Context.PROVIDER_URL, HOST_LDAP);
 			return new InitialDirContext(envAdmin);
 		}
 		
-		//si on est là : soit le HOST_LDAP est tombé, soit c'est la première connexion
+		//si on est lÃ  : soit le HOST_LDAP est tombÃ©, soit c'est la premiÃ¨re connexion
 		DirContext dirContextAdmin = null;
 		
 		ArrayList listeHostLDap = construitListeHostLDAP(parametres);
-		//On teste les host LDAP et on arrête au premier bon host
+		//On teste les host LDAP et on arrÃªte au premier bon host
 		for (Iterator iter = listeHostLDap.iterator(); iter.hasNext();) {
 			HOST_LDAP = (String) iter.next();
 			envAdmin.put(Context.PROVIDER_URL, HOST_LDAP);
@@ -239,15 +239,15 @@ private static DirContext getAdminContext(java.util.Hashtable parametres)  throw
 				dirContextAdmin = new InitialDirContext(envAdmin);
 				break;
 			} catch (Exception e) {
-				System.out.println("MairieLDAP : Impossible de récupérer le contexte admin avec "+HOST_LDAP);
+				System.out.println("MairieLDAP : Impossible de rÃ©cupÃ©rer le contexte admin avec "+HOST_LDAP);
 				HOST_LDAP = null;
 			}
 			
 		}
 
 		if (HOST_LDAP == null ) {
-			//Si on est là : aucun HOST_LDAP n'est valide !!!
-			throw new Exception("MairieLDAP : Paramètre HOST_LDAP non trouvé ou incorrect.");
+			//Si on est lÃ  : aucun HOST_LDAP n'est valide !!!
+			throw new Exception("MairieLDAP : ParamÃ¨tre HOST_LDAP non trouvÃ© ou incorrect.");
 		}
 		
 		return dirContextAdmin;

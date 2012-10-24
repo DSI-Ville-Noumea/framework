@@ -86,12 +86,12 @@ public class ObjetPasserelle {
 		if (deleteDest) dest.deleteTable();
 
 		int cpt = conDest.createStatement().executeUpdate(insert);
-		log.log("Résultat : "+cpt+" lignes copiées");
+		log.log("RÃ©sultat : "+cpt+" lignes copiÃ©es");
 				
 		
 	}
 	
-	//Copie d'une table à l'autre
+	//Copie d'une table Ã  l'autre
 	public void CopieTable(ObjetPasserelle dest, String critere, boolean deleteDest) throws Exception {
 		ObjetPasserelle org = this;
 		org.log.log("Debut de copie de "+org.table+" de "+org.superConnection.getDatabaseType()+" vers "+dest.table+" de "+dest.superConnection.getDatabaseType());
@@ -148,7 +148,7 @@ public class ObjetPasserelle {
 //System.out.print(rsOrg.getString(i+1)+";");
 					} catch (DataTruncation Exception) {
 						//Quedalle !!!
-						log.log("La valeur "+rsOrg.getString(org.champs[i])+" pour "+org.champs[i]+" est trop grand : tronqué");
+						log.log("La valeur "+rsOrg.getString(org.champs[i])+" pour "+org.champs[i]+" est trop grand : tronquÃ©");
 					}
 				}
 				stDest.addBatch();
@@ -157,13 +157,13 @@ public class ObjetPasserelle {
 			try {
 				int res[] = stDest.executeBatch();
 				if (res == null){ 
-					log.log("Résultat : Aucune ligne copiée");
+					log.log("RÃ©sultat : Aucune ligne copiÃ©e");
 				} else {
 					int cpt=0;
 					for (int i = 0; i < res.length; i++) {
 						cpt+=(res[i]==-2 ? 1 : res[i]);
 					}
-					log.log("Résultat : "+cpt+" lignes copiées");
+					log.log("RÃ©sultat : "+cpt+" lignes copiÃ©es");
 				}
 				
 			} catch (Exception e) {

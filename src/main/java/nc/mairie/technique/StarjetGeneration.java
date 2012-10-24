@@ -1,5 +1,5 @@
 /*
- * Created on 9 févr. 2007
+ * Created on 9 fÃ©vr. 2007
  *
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
@@ -164,7 +164,7 @@ public class StarjetGeneration {
 		if (!rs.next()) {
 			rs.close();
 			st.close();
-			String message = "Erreur : Impossible de trouver les données dans v_starjet avec "+mode+", "+projet+(nomService!= null ? ", "+nomService : "")+".";
+			String message = "Erreur : Impossible de trouver les donnÃ©es dans v_starjet avec "+mode+", "+projet+(nomService!= null ? ", "+nomService : "")+".";
 			t.declarerErreur(message);
 			throw new Exception(message);
 			

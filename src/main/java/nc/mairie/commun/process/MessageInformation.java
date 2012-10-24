@@ -14,9 +14,9 @@ public MessageInformation() {
 }
 /**
  * Retourne le nom de la JSP du process
- * Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
- * Date de création : (07/11/02 08:59:41)
- * @author : Générateur de process
+ * Zone Ã  utiliser dans un champ cachÃ© dans chaque formulaire de la JSP.
+ * Date de crÃ©ation : (07/11/02 08:59:41)
+ * @author : GÃ©nÃ©rateur de process
  */
 public String getJSP() {
 	return "MessageInformation.jsp";
@@ -31,48 +31,48 @@ public java.lang.String getNOM_PB_OK() {
 /**
  * Retourne pour la JSP le nom de la zone statique :
  * ST_MESSAGE
- * Date de création : (07/11/02 08:59:41)
- * @author : Générateur de process
+ * Date de crÃ©ation : (07/11/02 08:59:41)
+ * @author : GÃ©nÃ©rateur de process
  */
 public java.lang.String getNOM_ST_MESSAGE() {
 	return "NOM_ST_MESSAGE";
 }
 /**
- * Retourne la valeur à afficher par la JSP  pour la zone :
+ * Retourne la valeur Ã  afficher par la JSP  pour la zone :
  * ST_MESSAGE
- * Date de création : (07/11/02 08:59:41)
- * @author : Générateur de process
+ * Date de crÃ©ation : (07/11/02 08:59:41)
+ * @author : GÃ©nÃ©rateur de process
  */
 public java.lang.String getVAL_ST_MESSAGE() {
 	return getZone(getNOM_ST_MESSAGE());
 }
 /**
-	Initialisation des zones à afficher dans la JSP
+	Initialisation des zones Ã  afficher dans la JSP
 	Alimentation des listes, s'il y en a, avec setListeLB_XXX()
 	ATTENTION : Les Objets dans la liste doivent avoir les Fields PUBLIC
-	Utilisation de la méthode addZone(getNOMxxx, String);
+	Utilisation de la mÃ©thode addZone(getNOMxxx, String);
  */
 public void initialiseZones(javax.servlet.http.HttpServletRequest request) {
 	String message = getZone(getNOM_ST_MESSAGE());
 	//Si pas de message
 	if (message == null || message.length() == 0) {
-		//Récup du message dans la transaction
+		//RÃ©cup du message dans la transaction
 		message = getTransaction().traiterErreur();
 
 		//Si message toujours null
 		if (message == null || message.length() == 0) {
 			String name = (getProcessAppelant() == null ? "null" : getProcessAppelant().getClass().getName());
-			addZone(getNOM_ST_MESSAGE(),"Aucun message n'a été positionné par le process "+name);
+			addZone(getNOM_ST_MESSAGE(),"Aucun message n'a Ã©tÃ© positionnÃ© par le process "+name);
 		} else {
 			addZone(getNOM_ST_MESSAGE(),message);
 		}
 	}
 }
 /**
-	Méthode qui : 
+	MÃ©thode qui : 
 	- Traite et affecte les zones saisies dans la JSP.
-	- Implémente les règles de gestion du process
-	- Positionne un statut en fonction de ces règles :
+	- ImplÃ©mente les rÃ¨gles de gestion du process
+	- Positionne un statut en fonction de ces rÃ¨gles :
 	     setStatut(STATUT, boolean veutRetour) ou setStatut(STATUT,Message d'erreur)
  */
 public boolean recupererStatut(javax.servlet.http.HttpServletRequest request) {

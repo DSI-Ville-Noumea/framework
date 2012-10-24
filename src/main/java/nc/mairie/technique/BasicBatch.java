@@ -4,8 +4,8 @@ import nc.mairie.technique.VariableGlobale;
 import nc.mairie.technique.UserAppli;
 
 /**
- * InsÈrez la description du type ici.
- * Date de crÈation : (06/10/2003 10:59:39)
+ * Ins√©rez la description du type ici.
+ * Date de cr√©ation : (06/10/2003 10:59:39)
  * @author: Administrator
  */
 public abstract class BasicBatch extends Thread {
@@ -18,9 +18,9 @@ public BasicBatch(javax.servlet.http.HttpServletRequest request) throws Exceptio
 	super();
 	UserAppli aUserAppli = (UserAppli)VariableGlobale.recuperer(request,VariableGlobale.GLOBAL_USER_APPLI);
 
-	//Parcours des batch et si prÈsentalors Exception
+	//Parcours des batch et si pr√©sentalors Exception
 	if (isBatchRunning(this.getClass())) {
-		throw new Exception("Le batch "+this.getClass().getName()+" est dÈj‡ en cours d'exÈcution");
+		throw new Exception("Le batch "+this.getClass().getName()+" est d√©j√† en cours d'ex√©cution");
 	}
 	
 	setTransaction(new nc.mairie.technique.Transaction(new nc.mairie.technique.UserAppli(aUserAppli.getUserName(),aUserAppli.getUserPassword(), aUserAppli.getServerName())));
@@ -42,7 +42,7 @@ public void abortTraitement() {
 	epurerListeBatch();
 }
 /**
- Retourne vrai si le batch passÈ en param est en cours d'exÈcution
+ Retourne vrai si le batch pass√© en param est en cours d'ex√©cution
  */
 public static boolean arreterBatch(Class aClass) {
 	BasicBatch b = (BasicBatch)getHashBatch().get(aClass);
@@ -50,8 +50,8 @@ public static boolean arreterBatch(Class aClass) {
 	return true;
 }
 /**
- * InsÈrez la description de la mÈthode ‡ cet endroit.
- *  Date de crÈation : (22/10/02 08:57:18)
+ * Ins√©rez la description de la m√©thode √† cet endroit.
+ *  Date de cr√©ation : (22/10/02 08:57:18)
  * @author Luc Bourdil
  */
 public void commitTransaction() throws Exception{
@@ -59,8 +59,8 @@ public void commitTransaction() throws Exception{
 		getTransaction().commitTransaction();
 }
 /**
- * InsÈrez la description de la mÈthode ici.
- *  Date de crÈation : (06/10/2003 16:18:41)
+ * Ins√©rez la description de la m√©thode ici.
+ *  Date de cr√©ation : (06/10/2003 16:18:41)
  */
 public void epurerListeBatch() {
 	getTransaction().setConnection(null);
@@ -69,15 +69,15 @@ public void epurerListeBatch() {
 	return;
 }
 /**
- * InsÈrez la description de la mÈthode ici.
- *  Date de crÈation : (06/10/2003 16:18:41)
+ * Ins√©rez la description de la m√©thode ici.
+ *  Date de cr√©ation : (06/10/2003 16:18:41)
  */
 public void fermerConnexion() {
 	getTransaction().fermerConnexion();
 }
 /**
- * InsÈrez la description de la mÈthode ici.
- *  Date de crÈation : (08/10/2003 11:04:37)
+ * Ins√©rez la description de la m√©thode ici.
+ *  Date de cr√©ation : (08/10/2003 11:04:37)
  * @return java.util.Hashtable
  */
 public static java.util.Hashtable getHashBatch() {
@@ -85,22 +85,22 @@ public static java.util.Hashtable getHashBatch() {
 	return hashBatch;
 }
 /**
- * InsÈrez la description de la mÈthode ici.
- *  Date de crÈation : (06/10/2003 11:06:15)
+ * Ins√©rez la description de la m√©thode ici.
+ *  Date de cr√©ation : (06/10/2003 11:06:15)
  * @return nc.mairie.technique.Transaction
  */
 public nc.mairie.technique.Transaction getTransaction() {
 	return transaction;
 }
 /**
- Retourne vrai si le batch passÈ en param est en cours d'exÈcution
+ Retourne vrai si le batch pass√© en param est en cours d'ex√©cution
  */
 public static boolean isBatchRunning(Class aClass) {
 	return getHashBatch().containsKey(aClass);
 }
 /**
- * InsÈrez la description de la mÈthode ‡ cet endroit.
- *  Date de crÈation : (22/10/02 08:57:18)
+ * Ins√©rez la description de la m√©thode √† cet endroit.
+ *  Date de cr√©ation : (22/10/02 08:57:18)
  */
 public void rollbackTransaction() throws Exception{
 	if (getTransaction() != null)
@@ -114,7 +114,7 @@ public void run() {
 	try {
 		traitement();
 	} catch (Exception e) {
-		System.out.println("Exception interceptÈe dans "+this.getClass());
+		System.out.println("Exception intercept√©e dans "+this.getClass());
 		e.printStackTrace();
 	}
 
@@ -125,16 +125,16 @@ public void run() {
 	epurerListeBatch();
 }
 /**
- * InsÈrez la description de la mÈthode ici.
- *  Date de crÈation : (06/10/2003 11:06:15)
+ * Ins√©rez la description de la m√©thode ici.
+ *  Date de cr√©ation : (06/10/2003 11:06:15)
  * @param newTransaction nc.mairie.technique.Transaction
  */
 private void setTransaction(nc.mairie.technique.Transaction newTransaction) {
 	transaction = newTransaction;
 }
 /**
- * InsÈrez la description de la mÈthode ici.
- *  Date de crÈation : (06/10/2003 16:18:41)
+ * Ins√©rez la description de la m√©thode ici.
+ *  Date de cr√©ation : (06/10/2003 16:18:41)
  */
 public abstract boolean traitement() throws Exception;
 }

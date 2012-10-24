@@ -1,5 +1,5 @@
 /*
- * Created on 14 févr. 2007
+ * Created on 14 fÃ©vr. 2007
  *
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates

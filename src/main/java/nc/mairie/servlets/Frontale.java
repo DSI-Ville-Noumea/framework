@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import nc.mairie.technique.*;
 
 /**
- * Insérez la description du type ici.
- * Date de création : (17/10/2002 09:22:52)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (17/10/2002 09:22:52)
  * @author: Luc Bourdil
  */
 public abstract class Frontale extends javax.servlet.http.HttpServlet {
@@ -27,7 +27,7 @@ public abstract class Frontale extends javax.servlet.http.HttpServlet {
 		this.veutGererActivitite = veutGererActivitite;
 	}
 /**
- * Méthode qui contrôle l'habilitation d'un utilisateur qui se connecte
+ * MÃ©thode qui contrÃ´le l'habilitation d'un utilisateur qui se connecte
  * @author Luc Bourdil
  * @param HttpServletRequest
  * @return boolean
@@ -38,7 +38,7 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 	if (getUserAppli(request) != null)
 		return true;
 
-	//Sinon fenêtre de connexion
+	//Sinon fenÃªtre de connexion
 	String auth = request.getHeader("Authorization");
 	if (auth == null)
 		return false;
@@ -47,10 +47,10 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 	String passwd = null;
 	String user = null;
 
-	// Vérification du schéma d'authentification
+	// VÃ©rification du schÃ©ma d'authentification
 	String startString = "basic ";
 	if (auth.toLowerCase().startsWith(startString)) {
-		// Extraction et décodage du user
+		// Extraction et dÃ©codage du user
 		String creditB64 = auth.substring(startString.length());
 		sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
 		
@@ -59,7 +59,7 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 			byte[] credit = decoder.decodeBuffer(creditB64);
 			str = new String(credit);
 
-			//Découpage du nom user:passwd
+			//DÃ©coupage du nom user:passwd
 			int sep = str.indexOf(':');
 			user = str.substring(0,sep);
 			passwd = str.substring(sep+1);
@@ -68,7 +68,7 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 		}
 	}
 
-	//Contrôle de l'habilitation LDAP
+	//ContrÃ´le de l'habilitation LDAP
 	if (!MairieLDAP.controlerHabilitation(user,passwd))
 		return false;
 
@@ -87,12 +87,12 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 	return true;
 }
 /**
- * Cette méthode a été importée à partir d'un fichier .class.
+ * Cette mÃ©thode a Ã©tÃ© importÃ©e Ã  partir d'un fichier .class.
  * Aucun code source disponible.
  */
 public void destroy() {
 
-	//Nettoyage des batch en cours d'exécution
+	//Nettoyage des batch en cours d'exÃ©cution
 	java.util.Enumeration enume = BasicBatch.getHashBatch().elements();
 	while (enume.hasMoreElements()) {
 		BasicBatch aBatch = (BasicBatch)enume.nextElement();
@@ -161,8 +161,8 @@ public String getServletInfo() {
  */
 protected abstract nc.mairie.robot.Robot getServletRobot();
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (28/10/2002 11:17:51)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (28/10/2002 11:17:51)
  * @author Luc Bourdil
  * @return nc.mairie.technique.UserAppli
  * @param request javax.servlet.http.HttpServletRequest
@@ -182,7 +182,7 @@ public void init() {
 }
 
 /**
- * Init dees paramètres du fichier inithab
+ * Init dees paramÃ¨tres du fichier inithab
  */
 private void initialiseParametreHab(){
 	try {
@@ -218,7 +218,7 @@ private void initialiseParametreHab(){
 			String cleParametre = (String)e.nextElement();
 			String valParametre = prop.getProperty(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+			System.out.println("Chargement de la clÃ© : "+cleParametre+" avec "+valParametre);
 		}
 		
 	} catch (Exception e) {
@@ -229,21 +229,21 @@ private void initialiseParametreHab(){
 
 
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (22/02/2002 10:51:46)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (22/02/2002 10:51:46)
  * @return fr.averse.servlets.Contexte
  */
 private void initialiseParametreInitiaux() {
 
 	boolean doitPrendreInit = getServletContext().getInitParameterNames().hasMoreElements();
 
-	System.out.println("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+	System.out.println("Chargement des paramÃ¨tres initiaux dans la servlet : "+getClass().getName());
 	if (getMesParametres().size() == 0) {
 
 		//Initialisation des parametres dans le fichier properties
 		initialiseParametreHab();
 		
-		//chargement des paramêtres du contexte
+		//chargement des paramÃªtres du contexte
 		java.util.Enumeration enumContext = doitPrendreInit ? getServletContext().getInitParameterNames() : getServletContext().getAttributeNames();
 		while (enumContext.hasMoreElements()) {
 			try {
@@ -251,7 +251,7 @@ private void initialiseParametreInitiaux() {
 				if (cleParametre != null && ! cleParametre.startsWith("com.ibm.websphere") ) {
 					String valParametre = doitPrendreInit ? (String)getServletContext().getInitParameter(cleParametre) : (String)getServletContext().getAttribute(cleParametre);
 					getMesParametres().put(cleParametre,valParametre);
-					System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+					System.out.println("Chargement de la clÃ© : "+cleParametre+" avec "+valParametre);
 				}
 			} catch (Exception e) {
 				continue;
@@ -264,22 +264,22 @@ private void initialiseParametreInitiaux() {
 			String cleParametre = (String)enumServlet.nextElement();
 			String valParametre = (String)getInitParameter(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+			System.out.println("Chargement de la clÃ© : "+cleParametre+" avec "+valParametre);
 		}
 	}
 	
-	System.out.println("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+	System.out.println("Fin de chargement des paramÃ¨tres initiaux dans la servlet : "+getClass().getName());
 }
 /**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (22/02/2002 10:51:46)
+ * InsÃ©rez la description de la mÃ©thode Ã  cet endroit.
+ *  Date de crÃ©ation : (22/02/2002 10:51:46)
  * @return fr.averse.servlets.Contexte
  */
 protected void initialiseAutresParametres() {
 	setVeutGererActivitite(true);
 }
 /**
- * Méthode qui parcour la liste chaînée des process pour nettoyer les process en doublons.
+ * MÃ©thode qui parcour la liste chaÃ®nÃ©e des process pour nettoyer les process en doublons.
  * @author Luc Bourdil
  */
 private void nettoyageProcessAppelant(BasicProcess processCourant) {
@@ -306,7 +306,7 @@ protected boolean performControleHabilitation(javax.servlet.http.HttpServletRequ
 	return controlerHabilitation(request);
 }
 /**
- * Affecte une transaction au process si la connexion est fermée
+ * Affecte une transaction au process si la connexion est fermÃ©e
  *
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -315,7 +315,7 @@ protected boolean performControleHabilitation(javax.servlet.http.HttpServletRequ
  */
 protected void performAffecteTransaction(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception {
 
-	//Si transaction fermée on en ouvre une
+	//Si transaction fermÃ©e on en ouvre une
 	if (! processCourant.estConnexionOuverte()) {
 		if (processCourant.getTransaction() == null) {
 			processCourant.setTransaction(new Transaction(getUserAppli(request)));
@@ -327,7 +327,7 @@ protected void performAffecteTransaction(javax.servlet.http.HttpServletRequest r
 	return;
 }
 /**
- * Préparation de l'authentification
+ * PrÃ©paration de l'authentification
  *
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -344,7 +344,7 @@ protected void performAuthentification(javax.servlet.http.HttpServletRequest req
 	return;
 }
 /**
- * Changement d'activité
+ * Changement d'activitÃ©
  *
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -354,16 +354,16 @@ protected void performAuthentification(javax.servlet.http.HttpServletRequest req
  */
 protected BasicProcess performChangeActivite(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant, String activite) throws Exception{
 
-	//Par défaut, rollback de la transaction
+	//Par dÃ©faut, rollback de la transaction
 	processCourant.rollbackTransaction();
 
-	//Récup de la transaction
+	//RÃ©cup de la transaction
 	Transaction oldTransaction = processCourant.getTransaction();
 
-	//Effacement d'un message erreur potentiel d l'autre activité
+	//Effacement d'un message erreur potentiel d l'autre activitÃ©
 	oldTransaction.traiterErreur();
 
-	//Récup du process
+	//RÃ©cup du process
 	try {
 		processCourant = getRobot().getFirstProcessActivite(activite);
 	} catch (Exception e) {
@@ -378,10 +378,10 @@ protected BasicProcess performChangeActivite(javax.servlet.http.HttpServletReque
 	}
 	processCourant.setTransaction(oldTransaction);
 
-	//Suppression des variables d'activité
+	//Suppression des variables d'activitÃ©
 	processCourant.getTransaction().setVariablesActivite(null);
 	
-	//Si transaction fermée on en ouvre une
+	//Si transaction fermÃ©e on en ouvre une
 	performAffecteTransaction(request, response, processCourant);
 
 	VariableGlobale.ajouter(request,VariableGlobale.GLOBAL_PROCESS,processCourant);
@@ -436,7 +436,7 @@ protected void performException(javax.servlet.http.HttpServletRequest request, j
 
 }
 /**
- * Traitement d'un fichier à imlprimer
+ * Traitement d'un fichier Ã  imlprimer
  * 
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -450,7 +450,7 @@ protected void performFichierImpression(javax.servlet.http.HttpServletRequest re
 	return;
 }
 /**
- * Traitement de récup du premier process d'une activité.
+ * Traitement de rÃ©cup du premier process d'une activitÃ©.
  * 
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -461,7 +461,7 @@ protected BasicProcess performFirstProcess(javax.servlet.http.HttpServletRequest
 
 	BasicProcess processCourant = null;
 
-	//Récup du process	
+	//RÃ©cup du process	
 	processCourant = activite == null ? getRobot().getDefaultProcess() : getRobot().getFirstProcessActivite(activite);
 	processCourant.setTransaction(new Transaction(getUserAppli(request)));
 
@@ -472,7 +472,7 @@ protected BasicProcess performFirstProcess(javax.servlet.http.HttpServletRequest
 	return processCourant;
 }
 /**
- * Retourne le process par défaut
+ * Retourne le process par dÃ©faut
  *
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -482,10 +482,10 @@ protected BasicProcess performInfoTimeout(javax.servlet.http.HttpServletRequest 
 
 	BasicProcess processCourant = null;
 	
-	//Récup du process	
+	//RÃ©cup du process	
 	processCourant = new nc.mairie.commun.process.MessageInformation();
 	processCourant.setTransaction(new Transaction(getUserAppli(request)));
-	processCourant.getTransaction().declarerErreur("Le temps d'inactivité est dépassé (Time out). Vous avez été déconnecté.");
+	processCourant.getTransaction().declarerErreur("Le temps d'inactivitÃ© est dÃ©passÃ© (Time out). Vous avez Ã©tÃ© dÃ©connectÃ©.");
 
 	VariableGlobale.ajouter(request,VariableGlobale.GLOBAL_PROCESS,processCourant);
 	//processCourant.initialiseZones(request);
@@ -525,7 +525,7 @@ protected BasicProcess performProcessAppelant(javax.servlet.http.HttpServletRequ
 	if (processAppelant != null) {
 		processCourant=processAppelant;
 	} else {
-		//Récup de la transaction
+		//RÃ©cup de la transaction
 		Transaction oldTransaction = processCourant.getTransaction();
 		processCourant = getRobot().getDefaultProcess();
 		processCourant.setTransaction(oldTransaction);
@@ -549,12 +549,12 @@ protected BasicProcess performProcessSuivant(javax.servlet.http.HttpServletReque
 	aNewProcess = getRobot().getNextProcess(processCourant);
 	aNewProcess.setActivite(oldActivite);
 	aNewProcess.setTransaction(oldTransaction);
-	//Si transaction fermée on en ouvre une
+	//Si transaction fermÃ©e on en ouvre une
 	performAffecteTransaction(request, response, processCourant);
 	
 	//Si on change de process
 	if (! processCourant.getClass().getName().equals(aNewProcess.getClass().getName())) {
-		//Si le process veut un retour, on le mémorise
+		//Si le process veut un retour, on le mÃ©morise
 		if (processCourant.estVeutRetour()) {
 			aNewProcess.setProcessAppelant(processCourant);
 		} else {
@@ -568,7 +568,7 @@ protected BasicProcess performProcessSuivant(javax.servlet.http.HttpServletReque
 	return processCourant;
 }
 /**
- * Récupération du statut
+ * RÃ©cupÃ©ration du statut
  * 
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
@@ -577,7 +577,7 @@ protected BasicProcess performProcessSuivant(javax.servlet.http.HttpServletReque
  */
 protected boolean performRecupererStatut(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception {
 
-	//Réaffectation automatique des zones si désiré
+	//RÃ©affectation automatique des zones si dÃ©sirÃ©
 	if (processCourant.estAutoReaffecteZones())
 		processCourant.reaffecteZones(request);
 
@@ -585,7 +585,7 @@ protected boolean performRecupererStatut(javax.servlet.http.HttpServletRequest r
 	processCourant.setStatut(BasicProcess.STATUT_MEME_PROCESS);
 	boolean traitementOK = processCourant.gererRecuperationStatut(request);
 
-	//Dans tous les cas, rollback (pour parer les oublis des développeurs)
+	//Dans tous les cas, rollback (pour parer les oublis des dÃ©veloppeurs)
 	processCourant.rollbackTransaction();
 
 	return traitementOK;
@@ -598,7 +598,7 @@ protected boolean performRecupererStatut(javax.servlet.http.HttpServletRequest r
  * @param response Object that encapsulates the response from the servlet
  */
 public void performTask(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) {
-	//Récupération du process courant et du userAppli
+	//RÃ©cupÃ©ration du process courant et du userAppli
 	BasicProcess processCourant = (BasicProcess)VariableGlobale.recuperer(request,VariableGlobale.GLOBAL_PROCESS);
 	boolean userHabilite = getUserAppli(request) != null;
 	String activite = (String)request.getParameter("ACTIVITE");
@@ -613,62 +613,62 @@ public void performTask(javax.servlet.http.HttpServletRequest request, javax.ser
 			return;
 		}
 		
-		//Si on ne gère pas d'activité
+		//Si on ne gÃ¨re pas d'activitÃ©
 		if (! isVeutGererActivitite()) {
 			//Si processCourant null (on vient juste de s'habiliter)
 			if (processCourant == null) {
-				//Récup du first process de l'activité
+				//RÃ©cup du first process de l'activitÃ©
 				processCourant = performFirstProcess(request,response,activite);
 				doitRecupererStatut = false;
 			}
 
 		} else 		
-		//Si une activité a été choisie
+		//Si une activitÃ© a Ã©tÃ© choisie
 		if (activite != null) {
 			
 			//Si processCourant null (on vient juste de s'habiliter)
 			if (processCourant == null) {
-				//Récup du first process de l'activité
+				//RÃ©cup du first process de l'activitÃ©
 				processCourant = performFirstProcess(request,response,activite);
 			}
 
-			//Si on change d'activité
+			//Si on change d'activitÃ©
 			if (!activite.equals(processCourant.etatActivite())) {
-				//Changement d'activité
+				//Changement d'activitÃ©
 				processCourant = performChangeActivite(request,response,processCourant, activite);
 			}
 
 			doitRecupererStatut = false;
 
-		//Si pas d'activité choisie et process courant est null et user appli existe
+		//Si pas d'activitÃ© choisie et process courant est null et user appli existe
 		} else if (activite == null && processCourant == null && userHabilite) {
 			processCourant = performInfoTimeout(request, response);
 			doitRecupererStatut = false;
 		
-		//Si pas d'activité choisie et process courant est null
+		//Si pas d'activitÃ© choisie et process courant est null
 		} else if (activite == null && processCourant == null) {
-			//Récup du process par défaut
+			//RÃ©cup du process par dÃ©faut
 			//processCourant = performInfoTimeout(request, response);
 			processCourant = getRobot().getDefaultProcess();
 			doitRecupererStatut = false;
 		}
 
-		//Rollback par défaut du process (pour parer les oublis des développeurs)
+		//Rollback par dÃ©faut du process (pour parer les oublis des dÃ©veloppeurs)
 		if (processCourant != null) {
 			processCourant.rollbackTransaction();
-			//Si transaction fermée on en ouvre une
+			//Si transaction fermÃ©e on en ouvre une
 			performAffecteTransaction(request, response, processCourant);
 		}
 
-		//Si on doit récupérer le statut
+		//Si on doit rÃ©cupÃ©rer le statut
 		if (doitRecupererStatut) {
 			
-			//récup du statut	
+			//rÃ©cup du statut	
 			boolean traitementOK = performRecupererStatut(request,response,processCourant);
 
 			//Si traitement KO et pas de message
 			if (!traitementOK && ! processCourant.getTransaction().isErreur()) {
-				processCourant.getTransaction().declarerErreur("Erreur détectée sans message implémenté");
+				processCourant.getTransaction().declarerErreur("Erreur dÃ©tectÃ©e sans message implÃ©mentÃ©");
 
 			//Si traitement OK
 			} else {
@@ -685,7 +685,7 @@ public void performTask(javax.servlet.http.HttpServletRequest request, javax.ser
 
 		}
 
-		//Si transaction fermée on en ouvre une
+		//Si transaction fermÃ©e on en ouvre une
 		performAffecteTransaction(request, response, processCourant);			
 
 		//On remet le process dans la session
@@ -706,7 +706,7 @@ public void performTask(javax.servlet.http.HttpServletRequest request, javax.ser
 			performJSP(request,response,processCourant);
 		}			
 		
-	//Quelle que soit l'exception interceptée
+	//Quelle que soit l'exception interceptÃ©e
 	} catch(Throwable theException)	{
 		performException(request,response,processCourant,theException);
 	}
