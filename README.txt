@@ -1,1 +1,1 @@
-mvn install:install-file -DgroupId=nc.mairie  -DartifactId=framework  -Dversion=1.4-SNAPSHOT  -Dfile=./target/framework-1.4-SNAPSHOT.jar  -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -DgroupId=nc.mairie  -DartifactId=framework  -Dversion=1.4  -Dfile=./target/framework-1.4.jar  -Dpackaging=jar -DgeneratePom=true
