@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * Ins�rez la description du type ici. Date de création : (16/10/2002 11:25:10)
+ * Insérez la description du type ici. Date de création : (16/10/2002 11:25:10)
  * 
  * @author:
  */
@@ -61,8 +61,8 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode � impl�menter et qui retourne le nom de la table de l'objet
-	 * m�tier et sa valeur
+	 * Methode à implémenter et qui retourne le nom de la table de l'objet
+	 * métier et sa valeur
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -124,7 +124,7 @@ public abstract class BasicBroker implements Cloneable {
 				aValeur = "null";
 				// Si le type dans la base n'est pas un entier
 			} else if (!"NUMERIC".equals(aType) && !"DECIMAL".equals(aType) && !"INTEGER".equals(aType)) {
-				// On formate pour la base (on cr�� '' pour ') et on met 'xxx'
+				// On formate pour la base (on crée '' pour ') et on met 'xxx'
 				aValeur = Services.stringForBase(aValeur);
 			} else {
 				if (aValeur.length() == 0)
@@ -141,7 +141,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode g�n�rique qui enregistre en base de donn�e l'objet m�tier en
+	 * Methode générique qui enregistre en base de donnée l'objet métier en
 	 * cours.
 	 * 
 	 * @author Luc Bourdil
@@ -151,7 +151,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			conn = aTransaction.getConnection();
 
-			// On r�cup�re une HashTable qui contient le nom de colonne et sa
+			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
 			java.util.Hashtable colonneValeur = construitColonneValeur(false);
 
@@ -165,7 +165,7 @@ public abstract class BasicBroker implements Cloneable {
 				clauseValues = clauseValues + (String) colonneValeur.get(key) + ",";
 			}
 
-			// On enl�ve la derni�re virgule
+			// On enlève la dernière virgule
 			clauseColonnes = clauseColonnes.substring(0, clauseColonnes.length() - 1) + ")";
 			clauseValues = clauseValues.substring(0, clauseValues.length() - 1) + ")";
 
@@ -173,7 +173,7 @@ public abstract class BasicBroker implements Cloneable {
 			java.sql.Statement stmt = conn.createStatement();
 			stmt.executeUpdate("insert into " + getTable() + " " + clauseColonnes + " values " + clauseValues, Statement.RETURN_GENERATED_KEYS);
 
-			// Si un champ identity a �t� g�n�r�
+			// Si un champ identity a été généré
 			ResultSet rs = stmt.getGeneratedKeys();
 			if (rs.next()) {
 				String generatedKey = rs.getString(1);
@@ -182,7 +182,7 @@ public abstract class BasicBroker implements Cloneable {
 				// S'il est null, Exception
 				if (identityBR == null) {
 					throw new Exception("Exception dans 'creer' du basicBroker pour la classe " + getClass().getName()
-							+ " : La table contient un champ d�clar� dans le broker");
+							+ " : La table contient un champ IDENTITY non déclaré dans le broker");
 				}
 				identityBR.getAttribut().set(getMyBasicMetier(), generatedKey);
 			}
@@ -208,7 +208,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode � d�finir dans chaque objet Broker pour d�clarer la liste des
+	 * Methode à définir dans chaque objet Broker pour déclarer la liste des
 	 * colonnes et leur type
 	 * 
 	 * @author Luc Bourdil
@@ -216,15 +216,15 @@ public abstract class BasicBroker implements Cloneable {
 	protected abstract java.util.Hashtable definirMappageTable() throws NoSuchFieldException;
 
 	/**
-	 * Methode � d�finir dans chaque objet Broker pour pouvoir instancier un
-	 * m�tier
+	 * Methode à définir dans chaque objet Broker pour pouvoir instancier un
+	 * métier
 	 * 
 	 * @author Luc Bourdil
 	 */
 	protected abstract BasicMetier definirMyMetier();
 
 	/**
-	 * Methode � d�finir dans chaque objet Broker pour d�clarer le nom de la
+	 * Methode à définir dans chaque objet Broker pour déclarer le nom de la
 	 * table
 	 * 
 	 * @author Luc Bourdil
@@ -232,12 +232,12 @@ public abstract class BasicBroker implements Cloneable {
 	protected abstract String definirNomTable();
 
 	/**
-	 * Cette m�thode permet de compter un nombre d'enregistrements. Le param�tre
-	 * 'requeteSQL' est du type "select count(*) from ....." La m�thode retourne
-	 * -1 si une erreur a �t� rencontr�e.
+	 * Cette méthode permet de compter un nombre d'enregistrements. Le paramètre
+	 * 'requeteSQL' est du type "select count(*) from ....." La méthode retourne
+	 * -1 si une erreur a été rencontrée.
 	 * 
 	 * @author Luc Bourdil
-	 * @return r�sultat de la requete
+	 * @return résultat de la requete
 	 */
 	protected int executeCompter(Transaction aTransaction, String requeteSQL) throws Exception {
 
@@ -259,19 +259,19 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Cette m�thode permet de compter un nombre d'enregistrements. Le param�tre
-	 * 'requeteSQL' est du type "select count(*) from ....." La m�thode retourne
-	 * null si une erreur a �t� rencontr�e.
+	 * Cette méthode permet de compter un nombre d'enregistrements. Le paramètre
+	 * 'requeteSQL' est du type "select count(*) from ....." La méthode retourne
+	 * null si une erreur a été rencontrée.
 	 * 
 	 * @author Luc Bourdil
-	 * @return r�sultat de la requete
+	 * @return résultat de la requete
 	 */
 	protected String executeCumuler(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est ferm�e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			// Nombre � retourner
@@ -287,7 +287,7 @@ public abstract class BasicBroker implements Cloneable {
 				result.close();
 				stmt.close();
 
-				aTransaction.declarerErreur("La requete '" + requeteSQL + "' n'a ramen� aucun �l�ment.");
+				aTransaction.declarerErreur("La requete '" + requeteSQL + "' n'a ramené aucun élément.");
 				return null;
 			}
 
@@ -301,7 +301,7 @@ public abstract class BasicBroker implements Cloneable {
 				return null;
 			}
 
-			// On alimente l'objet � retourner
+			// On alimente l'objet à retourner
 			nombre = result.getString(1);
 
 			// Fermeture du resultSet
@@ -321,12 +321,12 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Execute une requ�te SQL et mappe le r�sultat de la requ�te dans l'objet.
+	 * Execute une requête SQL et mappe le résultat de la requête dans l'objet.
 	 * 
 	 * @author Luc Bourdil
 	 * @param Transaction
 	 * @param String
-	 *            requ�te SQL
+	 *            requête SQL
 	 * @return BasicMetier
 	 */
 	protected BasicMetier executeSelect(Transaction aTransaction, String requeteSQL) throws Exception {
@@ -334,16 +334,16 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est ferm�e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
-			// Objet � retourner
+			// Objet à retourner
 			BasicMetier aBasicMetier = definirMyMetier();
 
 			java.sql.Statement stmt = conn.createStatement();
 			java.sql.ResultSet result = stmt.executeQuery(requeteSQL);
 
-			// Si pas trouv�
+			// Si pas trouvé
 			if (!result.next()) {
 
 				// Fermeture du resultSet
@@ -354,17 +354,17 @@ public abstract class BasicBroker implements Cloneable {
 				return aBasicMetier;
 			}
 
-			// On alimente l'objet � retourner
+			// On alimente l'objet à retourner
 			mappeResultToMetier(result, aBasicMetier);
 
 			// Fermeture du resultSet
 			result.close();
 			stmt.close();
 
-			// M�morise le m�tier base
+			// Mémorise le métier base
 			aBasicMetier.majBasicMetierBase();
 
-			// Retourne l'objet m�tier
+			// Retourne l'objet métier
 			return aBasicMetier;
 
 		} catch (Exception e) {
@@ -378,13 +378,13 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Execute une requ�te SQL et mappe le r�sultat de la requ�te dans un
+	 * Execute une requête SQL et mappe le résultat de la requête dans un
 	 * tableau de BAsicMetier.
 	 * 
 	 * @author Luc Bourdil
 	 * @param Transaction
 	 * @param String
-	 *            requ�te SQL
+	 *            requête SQL
 	 * @return BasicMetier
 	 */
 	protected java.util.ArrayList executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
@@ -393,7 +393,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est ferm�e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			java.sql.Statement stmt = conn.createStatement();
@@ -404,10 +404,10 @@ public abstract class BasicBroker implements Cloneable {
 				BasicMetier aBasicMetier = definirMyMetier();
 				mappeResultToMetier(rs, aBasicMetier);
 
-				// M�morise le m�tier base
+				// Mémorise le métier base
 				aBasicMetier.majBasicMetierBase();
 
-				// Ajoute l'objet m�tier
+				// Ajoute l'objet métier
 				result.add(aBasicMetier);
 			}
 
@@ -428,7 +428,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Met � jour un Insert, update ou delete
+	 * Met à jour un Insert, update ou delete
 	 * 
 	 * @author Luc Bourdil
 	 * @return boolean
@@ -440,7 +440,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est ferm�e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			java.sql.Statement stmt = conn.createStatement();
@@ -462,7 +462,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Met � jour un Insert, update ou delete
+	 * Met à jour un Insert, update ou delete
 	 * 
 	 * @author Luc Bourdil
 	 * @return boolean
@@ -472,7 +472,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est ferm�e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			java.sql.Statement stmt = conn.createStatement();
@@ -489,7 +489,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. Date de création : (17/10/2002
+	 * Insérez la description de la méthode ici. Date de création : (17/10/2002
 	 * 13:37:12) pour jboss et websphere
 	 * 
 	 * @author Luc Bourdil
@@ -510,7 +510,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. Date de création : (17/10/2002
+	 * Insérez la description de la méthode ici. Date de création : (17/10/2002
 	 * 13:37:12) pour jboss et websphere
 	 * 
 	 * @author Luc Bourdil
@@ -530,7 +530,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. pour tomcat 7 Date de création
+	 * Insérez la description de la méthode ici. pour tomcat 7 Date de création
 	 * : (17/10/2002 13:37:12)
 	 * 
 	 * @author Luc Bourdil
@@ -554,7 +554,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Transforme une date r�cup�r�e de la base au format SSAA/MM/JJ vers le
+	 * Transforme une date récupérée de la base au format SSAA/MM/JJ vers le
 	 * format JJ/MM/SSAA
 	 */
 	public static String getFrenchFormattedDate(String pDate) {
@@ -565,7 +565,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. Date de création : (07/05/2004
+	 * Insérez la description de la méthode ici. Date de création : (07/05/2004
 	 * 11:10:05)
 	 * 
 	 * @return java.util.Hashtable
@@ -578,7 +578,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. Date de création : (17/10/2002
+	 * Insérez la description de la méthode ici. Date de création : (17/10/2002
 	 * 13:36:26)
 	 * 
 	 * @author Luc Bourdil
@@ -615,7 +615,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. Date de création : (18/11/2002
+	 * Insérez la description de la méthode ici. Date de création : (18/11/2002
 	 * 09:21:37)
 	 * 
 	 * @author Luc Bourdil
@@ -626,8 +626,8 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode � impl�menter et qui retourne le nom de la table de l'objet
-	 * m�tier
+	 * Methode à implémenter et qui retourne le nom de la table de l'objet
+	 * métier
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -639,7 +639,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode qui retourne le nom de la table de l'objet m�tier
+	 * Methode qui retourne le nom de la table de l'objet métier
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -648,14 +648,14 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Retourne une connection au SGBD pour un user/pwd donn�
+	 * Retourne une connection au SGBD pour un user/pwd donné
 	 * 
 	 * @author Luc Bourdil
 	 */
 	public static Connection getUneConnexion(String nom, String password, String serveurName) throws Exception {
 		Connection conn = null;
 		try {
-			// Si param d�bile alors on retourne null
+			// Si param débile alors on retourne null
 			if (nom == null || password == null)
 				return null;
 
@@ -674,7 +674,7 @@ public abstract class BasicBroker implements Cloneable {
 			System.out.println("Connexion : " + conn.getMetaData().getUserName());
 
 			conn.setAutoCommit(false);
-			// Enlev� le 05/09/11 par LB car pas en mode transactionnel !!!
+			// Enlevé le 05/09/11 par LB car pas en mode transactionnel !!!
 			// conn.setTransactionIsolation(
 			// java.sql.Connection.TRANSACTION_NONE);
 		} catch (Exception e) {
@@ -686,12 +686,12 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Retourne une connection au SGBD pour un userrAppli donn�
+	 * Retourne une connection au SGBD pour un userrAppli donné
 	 * 
 	 * @author Luc Bourdil
 	 */
 	public static Connection getUneConnexion(UserAppli aUserAppli) throws Exception {
-		// Si param d�bile alors on retourne null
+		// Si param débile alors on retourne null
 		if (aUserAppli == null)
 			return null;
 
@@ -713,7 +713,7 @@ public abstract class BasicBroker implements Cloneable {
 	 */
 
 	/**
-	 * Fait le mappage entre un r�sultset et l'objet m�tier
+	 * Fait le mappage entre un résultset et l'objet métier
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -732,7 +732,7 @@ public abstract class BasicBroker implements Cloneable {
 			aField = aBasicRecord.getAttribut();
 			aTypeAttribut = aBasicRecord.getTypeAttribut();
 
-			// On recherche l'indice de la colonne correspondant � l'attribut
+			// On recherche l'indice de la colonne correspondant à l'attribut
 			int indiceColonneTable = -1;
 			try {
 				indiceColonneTable = result.findColumn(aColonne);
@@ -740,7 +740,7 @@ public abstract class BasicBroker implements Cloneable {
 				indiceColonneTable = -1;
 			}
 
-			// Si on l'a trouv� dans la table
+			// Si on l'a trouvé dans la table
 			if (indiceColonneTable > 0) {
 				// Affectation de la valeur de la table dans l'attribut
 				String valeur = result.getString(indiceColonneTable);
@@ -748,7 +748,7 @@ public abstract class BasicBroker implements Cloneable {
 
 				// Si l'attribut de l'objet est de type boolean
 				if (aField.getType().equals(boolean.class))
-					// On affecte le champs avec true si la valeur est �gale � 1
+					// On affecte le champs avec true si la valeur est égale à 1
 					try {
 						aField.setBoolean(object, valeur.equals("1"));
 					} catch (Exception setBoolean) {
@@ -766,7 +766,7 @@ public abstract class BasicBroker implements Cloneable {
 				} else
 					switch (typeColonne) {
 					case java.sql.Types.TIMESTAMP: {
-						// On r�cup�re la date au format fran�ais et on enl�ve
+						// On récupère la date au format français et on enlève
 						// le time
 						String uneDate = new String();
 						if (valeur != null && valeur.length() > 0)
@@ -780,7 +780,7 @@ public abstract class BasicBroker implements Cloneable {
 						break;
 					}
 					case java.sql.Types.DATE: {
-						// On r�cup�re la date au format fran�ais et on enl�ve
+						// On récupère la date au format français et on enlève
 						// le time
 						String uneDate = new String();
 						if (valeur != null && valeur.length() > 0)
@@ -820,15 +820,15 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode g�n�rique qui modifie en base de donn�e l'objet m�tier en cours.
+	 * Methode générique qui modifie en base de donnée l'objet métier en cours.
 	 * 
 	 * @author Luc Bourdil
 	 */
 	protected boolean modifier(Transaction aTransaction) throws Exception {
 
-		// Contr�le si l'objet vient de la base
+		// Contrôle si l'objet vient de la base
 		if (getMyBasicMetier().getBasicMetierBase() == null) {
-			aTransaction.declarerErreur("Modification impossible. L'objet n'a pas �t� r�cup�r� du r�f�rentiel.");
+			aTransaction.declarerErreur("Modification impossible. L'objet n'a pas été récupéré du référentiel.");
 			return false;
 		}
 
@@ -839,7 +839,7 @@ public abstract class BasicBroker implements Cloneable {
 			// Recuperation du TimeStamp
 			conn = aTransaction.getConnection();
 
-			// On r�cup�re une HashTable qui contient le nom de colonne et sa
+			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
 			java.util.Hashtable colonneValeur = construitColonneValeur(false);
 			java.util.Hashtable colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
@@ -862,10 +862,10 @@ public abstract class BasicBroker implements Cloneable {
 				clauseWhere = clauseWhere + " " + key + (oldValeur.equals("null") ? " is " : "=") + oldValeur + " and ";
 			}
 
-			// On enl�ve la derni�re virgule
+			// On enlève la dernière virgule
 			clauseUpdate = clauseUpdate.substring(0, clauseUpdate.length() - 1);
 
-			// On enl�ve le dernier and
+			// On enlève le dernier and
 			clauseWhere = clauseWhere.substring(0, clauseWhere.length() - 5);
 
 			// On lance la requete
@@ -876,10 +876,10 @@ public abstract class BasicBroker implements Cloneable {
 			// Rajout du propertychange
 			aTransaction.addPropertyChangeListener(getMyBasicMetier());
 
-			// Si aucune mise � jour
+			// Si aucune mise à jour
 			if (nbMaj == 0) {
 				aTransaction.declarerErreur("L'objet de la table " + getTable()
-						+ " n'a pu �tre mis � jour. Il est introuvable ou a peut-�tre �t� modifi� par quelqu'un d'autre.");
+						+ " n'a pu être mis à jour. Il est introuvable ou a peut-être été modifié par quelqu'un d'autre.");
 				aTransaction.rollbackTransaction();
 				aTransaction.fermerConnexion();
 				return false;
@@ -898,7 +898,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Ins�rez la description de la m�thode ici. Date de création : (18/11/2002
+	 * Insérez la description de la méthode ici. Date de création : (18/11/2002
 	 * 09:21:37)
 	 * 
 	 * @author Luc Bourdil
@@ -910,7 +910,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode g�n�rique qui supprime en base de donn�e l'objet m�tier en cours.
+	 * Methode générique qui supprime en base de donnée l'objet métier en cours.
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -918,7 +918,7 @@ public abstract class BasicBroker implements Cloneable {
 
 		// Contr�le si l'objet vient de la base
 		if (getMyBasicMetier().getBasicMetierBase() == null) {
-			aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas �t� r�cup�r� du r�f�rentiel.");
+			aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas été récupéré du référentiel.");
 			return false;
 		}
 
@@ -929,7 +929,7 @@ public abstract class BasicBroker implements Cloneable {
 			// Recuperation du TimeStamp
 			conn = aTransaction.getConnection();
 
-			// On r�cup�re une HashTable qui contient le nom de colonne et sa
+			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
 			java.util.Hashtable colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
 
@@ -943,7 +943,7 @@ public abstract class BasicBroker implements Cloneable {
 				clauseWhere = clauseWhere + " " + key + (oldValeur.equals("null") ? " is " : "=") + oldValeur + " and ";
 			}
 
-			// On enl�ve le dernier and
+			// On enlève le dernier and
 			clauseWhere = clauseWhere.substring(0, clauseWhere.length() - 5);
 
 			// On lance la requete
@@ -954,10 +954,10 @@ public abstract class BasicBroker implements Cloneable {
 			// Rajout du propertychange
 			aTransaction.addPropertyChangeListener(getMyBasicMetier());
 
-			// Si aucune mise � jour
+			// Si aucune mise à jour
 			if (nbMaj == 0) {
 				aTransaction.declarerErreur("L'objet de la table " + getTable()
-						+ " n'a pu �tre mis � jour. Il est introuvable ou a peut-�tre �t� modifi� par quelqu'un d'autre.");
+						+ " n'a pu être mis à jour. Il est introuvable ou a peut-être été modifié par quelqu'un d'autre.");
 				aTransaction.rollbackTransaction();
 				aTransaction.fermerConnexion();
 				return false;
