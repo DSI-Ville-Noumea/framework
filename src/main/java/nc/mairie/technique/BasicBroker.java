@@ -163,19 +163,18 @@ protected boolean creer(Transaction aTransaction) throws Exception{
 		stmt.executeUpdate("insert into "+getTable() + " " + clauseColonnes + " values " + clauseValues, Statement.RETURN_GENERATED_KEYS);
 	
 		
-		//Si un champ identity a été généré
-		ResultSet rs = stmt.getGeneratedKeys();
-		if (rs.next()) {
-				String generatedKey = rs.getString(1);
-				
-				BasicRecord identityBR = getIdentityBasicRecord();
-				// S'il est null, Exception
-				if (identityBR == null) {
-					throw new Exception("Exception dans 'creer' du basicBroker pour la classe "+getClass().getName()+" : La table contient un champ déclaré dans le broker" );
-				}
-				identityBR.getAttribut().set(getMyBasicMetier(), generatedKey);
+		BasicRecord identityBR = getIdentityBasicRecord();
+		//Si un champ identity a été défini, on va le récupérer
+		if (identityBR != null) {
+		
+			//Si un champ identity a été généré
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+					String generatedKey = rs.getString(1);
+					identityBR.getAttribut().set(getMyBasicMetier(), generatedKey);
+			}
 		}
-	
+		
 		stmt.close();
 
 		//Rajout du propertychange
