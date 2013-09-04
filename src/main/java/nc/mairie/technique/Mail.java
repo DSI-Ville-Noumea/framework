@@ -5,7 +5,11 @@ import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.mail.*;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -18,7 +22,8 @@ import javax.mail.internet.MimeMultipart;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class Mail {
-	public static String SMTPserveur = "ePoste.site-mairie.noumea.nc";
+	//public static String SMTPserveur = "ePoste.site-mairie.noumea.nc";
+	public static String SMTPserveur = "smtp.site-mairie.noumea.nc";
 	
 	private MimeMessage message;
 	Multipart multipart = new MimeMultipart();
@@ -28,7 +33,7 @@ public class Mail {
 	 */
 	public Mail(String server, String from, String theSujet) throws Exception{
 		super();
-		if (server == null) SMTPserveur = server;
+		if (server == null) server = SMTPserveur;
 		Properties props = new Properties();
 		
 		//Alim du serveur host

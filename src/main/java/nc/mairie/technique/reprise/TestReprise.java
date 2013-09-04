@@ -84,7 +84,7 @@ public class TestReprise {
 					"AWA_RESPONSES", champsTo);
 			
 			//objetFrom.CopieTable(objetTo,"where com.COD_ORG = 'VDN' and com.cod_bud = '01' and com.SER_DES = 1078", true);
-			//On supprime avec truncate (optimis�) et pas DELETE, donc false...
+			//On supprime avec truncate (optimisé) et pas DELETE, donc false...
 			objetTo.execute("call SP_TRUNCATE_AWA_RESPONSES()");
 			objetFrom.CopieTable(objetTo,"", false);
 
@@ -109,7 +109,7 @@ public class TestReprise {
 					"AWA_USERS", champsTo);
 			
 			//objetFrom.CopieTable(objetTo,"where com.COD_ORG = 'VDN' and com.cod_bud = '01' and com.SER_DES = 1078", true);
-			//On supprime avec truncate (optimis�) et pas DELETE, donc false...
+			//On supprime avec truncate (optimisé) et pas DELETE, donc false...
 			objetTo.execute("call SP_TRUNCATE_AWA_USERS()");
 			objetFrom.CopieTable(objetTo,"", false);
 
@@ -140,7 +140,7 @@ public class TestReprise {
 		TestReprise passerelle = new TestReprise();
 		try {
 
-			//log d�marrage
+			//log démarrage
 			String txt = "Démarrage de la passerelle par "+System.getProperty("user.name");
 			passerelle.log("--------------------------------------------------------");
 			passerelle.log(txt);
@@ -160,7 +160,7 @@ public class TestReprise {
 	}
 
 	public void init() {
-	//	lecture des propri�t�s
+	//	lecture des propriétés
 		try {
 			properties = new Properties();
 			
@@ -173,7 +173,7 @@ public class TestReprise {
 			InputStream is = new FileInputStream(root+className+".properties");
 			properties.load(is);
 			is.close();
-			log("Lecture des propri�t�s : "+properties);
+			log("Lecture des propriétés : "+properties);
 	      
 		} catch (Exception e) {
 			log("Impossible de lire le fichier properties : "+e.getMessage());

@@ -5,10 +5,10 @@ import java.util.Hashtable;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletRequest;
 
-
 import nc.mairie.technique.*;
 /**
  * Process ZZZTESTEUR
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
 */
 public abstract class Testeur extends nc.mairie.technique.BasicProcess {
@@ -16,23 +16,23 @@ public abstract class Testeur extends nc.mairie.technique.BasicProcess {
 	private boolean instancie = false;
 /**
  * Constructeur du process ZZZTESTEUR.
-
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public Testeur() {
 	super();
 }
 /**
- * Retourne le nom de la zone de la ligne s�lectionn�e pour la JSP :
+ * Retourne le nom de la zone de la ligne sélectionnée pour la JSP :
  * NOM_LB_PROCESS_SELECT
-
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public abstract java.lang.String [] definirListeProcess();
 /**
  * Retourne le nom de la JSP du process
- * Zone à utiliser dans un champ cach� dans chaque formulaire de la JSP.
-
+ * Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public String getJSP() {
@@ -41,7 +41,7 @@ public String getJSP() {
 /**
  * Getter de la liste avec un lazy initialize :
  * LB_PROCESS
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 private String [] getLB_PROCESS() {
@@ -52,16 +52,16 @@ private String [] getLB_PROCESS() {
 /**
  * Retourne le nom de la zone pour la JSP :
  * NOM_LB_PROCESS
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_LB_PROCESS() {
 	return "NOM_LB_PROCESS";
 }
 /**
- * Retourne le nom de la zone de la ligne s�lectionn�e pour la JSP :
+ * Retourne le nom de la zone de la ligne sélectionnée pour la JSP :
  * NOM_LB_PROCESS_SELECT
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_LB_PROCESS_SELECT() {
@@ -70,7 +70,7 @@ public java.lang.String getNOM_LB_PROCESS_SELECT() {
 /**
  * Retourne le nom d'un bouton pour la JSP :
  * PB_OECOMMUNEFSELECTION
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_PB_PROCEDER() {
@@ -79,7 +79,7 @@ public java.lang.String getNOM_PB_PROCEDER() {
 /**
  * Retourne le nom d'un bouton pour la JSP :
  * PB_ANNULER
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_PB_ANNULER() {
@@ -88,7 +88,7 @@ public java.lang.String getNOM_PB_ANNULER() {
 /**
  * Retourne le nom d'un bouton pour la JSP :
  * PB_INSTANCIE
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_PB_INSTANCIE() {
@@ -97,7 +97,7 @@ public java.lang.String getNOM_PB_INSTANCIE() {
 /**
  * Retourne le nom d'un bouton pour la JSP :
  * PB_RAZ_ACTIVITE
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_PB_RAZ_ACTIVITE() {
@@ -106,36 +106,36 @@ public java.lang.String getNOM_PB_RAZ_ACTIVITE() {
 /**
  * Retourne pour la JSP le nom de la zone statique :
  * ST_RESULTAT
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_ST_RESULTAT() {
 	return "NOM_ST_RESULTAT";
 }
 /**
- * M�thode � personnaliser
- * Retourne la valeur � afficher pour la zone de la JSP :
+ * Méthode à personnaliser
+ * Retourne la valeur à afficher pour la zone de la JSP :
  * LB_PROCESS
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public java.lang.String []  getVAL_LB_PROCESS() {
 	return getLB_PROCESS();
 }
 /**
- * M�thode � personnaliser
- * Retourne l'indice � s�lectionner pour la zone de la JSP :
+ * Méthode à personnaliser
+ * Retourne l'indice à sélectionner pour la zone de la JSP :
  * LB_PROCESS
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public java.lang.String getVAL_LB_PROCESS_SELECT() {
 	return getZone(getNOM_LB_PROCESS_SELECT());
 }
 /**
- * Retourne la valeur � afficher par la JSP  pour la zone :
+ * Retourne la valeur à afficher par la JSP  pour la zone :
  * ST_RESULTAT
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public java.lang.String getVAL_ST_RESULTAT() {
@@ -144,16 +144,16 @@ public java.lang.String getVAL_ST_RESULTAT() {
 /**
  * Retourne le nom d'une zone de saisie pour la JSP :
  * EF_CLASSE
- * Date de cr�ation : (17/01/07 14:03:23)
+ * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_EF_CLASSE() {
 	return "NOM_EF_CLASSE";
 }
 /**
- * Retourne la valeur � afficher par la JSP pour la zone de saisie  :
+ * Retourne la valeur à afficher par la JSP pour la zone de saisie  :
  * EF_CANDIDAT
- * Date de cr�ation : (17/01/07 14:03:23)
+ * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
 public java.lang.String getVAL_EF_CLASSE() {
@@ -162,16 +162,16 @@ public java.lang.String getVAL_EF_CLASSE() {
 /**
  * Retourne le nom d'une zone de saisie pour la JSP :
  * EF_ID
- * Date de cr�ation : (17/01/07 14:03:23)
+ * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_EF_ID() {
 	return "NOM_EF_ID";
 }
 /**
- * Retourne la valeur � afficher par la JSP pour la zone de saisie  :
+ * Retourne la valeur à afficher par la JSP pour la zone de saisie  :
  * EF_ID
- * Date de cr�ation : (17/01/07 14:03:23)
+ * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
 public java.lang.String getVAL_EF_ID() {
@@ -181,16 +181,16 @@ public java.lang.String getVAL_EF_ID() {
 /**
  * Retourne le nom d'une zone de saisie pour la JSP :
  * EF_ACTIVITE
- * Date de cr�ation : (17/01/07 14:03:23)
+ * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
 public java.lang.String getNOM_EF_ACTIVITE() {
 	return "NOM_EF_ACTIVITE";
 }
 /**
- * Retourne la valeur � afficher par la JSP pour la zone de saisie  :
+ * Retourne la valeur à afficher par la JSP pour la zone de saisie  :
  * EF_ACTIVITE
- * Date de cr�ation : (17/01/07 14:03:23)
+ * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
 public java.lang.String getVAL_EF_ACTIVITE() {
@@ -198,11 +198,11 @@ public java.lang.String getVAL_EF_ACTIVITE() {
 }
 
 /**
- * Initialisation des zones � afficher dans la JSP
+ * Initialisation des zones à afficher dans la JSP
  * Alimentation des listes, s'il y en a, avec setListeLB_XXX()
  * ATTENTION : Les Objets dans la liste doivent avoir les Fields PUBLIC
- * Utilisation de la m�thode addZone(getNOMxxx, String);
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Utilisation de la méthode addZone(getNOMxxx, String);
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public void resultatDefault(HttpServletRequestWrapper request) throws Exception{
@@ -213,11 +213,11 @@ public void resultatDefault(HttpServletRequestWrapper request) throws Exception{
 	addZone(getNOM_ST_RESULTAT(), res );
 }
 /**
- * Initialisation des zones � afficher dans la JSP
+ * Initialisation des zones à afficher dans la JSP
  * Alimentation des listes, s'il y en a, avec setListeLB_XXX()
  * ATTENTION : Les Objets dans la liste doivent avoir les Fields PUBLIC
- * Utilisation de la m�thode addZone(getNOMxxx, String);
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Utilisation de la méthode addZone(getNOMxxx, String);
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public void initialiseZones(HttpServletRequestWrapper request) throws Exception{
@@ -273,9 +273,9 @@ public void initialiseZones(HttpServletRequestWrapper request) throws Exception{
 */
 }
 /**
- * Retourne le nom de la zone de la ligne s�lectionn�e pour la JSP :
+ * Retourne le nom de la zone de la ligne sélectionnée pour la JSP :
  * NOM_LB_PROCESS_SELECT
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 public java.lang.String [] listeProcess() {
@@ -342,7 +342,7 @@ public boolean performPB_INSTANCIE(javax.servlet.http.HttpServletRequest request
 		return false;
 	}
 	
-	//Appel de la m�thode
+	//Appel de la méthode
 	Object [] parametreLister = {getTransaction()};
 	Object [] parametreChercher = {getTransaction(), getVAL_EF_ID()};
 	Object [] parametre = isListe ? parametreLister : parametreChercher;
@@ -350,13 +350,13 @@ public boolean performPB_INSTANCIE(javax.servlet.http.HttpServletRequest request
 	try {
 		res = methode.invoke(c,parametre);
 	} catch (Exception e){
-		getTransaction().declarerErreur("Exception en invoquant la m�thode "+nomMethode);
+		getTransaction().declarerErreur("Exception en invoquant la méthode "+nomMethode);
 		return false;
 	}
 
 	addZone(getNOM_ST_RESULTAT(), Services.contenuMetierToString(res));
 
-	//Si Activite renseign�
+	//Si Activite renseigné
 	if (theActivite != null) {
 		VariableActivite.ajouter(this, theActivite, res);
 	}
@@ -365,9 +365,9 @@ public boolean performPB_INSTANCIE(javax.servlet.http.HttpServletRequest request
 	
 	return true;
 }/**
- * M�thode appel�e par la servlet qui aiguille le traitement : 
+ * Méthode appelée par la servlet qui aiguille le traitement : 
  * en fonction du bouton de la JSP 
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public boolean recupererStatut(javax.servlet.http.HttpServletRequest request) throws Exception{
@@ -390,16 +390,16 @@ public boolean recupererStatut(javax.servlet.http.HttpServletRequest request) th
 		}
 
 	}
-	//Si TAG INPUT non g�r� par le process
+	//Si TAG INPUT non géré par le process
 	setStatut(STATUT_MEME_PROCESS);
 	return true;
 }
 /**
  * - Traite et affecte les zones saisies dans la JSP.
- * - Impl�mente les r�gles de gestion du process
- * - Positionne un statut en fonction de ces r�gles :
+ * - Implémente les règles de gestion du process
+ * - Positionne un statut en fonction de ces règles :
  *   setStatut(STATUT, boolean veutRetour) ou setStatut(STATUT,Message d'erreur)
- * Date de cr�ation : (23/01/03 15:13:31)
+ * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
 public boolean performPB_PROCEDER(javax.servlet.http.HttpServletRequest request) throws Exception {
@@ -407,7 +407,7 @@ public boolean performPB_PROCEDER(javax.servlet.http.HttpServletRequest request)
 	int indice = (Services.estAlphaNumerique(getZone(getNOM_LB_PROCESS_SELECT())) ? Integer.parseInt(getZone(getNOM_LB_PROCESS_SELECT())) : -1);
 
 	if (indice == -1) {
-		setStatut(STATUT_MEME_PROCESS,true,"Mais heu !!! Faut s�lectionner un process d'abord !!");
+		setStatut(STATUT_MEME_PROCESS,true,"Mais heu !!! Faut sélectionner un process d'abord !!");
 		return false;
 	}
 	
@@ -426,7 +426,7 @@ public String listerVarActivites() throws Exception{
 	Hashtable h = getTransaction().getVariablesActivite();
 	Enumeration enume = h.keys();
 	String key;
-	String res="<hr><u>Liste des Var d'activit� : </u>";
+	String res="<hr><u>Liste des Var d'activité : </u>";
 	while (enume.hasMoreElements()){
 		res+=(String)enume.nextElement()+" ";
 	}
@@ -446,7 +446,7 @@ public String listerVarActivites() throws Exception{
 /**
  * Setter de la liste:
  * LB_PROCESS
- * Date de cr�ation : (27/01/03 15:56:56)
+ * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
 private void setLB_PROCESS(java.lang.String[] newLB_PROCESS) {

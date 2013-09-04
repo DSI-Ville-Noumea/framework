@@ -18,7 +18,7 @@ public MairiePDF(String nomMasque, Hashtable hashChamps) {
 	this.hashChamps = hashChamps;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (27/02/2004 14:48:20)
  * @return java.util.Hashtable
  */
@@ -29,7 +29,7 @@ public java.util.Hashtable getHashChamps() {
 	return hashChamps;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (27/02/2004 14:45:56)
  * @return java.lang.String
  */

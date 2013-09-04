@@ -11,7 +11,7 @@ public class BasicRecord {
 	private java.lang.reflect.Field attribut;
 	private java.lang.String typeAttribut;
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:30:47)
  */
 public BasicRecord(String aNomChamp, String aTypeChamp, java.lang.reflect.Field aAttribut, String aTypeAttribut) {
@@ -21,7 +21,7 @@ public BasicRecord(String aNomChamp, String aTypeChamp, java.lang.reflect.Field 
 	typeAttribut = aTypeAttribut;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
  * @return java.lang.reflect.Field
  */
@@ -29,7 +29,7 @@ public java.lang.reflect.Field getAttribut() {
 	return attribut;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
  * @return java.lang.String
  */
@@ -37,7 +37,7 @@ public java.lang.String getNomChamp() {
 	return nomChamp;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
  * @return java.lang.String
  */
@@ -45,7 +45,7 @@ public java.lang.String getTypeAttribut() {
 	return typeAttribut;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
  * @return java.lang.String
  */

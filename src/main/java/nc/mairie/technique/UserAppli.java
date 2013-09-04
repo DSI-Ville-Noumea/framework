@@ -3,7 +3,7 @@ package nc.mairie.technique;
 import java.io.Serializable;
 
 /**
- * Ins�rez la description du type ici.
+ * Insérez la description du type ici.
  * Date de création : (22/10/2002 08:20:16)
  * @author: 
  */
@@ -22,7 +22,7 @@ public UserAppli(String aUserName, String aUserPassword, String aServerName) {
 	serverName = aServerName;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (30/12/2002 10:23:42)
  * @return java.util.ArrayList
  */
@@ -33,7 +33,7 @@ public java.util.ArrayList getListeDroits() throws Exception {
 	return listeDroits;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (07/05/2004 10:44:48)
  * @return java.lang.String
  */
@@ -41,7 +41,7 @@ public java.lang.String getServerName() {
 	return serverName;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:00)
  * @return java.lang.String
  */
@@ -49,7 +49,7 @@ public java.lang.String getUserName() {
 	return userName;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:15)
  * @return java.lang.String
  */
@@ -57,7 +57,7 @@ public java.lang.String getUserPassword() {
 	return userPassword;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (07/05/2004 10:44:48)
  * @param newServerName java.lang.String
  */
@@ -65,7 +65,7 @@ public void setServerName(java.lang.String newServerName) {
 	serverName = newServerName;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:00)
  * @param newUserName java.lang.String
  */
@@ -73,7 +73,7 @@ public void setUserName(java.lang.String newUserName) {
 	userName = newUserName;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:15)
  * @param newUserPassword java.lang.String
  */

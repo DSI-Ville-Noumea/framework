@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 
 /**
- * Ins�rez la description du type ici.
+ * Insérez la description du type ici.
  * Date de création : (08/11/2002 14:27:54)
  * @author: Luc Bourdil
  */
 public class VariableGlobale implements nc.mairie.commun.technique.ListeVariableGlobale, Serializable{
 /**
- * M�thode qui ajoute dans la session une variable globale
+ * Méthode qui ajoute dans la session une variable globale
  * Date de création : (08/11/2002 14:53:28)
  * @ Author : Luc Bourdil
  */
@@ -19,7 +19,7 @@ public static void ajouter(javax.servlet.http.HttpServletRequest request, String
 	//request.getSession().setAttribute(cle,valeur);
 }
 /**
- * M�thode qui enl�ve de la session une variable globale
+ * Méthode qui enlève de la session une variable globale
  * Date de création : (08/11/2002 14:53:28)
  * @ Author : Luc Bourdil
  */
@@ -28,7 +28,7 @@ public static void enlever(javax.servlet.http.HttpServletRequest request, String
 	//request.getSession().removeAttribute(cle);
 }
 /**
- * M�thode qui recupere dans la session une variable globale
+ * Méthode qui recupere dans la session une variable globale
  * Date de création : (08/11/2002 14:53:28)
  * @ Author : Luc Bourdil
  */

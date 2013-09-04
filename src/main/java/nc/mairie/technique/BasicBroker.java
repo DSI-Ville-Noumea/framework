@@ -108,7 +108,7 @@ public abstract class BasicBroker implements Cloneable {
 
 			}
 
-			// Si attribut type Date et champ num�rique
+			// Si attribut type Date et champ numérique
 			if (aTypeAttribut.equals("DATE") && aType.equals("NUMERIC")) {
 				aValeur = (Services.estUneDate(aValeur) ? Services.convertitDate(Services.formateDate(aValeur), "dd/MM/yy", "yyyyMMdd") : "0");
 				// Si type Date
@@ -124,7 +124,7 @@ public abstract class BasicBroker implements Cloneable {
 				aValeur = "null";
 				// Si le type dans la base n'est pas un entier
 			} else if (!"NUMERIC".equals(aType) && !"DECIMAL".equals(aType) && !"INTEGER".equals(aType)) {
-				// On formate pour la base (on crée '' pour ') et on met 'xxx'
+				// On formate pour la base (on créé '' pour ') et on met 'xxx'
 				aValeur = Services.stringForBase(aValeur);
 			} else {
 				if (aValeur.length() == 0)
@@ -174,10 +174,10 @@ public abstract class BasicBroker implements Cloneable {
 			stmt.executeUpdate("insert into " + getTable() + " " + clauseColonnes + " values " + clauseValues, Statement.RETURN_GENERATED_KEYS);
 
 			BasicRecord identityBR = getIdentityBasicRecord();
-			//Si un champ identity a été défini, on va le récupérer
+			// Si un champ identity a été défini, on va le récupérer
 			if (identityBR != null) {
-		
-				//Si un champ identity a été généré
+
+				// Si un champ identity a été généré
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
 					String generatedKey = rs.getString(1);
@@ -272,13 +272,13 @@ public abstract class BasicBroker implements Cloneable {
 				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
-			// Nombre � retourner
+			// Nombre à retourner
 			String nombre = "";
 
 			java.sql.Statement stmt = conn.createStatement();
 			java.sql.ResultSet result = stmt.executeQuery(requeteSQL);
 
-			// Si pas trouv�
+			// Si pas trouvé
 			if (!result.next()) {
 
 				// Fermeture du resultSet
@@ -653,15 +653,15 @@ public abstract class BasicBroker implements Cloneable {
 	public static Connection getUneConnexion(String nom, String password, String serveurName) throws Exception {
 		Connection conn = null;
 		try {
-			// Si param débile alors on retourne null
-			if (nom == null || password == null)
-				return null;
 
 			try {
 				// jboss ou tomcat
 				conn = getDataSource(serveurName).getConnection();
 			} catch (Exception e) {
 				try {
+					// Si param débile alors on retourne null
+					if (nom == null || password == null)
+						return null;
 					// websphere
 					conn = getDataSource(serveurName).getConnection(nom, password);
 				} catch (Exception ex) {
@@ -914,7 +914,7 @@ public abstract class BasicBroker implements Cloneable {
 	 */
 	protected boolean supprimer(Transaction aTransaction) throws Exception {
 
-		// Contr�le si l'objet vient de la base
+		// Contrôle si l'objet vient de la base
 		if (getMyBasicMetier().getBasicMetierBase() == null) {
 			aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas été récupéré du référentiel.");
 			return false;

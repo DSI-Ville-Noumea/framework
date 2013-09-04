@@ -81,7 +81,7 @@ public class ObjetPasserelle {
 		if (deleteDest) dest.deleteTable();
 
 		int cpt = conDest.createStatement().executeUpdate(insert);
-		log.log("R�sultat : "+cpt+" lignes copi�es");
+		log.log("Résultat : "+cpt+" lignes copiées");
 				
 		
 	}
@@ -143,7 +143,7 @@ public class ObjetPasserelle {
 //System.out.print(rsOrg.getString(i+1)+";");
 					} catch (DataTruncation Exception) {
 						//Quedalle !!!
-						log.log("La valeur "+rsOrg.getString(org.champs[i])+" pour "+org.champs[i]+" est trop grand : tronqu�");
+						log.log("La valeur "+rsOrg.getString(org.champs[i])+" pour "+org.champs[i]+" est trop grand : tronqué");
 					}
 				}
 				stDest.addBatch();
@@ -152,13 +152,13 @@ public class ObjetPasserelle {
 			try {
 				int res[] = stDest.executeBatch();
 				if (res == null){ 
-					log.log("R�sultat : Aucune ligne copi�e");
+					log.log("Résultat : Aucune ligne copiée");
 				} else {
 					int cpt=0;
 					for (int i = 0; i < res.length; i++) {
 						cpt+=(res[i]==-2 ? 1 : res[i]);
 					}
-					log.log("R�sultat : "+cpt+" lignes copi�es");
+					log.log("Résultat : "+cpt+" lignes copiées");
 				}
 				
 			} catch (Exception e) {

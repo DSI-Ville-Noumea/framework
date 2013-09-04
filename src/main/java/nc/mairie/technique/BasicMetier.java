@@ -29,21 +29,21 @@ public Object clone() throws CloneNotSupportedException{
 	}
 }
 /**
- Methode � d�finir dans chaque objet M�tier pour instancier un Broker
+ Methode à définir dans chaque objet Métier pour instancier un Broker
  */
 protected abstract BasicBroker definirMyBroker();
 /**
- * V�rifie si deux objets sont �gaux. Retourne un bool�en qui indique
- *  si cet objet �quivaut � celui indiqu�. Cette m�thode
- *  est utilis�e lorsqu'un objet est stock� dans une table de hachage.
+ * Vérifie si deux objets sont égaux. Retourne un booléen qui indique
+ *  si cet objet équivaut à celui indiqué. Cette méthode
+ *  est utilisée lorsqu'un objet est stocké dans une table de hachage.
  * @author Luc Bourdil
- * @param objl'objet � comparer avec
- * @return true si ces objets sont �gaux ; false dans le cas contraire.
+ * @param objl'objet à comparer avec
+ * @return true si ces objets sont égaux ; false dans le cas contraire.
  * @see java.util.Hashtable
  */
 public boolean equals(BasicMetier obj) throws Exception{
 
-	// Si pas la m�me classe alors faux
+	// Si pas la même classe alors faux
 	if (! obj.getClass().equals(getClass()))
 		return false;
 
@@ -54,12 +54,12 @@ public boolean equals(BasicMetier obj) throws Exception{
 		Object attributThis = fieldsThis[i].get(this);
 		Object attributObj  = obj.getClass().getField(name).get(obj);
 
-		//Teste si �gaux (null est �gal � null)
+		//Teste si égaux (null est égal à null)
 		if (attributThis == attributObj)
 			continue;
 		
 		try {
-			//Si diff�rents alors faux	
+			//Si différents alors faux	
 			if (! attributThis.equals(attributObj) )
 				return false;
 		} catch (Exception e) {
@@ -71,7 +71,7 @@ public boolean equals(BasicMetier obj) throws Exception{
 	return true;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (19/11/2002 09:09:16)
  * @author Luc Bourdil
  * @return nc.mairie.technique.BasicMetier
@@ -80,7 +80,7 @@ public BasicMetier getBasicMetierBase() {
 	return basicMetierBase;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (18/11/2002 08:57:28)
  * @return nc.mairie.technique.BasicBroker
  */
@@ -91,7 +91,7 @@ protected BasicBroker getMyBasicBroker() {
 	return myBasicBroker;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (19/11/2002 08:57:28)
  * @author Luc Bourdil
  * @param Transaction
@@ -105,9 +105,9 @@ public void majBasicMetierBase() {
 	}
 }
 /**
- Le but de cette m�thode est de recopier tous les attributs de l'objet origine pass� en param�tre
+ Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramètre
  et d'alimenter les attributs de l'objet en cours.
- Seuls les attributs de type String ou boolean sont recopi�s.
+ Seuls les attributs de type String ou boolean sont recopiés.
  */
 public void mappeAttributsFromMetier(BasicMetier metierOrigine) throws Exception  {
 try {
@@ -116,7 +116,7 @@ try {
 	Field [] fieldsOrigine = origine.getClass().getFields();
 	Field [] fieldsThis = this.getClass().getFields();
 
-	//HashTable qui contient en cl� le nom de l'attribut de this et en valeur la position dans le tableau
+	//HashTable qui contient en clé le nom de l'attribut de this et en valeur la position dans le tableau
 	java.util.Hashtable nomFieldsThis = new java.util.Hashtable();
 
 	//Je construit la Hashtable de This
@@ -130,7 +130,7 @@ try {
 		Class classFieldOrigine = fieldsOrigine[i].getType();
 		if (classFieldOrigine.equals(boolean.class) || classFieldOrigine.equals(String.class)) {
 			String positionFieldThis = (String)nomFieldsThis.get(fieldsOrigine[i].getName());
-			//Si le field est trouv� dans la destination on l'alimente
+			//Si le field est trouvé dans la destination on l'alimente
 			if (positionFieldThis != null) {
 				int pos = Integer.parseInt(positionFieldThis);
 				if (classFieldOrigine.equals(String.class)) {
@@ -166,7 +166,7 @@ public void propertyChange(java.beans.PropertyChangeEvent evt) {
 	}
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (06/12/2002 10:20:28)
  * @author Luc Bourdil
  * @param Transaction
@@ -175,7 +175,7 @@ public void razBasicMetierBase() {
 	basicMetierBase = null;
 }
 /**
- * Insérez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (18/11/2002 08:57:28)
  * @param newMyBasicBroker nc.mairie.technique.BasicBroker
  */

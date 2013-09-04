@@ -33,7 +33,7 @@ public BasicProcess() {
 	setTransaction(new Transaction((java.sql.Connection) null));
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (21/10/2002 10:35:38)
  * @param zone java.lang.String
  * @param valeur java.lang.String
@@ -44,7 +44,7 @@ protected void addZone(String zone, String valeur) {
 	getZonesDeSaisie().put(zone, valeur.trim());
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
  * @author Luc Bourdil
  */
@@ -53,7 +53,7 @@ public void commitTransaction() throws Exception{
 		getTransaction().commitTransaction();
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (24/10/2002 08:45:37)
  * @return boolean
  */
@@ -71,7 +71,7 @@ public boolean estConnexionOuverte(){
 	}
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (29/10/2002 09:52:21)
  * @return boolean
  */
@@ -79,7 +79,7 @@ public boolean estVeutRetour() {
 	return veutRetour;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
  * @return java.lang.String
  */
@@ -87,7 +87,7 @@ public java.lang.String etatActivite() {
 	return getActivite();
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 08:47:55)
  * @return int
  */
@@ -273,18 +273,18 @@ public String forRadioHTML(String NOM_RG, String NOM_RB) {
  */
 public boolean gererRecuperationStatut(javax.servlet.http.HttpServletRequest request) throws Exception {
 
-	//Pr�controle:
+	//Précontrole:
 	if (!recupererPreControles(request)) return false;
 	
 	//Si clic sur un onglet : OK
 	if (recupererOnglet(request)) return true;
 	else getTransaction().traiterErreur();
 
-	//On r�cup�re le statut
+	//On récupère le statut
 	return recupererStatut(request);
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
  * @return java.lang.String
  */
@@ -292,30 +292,30 @@ private java.lang.String getActivite() {
 	return activite;
 }
 /**
-	Retourne l'�tat d'un check bouton dans la JSP
+	Retourne l'état d'un check bouton dans la JSP
  */
 public String getCHECKED_OFF() {
 	return "CHECKED_OFF";
 }
 /**
-	Retourne l'�tat d'un check bouton dans la JSP
+	Retourne l'état d'un check bouton dans la JSP
  */
 public String getCHECKED_ON() {
 	return "CHECKED_ON";
 }
 /**
 	Retourne le nom de la JSP du process
-	Zone � utiliser dans un champ cach� dans chaque formulaire de la JSP.
+	Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
  */
 public abstract String getJSP();
-/* 	M�thode utilis�e dans les JSP qui poss�dent une List Box
-	et qui est impl�ment�e dynamiquement.
+/* 	Méthode utilisée dans les JSP qui possèdent une List Box
+	et qui est implémentée dynamiquement.
 */
 public String getLB_INDICE(int indice){
 	return Integer.toString(indice);
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (20/11/2002 12:04:43)
  * @return java.lang.String
  */
@@ -323,7 +323,7 @@ public java.lang.String getNomFichierImpression() {
 	return nomFichierImpression;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (29/10/2002 09:53:28)
  * @return nc.mairie.technique.ProcessGestion
  */
@@ -331,7 +331,7 @@ public BasicProcess getProcessAppelant() {
 	return processAppelant;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 08:47:55)
  * @return int
  */
@@ -339,7 +339,7 @@ private int getStatut() {
 	return statut;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:41:57)
  * @return nc.mairie.technique.Transaction
  */
@@ -347,7 +347,7 @@ public nc.mairie.technique.Transaction getTransaction() {
 	return transaction;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (21/10/2002 10:34:37)
  * @return java.lang.String
  * @param zone java.lang.String
@@ -358,7 +358,7 @@ protected String getZone(String zone) {
 	return s;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (21/10/2002 10:28:10)
  * @return java.util.Hashtable
  */
@@ -368,7 +368,7 @@ private java.util.Hashtable getZonesDeSaisie() {
 	return zonesDeSaisie;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (29/01/2004 14:14:37)
  * @return boolean
  */
@@ -376,26 +376,26 @@ public String [] initialiseLazyLB() {
 	return LBVide;
 }
 /**
-	Initialisation des zones � afficher dans le JSP
+	Initialisation des zones à afficher dans le JSP
  */
 public abstract void initialiseZones(javax.servlet.http.HttpServletRequest request) throws Exception;
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (08/03/2004 09:47:06)
  * @return nc.mairie.technique.MairiePDF
  *
- * Cette m�thode doit �tre red�finie dans le but de g�n�rer un PDF.
+ * Cette méthode doit être redéfinie dans le but de générer un PDF.
  */
 public MairiePDF prepareImpressionPDF() {
 	return null;
 }
 /**
-	M�thode qui : 
-	- R�affecte les zones de saisie dans la fen�tre
+	Méthode qui : 
+	- Réaffecte les zones de saisie dans la fenêtre
  */
 public void reaffecteZones(javax.servlet.http.HttpServletRequest request) {
 
-		//Je mets par d�faut toutes les Check box � false;
+		//Je mets par défaut toutes les Check box à false;
 		java.util.Enumeration enumZonesDeSaisies = getZonesDeSaisie().keys();
 		while (enumZonesDeSaisies.hasMoreElements()) {
 			String cle = (String) enumZonesDeSaisies.nextElement();
@@ -407,11 +407,11 @@ public void reaffecteZones(javax.servlet.http.HttpServletRequest request) {
 		java.util.Enumeration e = request.getParameterNames();
 		while (e.hasMoreElements()) {
 			String cle = (String) e.nextElement();
-			//Si commence par nom alors je r�cup�re
+			//Si commence par nom alors je récupère
 			if (cle.startsWith("NOM")) {
 				String []valeur = request.getParameterValues(cle);
 				if (valeur != null) {
-					//Si un seul �l�ment et si <> null
+					//Si un seul élément et si <> null
 					if (valeur.length == 1) {
 						//Si c'est une ckeckBox
 						if (cle.startsWith("NOM_CK")) {
@@ -457,7 +457,7 @@ public boolean recupererOnglet(javax.servlet.http.HttpServletRequest request) th
 public boolean recupererPreControles(javax.servlet.http.HttpServletRequest request) throws Exception {
 	//Si pas de TAG JSP
 	if (request.getParameter("JSP")==null) {
-		setStatut(STATUT_MEME_PROCESS,false,"Erreur : TAG JSP non trouv�");
+		setStatut(STATUT_MEME_PROCESS,false,"Erreur : TAG JSP non trouvé");
 		return false;
 	}
 
@@ -475,7 +475,7 @@ public boolean recupererPreControles(javax.servlet.http.HttpServletRequest reque
  */
 public abstract boolean recupererStatut(javax.servlet.http.HttpServletRequest request) throws Exception;
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
  */
 public void rollbackTransaction() throws Exception{
@@ -483,7 +483,7 @@ public void rollbackTransaction() throws Exception{
 		getTransaction().rollbackTransaction();
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
  * @param newActicite java.lang.String
  */
@@ -491,7 +491,7 @@ public void setActivite(java.lang.String newActivite) {
 	activite = newActivite;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (24/10/2002 08:45:37)
  * @param newAutoReaffecteZones boolean
  */
@@ -499,7 +499,7 @@ public void setAutoReaffecteZones(boolean newAutoReaffecteZones) {
 	autoReaffecteZones = newAutoReaffecteZones;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (20/11/2002 12:04:43)
  * @param newNomFichierImpression java.lang.String
  */
@@ -507,7 +507,7 @@ public void setNomFichierImpression(java.lang.String newNomFichierImpression) {
 	nomFichierImpression = newNomFichierImpression;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (29/10/2002 09:53:28)
  * @param newProcessAppelant nc.mairie.technique.ProcessGestion
  */
@@ -515,7 +515,7 @@ public void setProcessAppelant(BasicProcess newProcessAppelant) {
 	processAppelant = newProcessAppelant;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 08:47:55)
  * @param newStatut int
  */
@@ -523,7 +523,7 @@ public void setStatut(int newStatut) {
 	setStatut(newStatut,false);
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (31/10/99 11:32:39)
  * @param newStatut int
  * @param veutRetour boolean
@@ -536,7 +536,7 @@ public void setStatut(int newStatut, boolean veutRetour) {
 		this.veutRetour = veutRetour;
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (31/10/99 11:32:39)
  * @param newStatut int
  * @param veutRetour boolean
@@ -564,7 +564,7 @@ public void setStatut(int newStatut, boolean newRetour, String message) {
 
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:41:57)
  * @param newTransaction nc.mairie.technique.Transaction
  */
@@ -572,7 +572,7 @@ public void setTransaction(nc.mairie.technique.Transaction newTransaction) {
 	transaction = newTransaction;
 }
 /**
-	M�thode qui teste si un param�tre se trouve dans le formulaire
+	Méthode qui teste si un paramètre se trouve dans le formulaire
 */
 public boolean testerParametre(javax.servlet.http.HttpServletRequest request, String param) {
 	return (request.getParameter(param) != null || request.getParameter(param + ".x") != null);

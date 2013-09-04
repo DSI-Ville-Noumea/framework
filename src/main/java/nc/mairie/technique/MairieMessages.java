@@ -2,12 +2,12 @@ package nc.mairie.technique;
 
 import nc.mairie.commun.technique.ListeMairieMessages;
 /**
- * Cette classe permet de lister la liste des messages d'erreur et d'information utilis�s dans @VeRSe.
- * Cette liste de message doit �tre renseign�e dans le getter de la HashTable listeMessages.
+ * Cette classe permet de lister la liste des messages d'erreur et d'information utilisés dans @VeRSe.
+ * Cette liste de message doit être renseignée dans le getter de la HashTable listeMessages.
  */
 public class MairieMessages{
 /**
- * Methode servant � compter le nombre de caract�res @
+ * Methode servant à compter le nombre de caractères @
  */
 private static int compterLesAt(String libelle) {
 	//Si libelle vide ou null retourne 0
@@ -29,13 +29,13 @@ private static int compterLesAt(String libelle) {
 	return nbAt;
 }
 /**
- * Methode servant � compter le nombre de caract�res @
+ * Methode servant à compter le nombre de caractères @
  */
 private static String controleMessageParametres(String nomMessage, String [] param) {
-	//R�cup�ration du libell� dans la HashTable
+	//Récupération du libellé dans la HashTable
 	String libelle = (String)getListeMessages().get(nomMessage);
 
-	//Si message absent, retour d'un message par d�faut.
+	//Si message absent, retour d'un message par défaut.
 	if (libelle == null || libelle.length()==0)
 		return getDefautMessage(nomMessage);
 	
@@ -44,12 +44,12 @@ private static String controleMessageParametres(String nomMessage, String [] par
 
 	//Si nbAt <> nbParam alors erreur
 	if (nbAt != param.length)
-		return "Pour le message "+ nomMessage +" il faut "+nbAt+ " param�tres";
+		return "Pour le message "+ nomMessage +" il faut "+nbAt+ " paramètres";
 
 	return null;
 }
 /**
- * Methode servant � compter le nombre de caract�res @
+ * Methode servant à compter le nombre de caractères @
  */
 private static String formateMessage(String nomMessage, String [] params) {
 	//Recup le libelle avec les @
@@ -68,13 +68,13 @@ private static String formateMessage(String nomMessage, String [] params) {
 
 }
 /**
- * Methode servant � retourner un message par d�faut, indiquant que le message d'erreur demand� n'est pas impl�ment�.
+ * Methode servant à retourner un message par défaut, indiquant que le message d'erreur demandé n'est pas implémenté.
  */
 private static String getDefautMessage(String nomMessage) {
-	return nomMessage +" : message non impl�ment� !";
+	return nomMessage +" : message non implémenté !";
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getLibelleCodeMessage(String codeMessage) {
 
@@ -88,7 +88,7 @@ private static java.util.Hashtable getListeMessages() {
 	return ListeMairieMessages.getListeMessages();
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage) {
 
@@ -97,7 +97,7 @@ public static String getMessage(String nomMessage) {
 
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 private static String getMessage(String nomMessage, String []params) {
 
@@ -111,7 +111,7 @@ private static String getMessage(String nomMessage, String []params) {
 	return nomMessage + " : " + libelle;
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage, String param1) {
 	
@@ -119,7 +119,7 @@ public static String getMessage(String nomMessage, String param1) {
 	return getMessage(nomMessage,params);
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage, String param1, String param2) {
 	
@@ -127,7 +127,7 @@ public static String getMessage(String nomMessage, String param1, String param2)
 	return getMessage(nomMessage,params);
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3) {
 	
@@ -135,7 +135,7 @@ public static String getMessage(String nomMessage, String param1, String param2,
 	return getMessage(nomMessage,params);
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3, String param4) {
 	
@@ -143,7 +143,7 @@ public static String getMessage(String nomMessage, String param1, String param2,
 	return getMessage(nomMessage,params);
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3, String param4, String param5) {
 	
@@ -151,7 +151,7 @@ public static String getMessage(String nomMessage, String param1, String param2,
 	return getMessage(nomMessage,params);
 }
 /**
-* Methode statique utilisée pour retourner le libell� d'un code message pass� en param�tre.
+* Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3, String param4, String param5, String param6) {
 	
@@ -159,7 +159,7 @@ public static String getMessage(String nomMessage, String param1, String param2,
 	return getMessage(nomMessage,params);
 }
 /**
-* Methode statique qui retourne les libell�s contenant les chaines pass�es en param.
+* Methode statique qui retourne les libellés contenant les chaines passées en param.
  */
 public static String listerMessagesContenant(String [] chaines) {
 

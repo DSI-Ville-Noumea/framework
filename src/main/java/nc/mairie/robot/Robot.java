@@ -5,7 +5,7 @@ import java.io.Serializable;
 import nc.mairie.technique.BasicProcess;
 
 /**
- 
+ * Insérez la description du type à cet endroit.
  *  Date de création : (28/10/02 10:14:36)
  * @author : Luc Bourdil
  */
@@ -19,32 +19,32 @@ public Robot() {
 	super();
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
  */
 public abstract BasicProcess getDefaultProcess() throws Exception;
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
  */
 public abstract BasicProcess getFirstProcess(String activite) throws Exception ;
 
 
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
  */
 public BasicProcess getFirstProcessActivite(String activite) throws Exception {
 	//Si null alors erreur
 	BasicProcess aProcess = getFirstProcess(activite);
 	if (aProcess == null){
-		throw new Exception("Activite "+activite+" non d�clar�e dans le robot de navigation");
+		throw new Exception("Activite "+activite+" non déclarée dans le robot de navigation");
 	}
 	return aProcess;
 }
 
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (21/05/2003 15:29:59)
  * @return nc.mairie.robot.Testeur
  */
@@ -55,7 +55,7 @@ private Testeur getMyTesteur() {
 	return myTesteur;
 }
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 11:59:52)
  * @return java.util.Hashtable
  */
@@ -66,7 +66,7 @@ private java.util.Hashtable getNavigation() {
 	return navigation;
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (31/10/99 10:16:34)
  */
 public BasicProcess getNextProcess(BasicProcess process) throws Exception {
@@ -87,7 +87,7 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 		nomClasse = (String)getNavigation().get(process.getClass().getName()+process.etatStatut());
 	}
 	if (nomClasse == null)
-		throw new Exception("Navigation du robot non d�termin�e avec le process " + process.getClass() +" et le statut "+process.etatStatut());
+		throw new Exception("Navigation du robot non déterminée avec le process " + process.getClass() +" et le statut "+process.etatStatut());
 	
 	Class c;
 	try {
@@ -99,17 +99,17 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 	return (BasicProcess)c.newInstance();
 }
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
  */
 protected abstract java.util.Hashtable initialiseNavigation() ;
 /**
- * Ins�rez la description de la m�thode � cet endroit.
+ * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
  */
 protected abstract Testeur initialiseTesteur() ;
 /**
- * Ins�rez la description de la m�thode ici.
+ * Insérez la description de la méthode ici.
  *  Date de création : (21/05/2003 15:29:59)
  * @param newMyTesteur nc.mairie.robot.Testeur
  */

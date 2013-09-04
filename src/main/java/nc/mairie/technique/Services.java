@@ -7,7 +7,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 /**
- * Ins�rez la description du type ici.
+ * Insérez la description du type ici.
  * Date de création : (21/10/2002 10:36:22)
  * @author: Luc Bourdil
  */
@@ -19,7 +19,7 @@ public Services() {
 	super();
 }
 //*******************************************************************************************
-// Retourne la date pass�e en param�tre (jj/mm/aaaa) + n ann�es, sous la forme jj/mm/aaaa.
+// Retourne la date passée en paramètre (jj/mm/aaaa) + n années, sous la forme jj/mm/aaaa.
 //*******************************************************************************************
 
 public static String ajouteAnnee(String uneDate, int nbAnnees) {
@@ -41,7 +41,7 @@ public static String ajouteAnnee(String uneDate, int nbAnnees) {
 
 }
 //*******************************************************************************************
-// Retourne la date pass�e en param�tre (jj/mm/aaaa) + n jour, sous la forme jj/mm/aaaa.
+// Retourne la date passée en paramètre (jj/mm/aaaa) + n jour, sous la forme jj/mm/aaaa.
 //*******************************************************************************************
 
 public static String ajouteJours(String uneDate, int nbJours) {
@@ -63,7 +63,7 @@ public static String ajouteJours(String uneDate, int nbJours) {
 
 }
 //*******************************************************************************************
-// Retourne la date pass�e en param�tre (jj/mm/aaaa) + n mois, sous la forme jj/mm/aaaa.
+// Retourne la date passée en paramètre (jj/mm/aaaa) + n mois, sous la forme jj/mm/aaaa.
 //*******************************************************************************************
 
 public static String ajouteMois(String uneDate, int nbMois) {
@@ -85,15 +85,15 @@ public static String ajouteMois(String uneDate, int nbMois) {
 
 }
 //*******************************************************************************************
-// Compare une 1�re date avec une autre (les deux sont dans le format jj/mm/aaaa).
-// Retourne -1 si la 1�re est < � la seconde, 0 si elles sont �gales, 1 si la 1�re est > �
-// la seconde. En cas d'erreur quelconque (format des dates non valide), la m�thode retourne
+// Compare une 1ère date avec une autre (les deux sont dans le format jj/mm/aaaa).
+// Retourne -1 si la 1ère est < à la seconde, 0 si elles sont égales, 1 si la 1ère est > à
+// la seconde. En cas d'erreur quelconque (format des dates non valide), la méthode retourne
 // -9999.
 //
-// Param�tres pass�s :
+// Paramètres passés :
 //
-// uneDate		1�re date sous forme de cha�ne de caract�res (jj/mm/aaaa)
-// autreDate	2�me date sous forme de cha�ne de caract�res (jj/mm/aaaa)
+// uneDate		1ère date sous forme de chaîne de caractères (jj/mm/aaaa)
+// autreDate	2ème date sous forme de chaîne de caractères (jj/mm/aaaa)
 //*******************************************************************************************
 
 public static int compareDates(String uneDate, String autreDate) {
@@ -116,10 +116,10 @@ public static int compareDates(String uneDate, String autreDate) {
 }
 //*******************************************************************************************
 // Retourne le nombre de jours compris entre deux dates
-// retourne -1 si on a des dates non renseign�e
+// retourne -1 si on a des dates non renseignée
 //
-// uneDate		1�re date sous forme de cha�ne de caract�res (jj/mm/aaaa)
-// autreDate	2�me date sous forme de cha�ne de caract�res (jj/mm/aaaa)
+// uneDate		1ère date sous forme de chaîne de caractères (jj/mm/aaaa)
+// autreDate	2ème date sous forme de chaîne de caractères (jj/mm/aaaa)
 //*******************************************************************************************
 
 public static int compteJoursEntreDates(String uneDate, String autreDate) throws Exception{
@@ -159,7 +159,7 @@ public static String contenuMetierToString(Object object) throws Exception {
 			}
 		}
 		if (valeur != null) {
-			String nomChamp = Services.rpad(fieldsObjet[i].getName(),20,"�");
+			String nomChamp = Services.rpad(fieldsObjet[i].getName(),20," ");
 			result = result + "\n<BR>" + nomChamp+ " : " + valeur;
 		}
 	}
@@ -181,9 +181,9 @@ public static String contenuMetierToString(java.util.ArrayList aList) throws Exc
 	return resultat;
 }
 //*******************************************************************************************
-// Ach�ve le formattage d'une date sous la forme patern 1 en patern2. Retourne la date formatt�e
+// Achève le formattage d'une date sous la forme patern 1 en patern2. Retourne la date formattée
 //
-// Param�tre pass� :
+// Paramètre passé :
 //
 // aDate		Une date en String
 // patternOrg	Un pattern d'origine
@@ -204,14 +204,14 @@ public static String convertitDate(String aDate, String patternOrg, String patte
 	return df1.format(date1);
 }
 /**
- Methode qui formate une chaine en sortie en forcant la taille de "pChaineSource" � la taille "pTailleSource" en
- en la compl�tant par la droite et la gauchede caract�res "pCaractPading".
+ Methode qui formate une chaine en sortie en forcant la taille de "pChaineSource" à la taille "pTailleSource" en
+ en la complétant par la droite et la gauchede caractères "pCaractPading".
   
  Exemple :
  	pChaineSource     : "hello"
  	pTailleSource     : 10
 	pCaractPading     : "*"
- 	R�sultat obtenu   : "***hello**"
+ 	Résultat obtenu   : "***hello**"
 
  */
 public static String cpad(String pChaineSource, int pTailleChamp, String pCaractPading) {
@@ -240,7 +240,7 @@ public static String cpad(String pChaineSource, int pTailleChamp, String pCaract
 	return strdeb+pChaineSource+strfin;
 }
 /**
-* Cette m�thode retourne la date courante sous la forme jj/mm/aaaa
+* Cette méthode retourne la date courante sous la forme jj/mm/aaaa
 **/
 
 public static String dateDuJour() {
@@ -253,7 +253,7 @@ public static String dateDuJour() {
 	return sdf.format(aCalendar.getTime());
 }
 //*******************************************************************************************
-// Retourne la date pass�e en param�tre (jj/mm/aaaa) + n ann�es, sous la forme jj/mm/aaaa.
+// Retourne la date passée en paramètre (jj/mm/aaaa) + n années, sous la forme jj/mm/aaaa.
 //*******************************************************************************************
 
 public static String enleveAnnee(String uneDate, int nbAnnees) {
@@ -262,7 +262,7 @@ public static String enleveAnnee(String uneDate, int nbAnnees) {
 
 }
 //*******************************************************************************************
-// Retourne la date pass�e en param�tre (jj/mm/aaaa) + n jour, sous la forme jj/mm/aaaa.
+// Retourne la date passée en paramètre (jj/mm/aaaa) + n jour, sous la forme jj/mm/aaaa.
 //*******************************************************************************************
 
 public static String enleveJours(String uneDate, int nbJours) {
@@ -270,7 +270,7 @@ public static String enleveJours(String uneDate, int nbJours) {
 	return ajouteJours(uneDate, -nbJours);
 }
 //*******************************************************************************************
-// Retourne la date pass�e en param�tre (jj/mm/aaaa) + n mois, sous la forme jj/mm/aaaa.
+// Retourne la date passée en paramètre (jj/mm/aaaa) + n mois, sous la forme jj/mm/aaaa.
 //*******************************************************************************************
 
 public static String enleveMois(String uneDate, int nbMois) {
@@ -279,8 +279,8 @@ public static String enleveMois(String uneDate, int nbMois) {
 
 }
 /**
- * Cette m�thode contr�le si la chaine de caract�res pass�e en param�tre est alphaBETIQUE.
- * Si alphab�tique retourne true
+ * Cette méthode contrôle si la chaine de caractères passée en paramètre est alphaBETIQUE.
+ * Si alphabétique retourne true
  * Sinon retourne false
  */
 public static boolean estAlphabetique(String param) {
@@ -290,15 +290,15 @@ public static boolean estAlphabetique(String param) {
 	for (int i = 0; i < param.length(); i++){
 
 		char aChar = param.charAt(i);
-		//Si le caract�re en cours n'est pas une lettre	
+		//Si le caractère en cours n'est pas une lettre	
 		if (!Character.isLetter(aChar))
 			return false;
 	}
 	return true;
 }
 /**
- * Cette m�thode contr�le si la chaine de caract�res pass�e en param�tre est alphaNUMERIQUE.
- * Si alphab�tique retourne true
+ * Cette méthode contrôle si la chaine de caractères passée en paramètre est alphaNUMERIQUE.
+ * Si alphabétique retourne true
  * Sinon retourne false
  */
 public static boolean estAlphaNumerique(String param) {
@@ -308,7 +308,7 @@ public static boolean estAlphaNumerique(String param) {
 	for (int i = 0; i < param.length(); i++){
 
 		char aChar = param.charAt(i);
-		//Si le caract�re en cours n'est pas une lettre	
+		//Si le caractère en cours n'est pas une lettre	
 		if (!Character.isLetter(aChar) && !Character.isDigit(aChar))
 			return false;
 		
@@ -316,7 +316,7 @@ public static boolean estAlphaNumerique(String param) {
 	return true;
 }
 /**
- * Cette m�thode contr�le si la chaine de caract�res pass�e en param�tre est un float.
+ * Cette méthode contrôle si la chaine de caractères passée en paramètre est un float.
  * ex : 200.15
  * Si float retourne true
  * Sinon retourne false
@@ -330,8 +330,8 @@ public static boolean estFloat(String param) {
 	}
 }
 /**
- * Cette m�thode contr�le si la chaine de caract�res pass�e en param�tre est num�rique.
- * Si num�rique retourne true
+ * Cette méthode contrôle si la chaine de caractères passée en paramètre est numérique.
+ * Si numérique retourne true
  * Sinon retourne false
  */
 public static boolean estNumerique(String param) {
@@ -343,12 +343,12 @@ public static boolean estNumerique(String param) {
 	}
 }
 //*******************************************************************************************
-// Cette m�thode retourne true si la cha�ne pass�e en param�tre est une date valide,
+// Cette méthode retourne true si la chaîne passée en paramètre est une date valide,
 // false sinon.
 //
-// Param�tre pass� :
+// Paramètre passé :
 //
-// aDate		Une cha�ne de caract�res pouvant correspondre � une date valide
+// aDate		Une chaîne de caractères pouvant correspondre à une date valide
 //*******************************************************************************************
 
 public static boolean estUneDate(String aDate) {
@@ -369,11 +369,11 @@ public static boolean estUneDate(String aDate) {
 	return result;
 }
 //*******************************************************************************************
-// Ach�ve le formattage d'une date sous la forme jj/mm/yyyy. Retourne la date formatt�e
+// Achève le formattage d'une date sous la forme jj/mm/yyyy. Retourne la date formattée
 //
-// Param�tre pass� :
+// Paramètre passé :
 //
-// aString		Une date sour forme de cha�ne de caract�res.
+// aString		Une date sour forme de chaîne de caractères.
 // null         si la date n'est pas au bon format
 //*******************************************************************************************
 
@@ -383,7 +383,7 @@ public static String formateDate(String aString) {
 
 	//Si la date n'a pas de /
 	if (uneDateString.indexOf("/") == -1) {
-		//si la longeur est de 6 caract�res : JJMMAA ou 8 caract�res JJMMSSAA on rajoute les /
+		//si la longeur est de 6 caractères : JJMMAA ou 8 caractères JJMMSSAA on rajoute les /
 		if (uneDateString.length() == 6 || uneDateString.length() == 8) {
 			uneDateString = uneDateString.substring(0,2) + "/" + uneDateString.substring(2,4) + "/" + uneDateString.substring(4,uneDateString.length());
 		}
@@ -398,7 +398,7 @@ public static String formateDate(String aString) {
 
 	int deb = 0;
 	int fin = uneDateString.indexOf("/",deb);
-	//r�cup du jour
+	//récup du jour
 	String day=uneDateString.substring(deb,fin);
 	switch (day.length()) {
 		case 2 : break;
@@ -408,7 +408,7 @@ public static String formateDate(String aString) {
 
 	deb=fin+1;
 	fin = uneDateString.indexOf("/",deb);
-	//r�cup du mois
+	//récup du mois
 	String month=uneDateString.substring(deb,fin);
 	switch (month.length()) {
 		case 2 : break;
@@ -418,9 +418,9 @@ public static String formateDate(String aString) {
 
 	deb=fin+1;
 	fin = uneDateString.length();
-	//r�cup de l'ann�e
+	//récup de l'année
 	String year=uneDateString.substring(deb,fin);
-	//Si n'est pas sur 4 caract�res, on touche
+	//Si n'est pas sur 4 caractères, on touche
 	if (year.length() < 4) {
 		int intValue = Integer.parseInt(year);
 	
@@ -448,21 +448,21 @@ public static String formateDateInternationale(String uneDate) throws Exception{
 	uneDate= uneDate.replace('-','/');
 	
 	java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("dd/MM/yy");
-	df.setLenient(false); //Pour �viter qu'il transforme 30/02/2003 en 01/03/2003
+	df.setLenient(false); //Pour éviter qu'il transforme 30/02/2003 en 01/03/2003
 	java.util.Date d = df.parse(uneDate);
 
 	df.applyPattern("yyyy-MM-dd");
 	return df.format(d);
 }
 /**
- Methode qui formate une chaine en sortie en forcant la taille de "pChaineSource" � la taille "pTailleSource" en
- en la compl�tant par la gauche de caract�res "pCaractPading".
+ Methode qui formate une chaine en sortie en forcant la taille de "pChaineSource" à la taille "pTailleSource" en
+ en la complétant par la gauche de caractères "pCaractPading".
   
  Exemple :
  	pChaineSource     : "hello"
  	pTailleSource     : 10
 	pCaractPading     : "*"
- 	R�sultat obtenu   : "*****hello"
+ 	Résultat obtenu   : "*****hello"
 
 */
 
@@ -483,14 +483,14 @@ public static String lpad(String pChaineSource, int pTailleChamp, String pCaract
 	return strOut;
 }
 /**
- Methode qui formate une chaine en sortie en forcant la taille de "pChaineSource" � la taille "pTailleSource" en
- en la compl�tant par la droite de caract�res "pCaractPading".
+ Methode qui formate une chaine en sortie en forcant la taille de "pChaineSource" à la taille "pTailleSource" en
+ en la complétant par la droite de caractères "pCaractPading".
   
  Exemple :
  	pChaineSource     : "hello"
  	pTailleSource     : 10
 	pCaractPading     : "*"
- 	R�sultat obtenu   : "hello*****"
+ 	Résultat obtenu   : "hello*****"
 
  */
 public static String rpad(String pChaineSource, int pTailleChamp, String pCaractPading) {
@@ -513,7 +513,7 @@ public static String rpad(String pChaineSource, int pTailleChamp, String pCaract
 /**
  * Formate un String en 
  * - remplacant les ' par ''
- * - rajoutant ' au d�but et � la fin du string
+ * - rajoutant ' au début et à la fin du string
  * @author Luc Bourdil
  */
 public static String stringForBase(String aString){
@@ -566,7 +566,7 @@ public static String stringForHTML(String aString) {
 }
 
 /**
-Cette m�thode trie un vecteur d'objets Identiques
+Cette méthode trie un vecteur d'objets Identiques
 */
 public static ArrayList trier(ArrayList a, String []nomChamps, boolean []croissants) throws Exception{
 	
@@ -579,7 +579,7 @@ public static ArrayList trier(ArrayList a, String []nomChamps, boolean []croissa
 
 
 /**
-	Cette m�thode trie un vecteur d'objets Identiques
+	Cette méthode trie un vecteur d'objets Identiques
 */
 public static java.util.Vector trier(Vector v, String []nomChamps, boolean []croissants) throws Exception{
 
@@ -595,12 +595,12 @@ try {
 		return v;
 
 	if (nomChamps.length!=croissants.length) {
-		throw new Exception("Les param�tres champ et croissant doivent avoir la m�me taille.");
+		throw new Exception("Les paramètres champ et croissant doivent avoir la même taille.");
 	}
 
 	String nomChamp = nomChamps[0];
 	
-	//R�cup�ration du nom de champ
+	//Récupération du nom de champ
 	java.lang.reflect.Field field;
 	try {
 		field = v.elementAt(0).getClass().getField(nomChamp);
@@ -608,7 +608,7 @@ try {
 		throw new Exception("Le champ '"+nomChamp+"' est introuvable dans la classe '"+v.elementAt(0).getClass().getName()+"'");
 	}
 
-	//Cr�ation de la hashTable du champ de recherche code = champ, valeur = vecteur de l'objet
+	//Création de la hashTable du champ de recherche code = champ, valeur = vecteur de l'objet
 	java.util.Hashtable h = new java.util.Hashtable();
 	
 	for (int i = 0; i < v.size(); i++){
@@ -617,17 +617,17 @@ try {
 		try {
 			champ = field.get(o);
 		} catch (Exception get) {
-			throw new Exception("Impossible de r�cup�rer la valeur du champ "+nomChamp+" de l'objet ");
+			throw new Exception("Impossible de récupérer la valeur du champ "+nomChamp+" de l'objet ");
 		}
 
-		//Si c'est une date, la cl� devient un long
+		//Si c'est une date, la clé devient un long
 		try {
 			java.util.Date.parse((String)champ);
 			champ = lpad(String.valueOf(java.sql.Date.valueOf(Services.formateDateInternationale((String)champ)).getTime()) ,20,"0");
 		} catch (Exception dateParse) {
 			//Si exception ce n'est pas une date.
 			//On ne fait rien au champ
-			//Si num�rique alors on padde (au hasard 20 caract�res)
+			//Si numérique alors on padde (au hasard 20 caractères)
 			if (Services.estNumerique((String)champ)) {
 				champ = lpad((String)champ,20," "); 
 			}
@@ -637,7 +637,7 @@ try {
 		if (champ == null) {
 			vectorNull.addElement(v.elementAt(i));
 		} else {
-			//Construction d'un vecteur avec comme cl� la valeur du champ
+			//Construction d'un vecteur avec comme clé la valeur du champ
 			java.util.Vector v2= (java.util.Vector)h.get(champ);
 			if (v2 == null)
 				v2= new java.util.Vector();
@@ -646,7 +646,7 @@ try {
 		} 
 	}
 
-	//Tri des cl�s
+	//Tri des clés
 	Enumeration enumCles = h.keys();
 	Vector cles = new Vector();
 	while (enumCles.hasMoreElements()) {
@@ -658,12 +658,12 @@ try {
 		Collections.reverse(cles);
 	}
 	
-	//boucle qui �change les donn�es
+	//boucle qui échange les données
 	java.util.Vector result = new java.util.Vector();
 	for (int k = 0; k < cles.size(); k++){
 		java.util.Vector vTemp = (java.util.Vector)h.get(cles.elementAt(k));
 
-		//Si le nombre de champs est > 1 alors appel r�cursif
+		//Si le nombre de champs est > 1 alors appel récursif
 		if (nomChamps.length > 1 && vTemp.size() > 1) {
 			String []autresNomChamps = new String[nomChamps.length-1];
 			boolean []autresCroissants = new boolean[croissants.length-1];
