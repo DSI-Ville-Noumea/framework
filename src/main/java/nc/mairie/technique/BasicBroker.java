@@ -1,4 +1,4 @@
-﻿package nc.mairie.technique;
+package nc.mairie.technique;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
