@@ -11,7 +11,6 @@ public class Transaction implements Serializable {
 	private java.lang.String messageErreur;
 	private boolean erreur;
 	private java.sql.Connection connection;
-	private static java.util.Vector listeConnections;
 	protected transient java.beans.PropertyChangeSupport propertyChange;
 	private long fieldCptCommit = 0;
 	private long fieldCptRollBack = 0;
@@ -23,7 +22,6 @@ public Transaction(java.sql.Connection aConnection) {
 	super();
 	setErreur(false);
 	setConnection(aConnection);
-	addTransaction(this);
 }
 /**
  * Commentaire relatif au constructeur Transaction.
@@ -43,27 +41,7 @@ public synchronized void addPropertyChangeListener(java.beans.PropertyChangeList
 public synchronized void addPropertyChangeListener(java.lang.String propertyName, java.beans.PropertyChangeListener listener) {
 	getPropertyChange().addPropertyChangeListener(propertyName, listener);
 }
-/**
- * Commentaire relatif au constructeur Transaction.
- */
-private static void addTransaction(Transaction aTransaction) {
-	// listeConnections
-	java.util.Vector v = new java.util.Vector();
-	//On ne garde que les connections ouvertes
-	for (int i = 0; i < getListeConnections().size(); i++){
-		java.sql.Connection conn = (java.sql.Connection)getListeConnections().elementAt(i);
-		try {
-		if (!conn.isClosed())
-			v.addElement(conn);
-		} catch (Exception e) {}
-	}
-	setListeConnections(v);
 
-	//On rajoute la nouvelle connection
-	getListeConnections().addElement(aTransaction.getConnection());
-	int i=0;
-	i++;
-}
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
@@ -158,16 +136,7 @@ public long getCptCommit() {
 public long getCptRollBack() {
 	return fieldCptRollBack;
 }
-/**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (19/06/01 11:09:58)
- * @return java.util.Vector
- */
-public static java.util.Vector getListeConnections() {
-	if (listeConnections == null)
-		listeConnections = new java.util.Vector();
-	return listeConnections;
-}
+
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:47:01)
@@ -285,14 +254,7 @@ public void setCptRollBack(long cptRollBack) {
 public void setErreur(boolean newErreur) {
 	erreur = newErreur;
 }
-/**
- * Insérez la description de la méthode à cet endroit.
- *  Date de création : (19/06/01 11:09:58)
- * @param newListeTransactions java.util.Vector
- */
-public static void setListeConnections(java.util.Vector newListeConnections) {
-	listeConnections = newListeConnections;
-}
+
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:47:01)
