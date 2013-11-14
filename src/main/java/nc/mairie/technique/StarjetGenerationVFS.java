@@ -99,12 +99,36 @@ public class StarjetGenerationVFS {
 	}
 	
 	
-	private String getStarjetScriptURL() throws Exception{
+	private String getStarjetScriptURLold() throws Exception{
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append((String)Frontale.getMesParametres().get("STARJET_DISPLAYPDF_URL"));
 		sb.append("?").append(getParamScript());
 		sb.append("&").append(getParamData());
+		if (nomPDF != null) sb.append("&").append(getParamPdf());
+		if (nomPrint != null) sb.append("&").append(getParamPrint());
+		
+		//remplacement des \ par \\
+		for (int i = 0; i < sb.length(); i++) {
+			if (sb.charAt(i) =='\\') {
+				sb.insert(i,'\\');
+				i++;
+			}
+			
+		}
+		System.out.println(sb.toString());
+		return sb.toString();
+	}
+	
+	
+	private String getStarjetScriptURL() throws Exception{
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append((String)Frontale.getMesParametres().get("STARJET_DISPLAYPDF_URL"));
+		sb.append("?").append("env=").append(mode);
+		sb.append("&").append("proj=").append(projet);
+		sb.append("&").append("script=").append(nomScript);
+		sb.append("&").append("data=").append(nomData);
 		if (nomPDF != null) sb.append("&").append(getParamPdf());
 		if (nomPrint != null) sb.append("&").append(getParamPrint());
 		
