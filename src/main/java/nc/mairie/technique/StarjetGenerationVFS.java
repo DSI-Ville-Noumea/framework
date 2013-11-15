@@ -15,11 +15,6 @@ import org.apache.commons.vfs.VFS;
  */
 public class StarjetGenerationVFS {
 	
-	
-	public static final String STARJET_TYPE_DATA = "DATA";
-	public static final String STARJET_TYPE_SCRIPT = "SCRIPTS";
-	public static final String STARJET_TYPE_PDF = "PDF";
-	
 	private String mode = (String)Frontale.getMesParametres().get("STARJET_MODE");
 	private String projet = (String)Frontale.getMesParametres().get("STARJET_PROJET");
 	private String UNCServeur = (String)Frontale.getMesParametres().get("STARJET_LOCAL_DIR");
@@ -41,27 +36,12 @@ public class StarjetGenerationVFS {
 		return starjetServer;
 	}
 	
-	private String getParamScript() {
-		String res = "script=" + UNCServeur + "\\" + mode + "\\" + STARJET_TYPE_SCRIPT + "\\" + projet + "\\" + nomScript;
-		return res;
-	}
-
-	private String getParamData() throws Exception{
-		String res = "data=" + UNCServeur + "\\" + mode + "\\" + STARJET_TYPE_DATA + "\\" + projet + "\\" + nomData;
-		return res;
-	}
-	
 	public String getUuidString() {
 		return uuidString;
 	}
 
 	public void setUuidString(String uuidString) {
 		this.uuidString = uuidString;
-	}
-	
-	private String getParamPdf() {
-		String res = "pdf=" + UNCServeur + "\\" + mode + "\\" + STARJET_TYPE_PDF + "\\" + projet + "\\" + nomPDF;
-		return res;
 	}
 
 	private String getParamPrint() {
@@ -71,10 +51,16 @@ public class StarjetGenerationVFS {
 	
 	public FileObject getFileData() throws Exception {
 		if (fileObjectData == null){
-			fileObjectData = fileManager.resolveFile(getFileObjectURI(STARJET_TYPE_DATA));
+			fileObjectData = fileManager.resolveFile(getFileObjectURI("DATA"));
 		}
 		return fileObjectData;
 		
+	}
+
+	
+	private String getParamPdf() {
+		String res = "pdf=" + UNCServeur + "\\" + mode + "\\PDF\\" + projet + "\\" + nomPDF;
+		return res;
 	}
 	
 	private String getFileObjectURI(String type){
@@ -82,12 +68,7 @@ public class StarjetGenerationVFS {
 		if(type==null){
 			return null;
 		}
-		if(!(type.equals(STARJET_TYPE_DATA)||type.equals(STARJET_TYPE_SCRIPT))){
-			System.err.println("La valeur de TYPE est <" + type + ">. Valeurs autorisées : " + STARJET_TYPE_DATA + ", " + STARJET_TYPE_SCRIPT);
-			return null;
-		}
 		out = "file:" + starjetServer + "/" + mode + "/" + type + "/" + projet + "/" + nomData;
-		System.out.println(out);
 		return out;
 	}
 	
@@ -98,27 +79,28 @@ public class StarjetGenerationVFS {
 		return scriptOuvPDF.toString();
 	}
 	
-	
-	private String getStarjetScriptURLold() throws Exception{
-		
-		StringBuffer sb = new StringBuffer();
-		sb.append((String)Frontale.getMesParametres().get("STARJET_DISPLAYPDF_URL"));
-		sb.append("?").append(getParamScript());
-		sb.append("&").append(getParamData());
-		if (nomPDF != null) sb.append("&").append(getParamPdf());
-		if (nomPrint != null) sb.append("&").append(getParamPrint());
-		
-		//remplacement des \ par \\
-		for (int i = 0; i < sb.length(); i++) {
-			if (sb.charAt(i) =='\\') {
-				sb.insert(i,'\\');
-				i++;
-			}
-			
-		}
-		System.out.println(sb.toString());
-		return sb.toString();
-	}
+	// L'ancienne méthode getStarjetScriptURL
+	//
+//	private String getStarjetScriptURL() throws Exception{
+//		
+//		StringBuffer sb = new StringBuffer();
+//		sb.append((String)Frontale.getMesParametres().get("STARJET_DISPLAYPDF_URL"));
+//		sb.append("?").append(getParamScript());
+//		sb.append("&").append(getParamData());
+//		if (nomPDF != null) sb.append("&").append(getParamPdf());
+//		if (nomPrint != null) sb.append("&").append(getParamPrint());
+//		
+//		//remplacement des \ par \\
+//		for (int i = 0; i < sb.length(); i++) {
+//			if (sb.charAt(i) =='\\') {
+//				sb.insert(i,'\\');
+//				i++;
+//			}
+//			
+//		}
+//		System.out.println(sb.toString());
+//		return sb.toString();
+//	}
 	
 	
 	private String getStarjetScriptURL() throws Exception{
@@ -140,7 +122,6 @@ public class StarjetGenerationVFS {
 			}
 			
 		}
-		System.out.println(sb.toString());
 		return sb.toString();
 	}
 
