@@ -1,6 +1,7 @@
 package nc.mairie.technique;
 
 import java.lang.reflect.Field;
+import java.util.Hashtable;
 
 /**
  * Insérez la description du type ici.
@@ -39,7 +40,7 @@ protected abstract BasicBroker definirMyBroker();
  * @author Luc Bourdil
  * @param objl'objet à comparer avec
  * @return true si ces objets sont égaux ; false dans le cas contraire.
- * @see java.util.Hashtable
+ * @see Hashtable
  */
 public boolean equals(BasicMetier obj) throws Exception{
 
@@ -117,7 +118,7 @@ try {
 	Field [] fieldsThis = this.getClass().getFields();
 
 	//HashTable qui contient en clé le nom de l'attribut de this et en valeur la position dans le tableau
-	java.util.Hashtable nomFieldsThis = new java.util.Hashtable();
+	Hashtable<String, String> nomFieldsThis = new Hashtable<String, String>();
 
 	//Je construit la Hashtable de This
 	for (int i = 0; i < fieldsThis.length; i++){
@@ -127,7 +128,7 @@ try {
 	//On parcours tous les Fields de l'origine
 	for (int i = 0; i < fieldsOrigine.length; i++){
 		//Si fields boolean ou String on rajoute
-		Class classFieldOrigine = fieldsOrigine[i].getType();
+		Class<?> classFieldOrigine = fieldsOrigine[i].getType();
 		if (classFieldOrigine.equals(boolean.class) || classFieldOrigine.equals(String.class)) {
 			String positionFieldThis = (String)nomFieldsThis.get(fieldsOrigine[i].getName());
 			//Si le field est trouvé dans la destination on l'alimente

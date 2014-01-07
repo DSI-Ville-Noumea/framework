@@ -1,6 +1,8 @@
 package nc.mairie.technique;
 
 import java.io.Serializable;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 /**
  * Insérez la description du type ici.
@@ -8,9 +10,13 @@ import java.io.Serializable;
  * @author: Luc Bourdil
  */
 public abstract class BasicProcess implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6176966373224167150L;
 	protected static String [] LBVide = {""};
 	private int statut;
-	private java.util.Hashtable zonesDeSaisie;
+	private Hashtable<String, String> zonesDeSaisie;
 	private Transaction transaction;
 	private boolean autoReaffecteZones = true;
 
@@ -22,7 +28,7 @@ public abstract class BasicProcess implements Serializable {
 	private String activite;
 	private boolean veutRetour = false;
 	private BasicProcess processAppelant = null;
-	private java.lang.String nomFichierImpression;
+	private String nomFichierImpression;
 
 	public String onglet="ONGLET1";
 /**
@@ -35,8 +41,8 @@ public BasicProcess() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (21/10/2002 10:35:38)
- * @param zone java.lang.String
- * @param valeur java.lang.String
+ * @param zone String
+ * @param valeur String
  */
 protected void addZone(String zone, String valeur) {
 	if (valeur == null) valeur = new String();
@@ -81,9 +87,9 @@ public boolean estVeutRetour() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String etatActivite() {
+public String etatActivite() {
 	return getActivite();
 }
 /**
@@ -286,9 +292,9 @@ public boolean gererRecuperationStatut(javax.servlet.http.HttpServletRequest req
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
- * @return java.lang.String
+ * @return String
  */
-private java.lang.String getActivite() {
+private String getActivite() {
 	return activite;
 }
 /**
@@ -317,9 +323,9 @@ public String getLB_INDICE(int indice){
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (20/11/2002 12:04:43)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getNomFichierImpression() {
+public String getNomFichierImpression() {
 	return nomFichierImpression;
 }
 /**
@@ -349,8 +355,8 @@ public nc.mairie.technique.Transaction getTransaction() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (21/10/2002 10:34:37)
- * @return java.lang.String
- * @param zone java.lang.String
+ * @return String
+ * @param zone String
  */
 protected String getZone(String zone) {
 	String s = (String)getZonesDeSaisie().get(zone);
@@ -360,11 +366,11 @@ protected String getZone(String zone) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (21/10/2002 10:28:10)
- * @return java.util.Hashtable
+ * @return Hashtable
  */
-private java.util.Hashtable getZonesDeSaisie() {
+private Hashtable<String, String> getZonesDeSaisie() {
 	if (zonesDeSaisie == null)
-		zonesDeSaisie = new java.util.Hashtable();
+		zonesDeSaisie = new Hashtable<String, String>();
 	return zonesDeSaisie;
 }
 /**
@@ -396,7 +402,7 @@ public MairiePDF prepareImpressionPDF() {
 public void reaffecteZones(javax.servlet.http.HttpServletRequest request) {
 
 		//Je mets par défaut toutes les Check box à false;
-		java.util.Enumeration enumZonesDeSaisies = getZonesDeSaisie().keys();
+		Enumeration<String> enumZonesDeSaisies = getZonesDeSaisie().keys();
 		while (enumZonesDeSaisies.hasMoreElements()) {
 			String cle = (String) enumZonesDeSaisies.nextElement();
 			if (cle.startsWith("NOM_CK")) {
@@ -404,7 +410,7 @@ public void reaffecteZones(javax.servlet.http.HttpServletRequest request) {
 			}
 		}		
 
-		java.util.Enumeration e = request.getParameterNames();
+		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
 			String cle = (String) e.nextElement();
 			//Si commence par nom alors je récupère
@@ -485,9 +491,9 @@ public void rollbackTransaction() throws Exception{
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
- * @param newActicite java.lang.String
+ * @param newActicite String
  */
-public void setActivite(java.lang.String newActivite) {
+public void setActivite(String newActivite) {
 	activite = newActivite;
 }
 /**
@@ -501,9 +507,9 @@ public void setAutoReaffecteZones(boolean newAutoReaffecteZones) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (20/11/2002 12:04:43)
- * @param newNomFichierImpression java.lang.String
+ * @param newNomFichierImpression String
  */
-public void setNomFichierImpression(java.lang.String newNomFichierImpression) {
+public void setNomFichierImpression(String newNomFichierImpression) {
 	nomFichierImpression = newNomFichierImpression;
 }
 /**

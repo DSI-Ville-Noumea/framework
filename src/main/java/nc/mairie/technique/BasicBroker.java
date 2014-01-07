@@ -3,6 +3,11 @@ package nc.mairie.technique;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
+
+import javax.sql.DataSource;
 
 /**
  * Insérez la description du type ici. Date de création : (16/10/2002 11:25:10)
@@ -19,11 +24,11 @@ public abstract class BasicBroker implements Cloneable {
 	// "com.ibm.websphere.naming.WsnInitialContextFactory";
 
 	protected static javax.naming.Context initialContext = null;
-	private static java.util.Hashtable hashDataSource = null;
+	private static Hashtable<String, DataSource> hashDataSource = null;
 	private BasicMetier myBasicMetier;
 
 	private String nomTable;
-	private java.util.Hashtable mappageTable;
+	private Hashtable<String, BasicRecord> mappageTable;
 
 	private BasicRecord identityBasicRecord;
 
@@ -31,11 +36,11 @@ public abstract class BasicBroker implements Cloneable {
 
 		if (identityBasicRecord == null) {
 
-			java.util.Enumeration enume = getMappageTable().elements();
+			Enumeration<BasicRecord> enume = getMappageTable().elements();
 
 			BasicRecord aBasicRecord;
 			while (enume.hasMoreElements()) {
-				aBasicRecord = (BasicRecord) enume.nextElement();
+				aBasicRecord = enume.nextElement();
 
 				// Si on trouve un identity
 				if ("IDENTITY".equals(aBasicRecord.getTypeAttribut())) {
@@ -66,18 +71,18 @@ public abstract class BasicBroker implements Cloneable {
 	 * 
 	 * @author Luc Bourdil
 	 */
-	private java.util.Hashtable construitColonneValeur(boolean recupIdentity) throws Exception {
-		java.util.Hashtable result = new java.util.Hashtable();
+	private Hashtable<String, String> construitColonneValeur(boolean recupIdentity) throws Exception {
+		Hashtable<String, String> result = new Hashtable<String, String>();
 		String aColonne = new String();
 		String aValeur = new String();
 		String aType = new String();
 		String aTypeAttribut = new String();
 		java.lang.reflect.Field aField = null;
 
-		java.util.Enumeration enume = getMappageTable().elements();
+		Enumeration<BasicRecord> enume = getMappageTable().elements();
 
 		while (enume.hasMoreElements()) {
-			BasicRecord aBasicRecord = (BasicRecord) enume.nextElement();
+			BasicRecord aBasicRecord = enume.nextElement();
 			aColonne = aBasicRecord.getNomChamp();
 			aType = aBasicRecord.getTypeChamp();
 			aField = aBasicRecord.getAttribut();
@@ -153,12 +158,12 @@ public abstract class BasicBroker implements Cloneable {
 
 			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
-			java.util.Hashtable colonneValeur = construitColonneValeur(false);
+			Hashtable<String, String> colonneValeur = construitColonneValeur(false);
 
 			// Je construit la liste des champs
 			String clauseColonnes = "(";
 			String clauseValues = "(";
-			java.util.Enumeration e = colonneValeur.keys();
+			Enumeration<String> e = colonneValeur.keys();
 			while (e.hasMoreElements()) {
 				String key = (String) e.nextElement();
 				clauseColonnes = clauseColonnes + key + ",";
@@ -211,7 +216,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * 
 	 * @author Luc Bourdil
 	 */
-	protected abstract java.util.Hashtable definirMappageTable() throws NoSuchFieldException;
+	protected abstract Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException;
 
 	/**
 	 * Methode à définir dans chaque objet Broker pour pouvoir instancier un
@@ -385,9 +390,9 @@ public abstract class BasicBroker implements Cloneable {
 	 *            requête SQL
 	 * @return BasicMetier
 	 */
-	protected java.util.ArrayList executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
+	protected ArrayList<BasicMetier> executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
-		java.util.ArrayList result = new java.util.ArrayList();
+		ArrayList<BasicMetier> result = new ArrayList<BasicMetier>();
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
@@ -498,7 +503,7 @@ public abstract class BasicBroker implements Cloneable {
 			try {
 
 				System.out.println("Serveur name : " + STANDARD_JDBC_CONTEXT + serveurName);
-				getHashDataSource().put(serveurName, (javax.sql.DataSource) getInitialContext().lookup(STANDARD_JDBC_CONTEXT + serveurName));
+				getHashDataSource().put(serveurName, (DataSource) getInitialContext().lookup(STANDARD_JDBC_CONTEXT + serveurName));
 				System.out.println("serveur ok (jboss ou websphere) : [" + STANDARD_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
 				throw e;
@@ -542,7 +547,7 @@ public abstract class BasicBroker implements Cloneable {
 				DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/"+serveurName);
 				Connection con = ds.getConnection();
 				System.out.println("Connexion : " + con.getMetaData().getDatabaseMajorVersion())*/
-				getHashDataSource().put(serveurName, (javax.sql.DataSource) getInitialContext().lookup(TOMCAT_JDBC_CONTEXT + serveurName));
+				getHashDataSource().put(serveurName, (DataSource) getInitialContext().lookup(TOMCAT_JDBC_CONTEXT + serveurName));
 				System.out.println("serveur ok (tomcat) : [" + TOMCAT_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
 				throw e;
@@ -566,11 +571,11 @@ public abstract class BasicBroker implements Cloneable {
 	 * Insérez la description de la méthode ici. Date de création : (07/05/2004
 	 * 11:10:05)
 	 * 
-	 * @return java.util.Hashtable
+	 * @return Hashtable
 	 */
-	private static java.util.Hashtable getHashDataSource() {
+	private static Hashtable<String, DataSource> getHashDataSource() {
 		if (hashDataSource == null) {
-			hashDataSource = new java.util.Hashtable();
+			hashDataSource = new Hashtable<String, DataSource>();
 		}
 		return hashDataSource;
 	}
@@ -586,7 +591,7 @@ public abstract class BasicBroker implements Cloneable {
 		if (initialContext == null) {
 			try {
 				/*
-				 * java.util.Hashtable parms = new java.util.Hashtable();
+				 * Hashtable parms = new Hashtable();
 				 * parms.put(javax.naming.Context.INITIAL_CONTEXT_FACTORY,
 				 * INITIAL_CONTEXT_FACTORY); initialContext = new
 				 * javax.naming.InitialContext(parms);
@@ -605,7 +610,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * 
 	 * @author Luc Bourdil Date de création : (04/12/2002 14:19:26)
 	 */
-	protected java.util.Hashtable getMappageTable() throws NoSuchFieldException {
+	protected Hashtable<String, BasicRecord> getMappageTable() throws NoSuchFieldException {
 		if (mappageTable == null) {
 			mappageTable = definirMappageTable();
 		}
@@ -723,9 +728,9 @@ public abstract class BasicBroker implements Cloneable {
 		java.lang.reflect.Field aField = null;
 
 		// Parcours des colonnes
-		java.util.Enumeration enume = getMappageTable().elements();
+		Enumeration<BasicRecord> enume = getMappageTable().elements();
 		while (enume.hasMoreElements()) {
-			BasicRecord aBasicRecord = (BasicRecord) enume.nextElement();
+			BasicRecord aBasicRecord = enume.nextElement();
 			aColonne = aBasicRecord.getNomChamp();
 			aField = aBasicRecord.getAttribut();
 			aTypeAttribut = aBasicRecord.getTypeAttribut();
@@ -839,13 +844,13 @@ public abstract class BasicBroker implements Cloneable {
 
 			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
-			java.util.Hashtable colonneValeur = construitColonneValeur(false);
-			java.util.Hashtable colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
+			Hashtable<String, String> colonneValeur = construitColonneValeur(false);
+			Hashtable<String, String> colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
 
 			// Je construit la liste des champs
 			String clauseUpdate = "";
 			String clauseWhere = "";
-			java.util.Enumeration e = colonneValeur.keys();
+			Enumeration<String> e = colonneValeur.keys();
 			while (e.hasMoreElements()) {
 				String key = (String) e.nextElement();
 				String newValeur = (String) colonneValeur.get(key);
@@ -929,11 +934,11 @@ public abstract class BasicBroker implements Cloneable {
 
 			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
-			java.util.Hashtable colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
+			Hashtable<String, String> colonneValeurOld = getMyBasicMetier().getBasicMetierBase().getMyBasicBroker().construitColonneValeur(true);
 
 			// Je construit la liste des champs
 			String clauseWhere = "";
-			java.util.Enumeration e = colonneValeurOld.keys();
+			Enumeration<String> e = colonneValeurOld.keys();
 			while (e.hasMoreElements()) {
 				String key = (String) e.nextElement();
 

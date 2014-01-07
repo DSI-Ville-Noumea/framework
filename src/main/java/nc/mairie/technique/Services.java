@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Vector;
 
 /**
@@ -133,6 +134,7 @@ public static int compteJoursEntreDates(String uneDate, String autreDate) throws
 /**
  * Commentaire relatif au constructeur USerBroker.
  */
+@SuppressWarnings("rawtypes")
 public static String contenuMetierToString(Object object) throws Exception {
 
 	if (object instanceof ArrayList) return contenuMetierToString((ArrayList)object);
@@ -171,7 +173,8 @@ public static String contenuMetierToString(Object object) throws Exception {
 /**
  * Commentaire relatif au constructeur USerBroker.
  */
-public static String contenuMetierToString(java.util.ArrayList aList) throws Exception {
+@SuppressWarnings("rawtypes")
+public static String contenuMetierToString(ArrayList aList) throws Exception {
 
 	String resultat = "";
 	for (int i = 0; i < aList.size(); i++){
@@ -541,8 +544,8 @@ public static String stringForBase(String aString){
  *	Formate un String en 
  *		- remplacant les " &quot; pour le HTML
  *  Date de création : (21/10/2002 10:37:13)
- * @return java.lang.String
- * @param aString java.lang.String
+ * @return String
+ * @param aString String
  */
 public static String stringForHTML(String aString) {
 	
@@ -568,6 +571,7 @@ public static String stringForHTML(String aString) {
 /**
 Cette méthode trie un vecteur d'objets Identiques
 */
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public static ArrayList trier(ArrayList a, String []nomChamps, boolean []croissants) throws Exception{
 	
 	Vector v = new Vector(a);
@@ -581,7 +585,8 @@ public static ArrayList trier(ArrayList a, String []nomChamps, boolean []croissa
 /**
 	Cette méthode trie un vecteur d'objets Identiques
 */
-public static java.util.Vector trier(Vector v, String []nomChamps, boolean []croissants) throws Exception{
+@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
+public static Vector trier(Vector v, String []nomChamps, boolean []croissants) throws Exception{
 
 try {
 	//Vecteur des champs nulls
@@ -609,7 +614,7 @@ try {
 	}
 
 	//Création de la hashTable du champ de recherche code = champ, valeur = vecteur de l'objet
-	java.util.Hashtable h = new java.util.Hashtable();
+	Hashtable h = new Hashtable();
 	
 	for (int i = 0; i < v.size(); i++){
 		Object o = v.elementAt(i);
@@ -638,9 +643,9 @@ try {
 			vectorNull.addElement(v.elementAt(i));
 		} else {
 			//Construction d'un vecteur avec comme clé la valeur du champ
-			java.util.Vector v2= (java.util.Vector)h.get(champ);
+			Vector v2= (Vector)h.get(champ);
 			if (v2 == null)
-				v2= new java.util.Vector();
+				v2= new Vector();
 			v2.addElement(o);
 			h.put(champ,v2);
 		} 
@@ -659,9 +664,9 @@ try {
 	}
 	
 	//boucle qui échange les données
-	java.util.Vector result = new java.util.Vector();
+	Vector result = new Vector();
 	for (int k = 0; k < cles.size(); k++){
-		java.util.Vector vTemp = (java.util.Vector)h.get(cles.elementAt(k));
+		Vector vTemp = (Vector)h.get(cles.elementAt(k));
 
 		//Si le nombre de champs est > 1 alors appel récursif
 		if (nomChamps.length > 1 && vTemp.size() > 1) {

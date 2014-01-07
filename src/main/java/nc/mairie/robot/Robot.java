@@ -1,6 +1,7 @@
 package nc.mairie.robot;
 
 import java.io.Serializable;
+import java.util.Hashtable;
 
 import nc.mairie.technique.BasicProcess;
 
@@ -10,7 +11,11 @@ import nc.mairie.technique.BasicProcess;
  * @author : Luc Bourdil
  */
 public abstract class Robot extends Object implements Serializable{ 
-	private java.util.Hashtable navigation;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2320964365870414341L;
+	private Hashtable<String, String> navigation;
 	private Testeur myTesteur;
 /**
  * Commentaire relatif au constructeur Robot.
@@ -57,9 +62,9 @@ private Testeur getMyTesteur() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 11:59:52)
- * @return java.util.Hashtable
+ * @return Hashtable
  */
-private java.util.Hashtable getNavigation() {
+private Hashtable<String, String> getNavigation() {
 	if (navigation == null) {
 		navigation = initialiseNavigation();
 	}
@@ -89,7 +94,7 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 	if (nomClasse == null)
 		throw new Exception("Navigation du robot non déterminée avec le process " + process.getClass() +" et le statut "+process.etatStatut());
 	
-	Class c;
+	Class<?> c;
 	try {
 		//c = Class.forName(nomClasse);
 		c = Class.forName(nomClasse, true, process.getClass().getClassLoader());
@@ -102,7 +107,7 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
  */
-protected abstract java.util.Hashtable initialiseNavigation() ;
+protected abstract Hashtable<String, String> initialiseNavigation() ;
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
@@ -113,6 +118,7 @@ protected abstract Testeur initialiseTesteur() ;
  *  Date de création : (21/05/2003 15:29:59)
  * @param newMyTesteur nc.mairie.robot.Testeur
  */
+@SuppressWarnings("unused")
 private void setMyTesteur(Testeur newMyTesteur) {
 	myTesteur = newMyTesteur;
 }

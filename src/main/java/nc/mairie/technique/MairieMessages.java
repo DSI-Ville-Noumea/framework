@@ -1,5 +1,8 @@
 package nc.mairie.technique;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 import nc.mairie.commun.technique.ListeMairieMessages;
 /**
  * Cette classe permet de lister la liste des messages d'erreur et d'information utilisés dans @VeRSe.
@@ -84,7 +87,7 @@ public static String getLibelleCodeMessage(String codeMessage) {
 /**
 * Methode qui construit la HashTable avec tous les messages d'erreur et d'information de @VeRSe
  */
-private static java.util.Hashtable getListeMessages() {
+private static Hashtable<String, String> getListeMessages() {
 	return ListeMairieMessages.getListeMessages();
 }
 /**
@@ -167,11 +170,11 @@ public static String listerMessagesContenant(String [] chaines) {
 		return null;
 	
 	String res = "";
-	java.util.Hashtable h = getListeMessages();
-	java.util.Enumeration enume = h.keys();
+	Hashtable<String, String> h = getListeMessages();
+	Enumeration<String> enume = h.keys();
 	while (enume.hasMoreElements()) {
-		String cle = (String)enume.nextElement();
-		String lib = (String)h.get(cle);
+		String cle = enume.nextElement();
+		String lib = h.get(cle);
 		boolean contient = true;
 		for (int i = 0; i < chaines.length; i++){
 			if (lib.toUpperCase().indexOf(chaines[i].toUpperCase()) == -1) {

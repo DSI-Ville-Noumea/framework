@@ -3,10 +3,14 @@ package nc.mairie.servlets;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
+
 import javax.servlet.http.HttpServletResponse;
+
 import nc.mairie.technique.*;
+
 import org.apache.commons.codec.binary.Base64;
 
 /**
@@ -15,8 +19,12 @@ import org.apache.commons.codec.binary.Base64;
  * @author: Luc Bourdil
  */
 public abstract class Frontale extends javax.servlet.http.HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5225287987424248946L;
 	private nc.mairie.robot.Robot robot;
-	private static java.util.Hashtable mesParametres;
+	private static Hashtable<String, String> mesParametres;
 	private boolean veutGererActivitite = true;
 
 	private boolean isVeutGererActivitite() {
@@ -93,9 +101,9 @@ public static boolean controlerHabilitation(javax.servlet.http.HttpServletReques
 public void destroy() {
 
 	//Nettoyage des batch en cours d'exécution
-	java.util.Enumeration enume = BasicBatch.getHashBatch().elements();
+	Enumeration<BasicBatch> enume = BasicBatch.getHashBatch().elements();
 	while (enume.hasMoreElements()) {
-		BasicBatch aBatch = (BasicBatch)enume.nextElement();
+		BasicBatch aBatch = enume.nextElement();
 		aBatch.abortTraitement();
 	}
 
@@ -130,9 +138,9 @@ public void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.
  * Returns the servlet info string.
  * @author Luc Bourdil
  */
-public static java.util.Hashtable getMesParametres() {
+public static Hashtable<String, String> getMesParametres() {
 	if (mesParametres == null) {
-		mesParametres = new java.util.Hashtable();
+		mesParametres = new Hashtable<String, String>();
 	}
 	return mesParametres ;
 }
@@ -213,7 +221,7 @@ private void initialiseParametreHab(){
 		ois.close();
 		fis.close();
 		
-		Enumeration e = prop.keys();
+		Enumeration<?> e = prop.keys();
 		while (e.hasMoreElements()){
 			String cleParametre = (String)e.nextElement();
 			String valParametre = prop.getProperty(cleParametre);
@@ -244,7 +252,7 @@ private void initialiseParametreInitiaux() {
 		initialiseParametreHab();
 		
 		//chargement des paramêtres du contexte
-		java.util.Enumeration enumContext = doitPrendreInit ? getServletContext().getInitParameterNames() : getServletContext().getAttributeNames();
+		Enumeration<?> enumContext = doitPrendreInit ? getServletContext().getInitParameterNames() : getServletContext().getAttributeNames();
 		while (enumContext.hasMoreElements()) {
 			try {
 				String cleParametre = (String)enumContext.nextElement();
@@ -259,7 +267,7 @@ private void initialiseParametreInitiaux() {
 		}
 	
 		//chargement des param de la servlet
-		java.util.Enumeration enumServlet = getInitParameterNames();
+		Enumeration<?> enumServlet = getInitParameterNames();
 		while (enumServlet.hasMoreElements()) {
 			String cleParametre = (String)enumServlet.nextElement();
 			String valParametre = (String)getInitParameter(cleParametre);

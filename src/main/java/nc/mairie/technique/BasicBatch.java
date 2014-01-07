@@ -1,5 +1,7 @@
 package nc.mairie.technique;
 
+import java.util.Hashtable;
+
 /**
  * Insérez la description du type ici.
  * Date de création : (06/10/2003 10:59:39)
@@ -7,7 +9,7 @@ package nc.mairie.technique;
  */
 public abstract class BasicBatch extends Thread {
 	private nc.mairie.technique.Transaction transaction;
-	private static java.util.Hashtable hashBatch;
+	private static Hashtable<Class<?>, BasicBatch> hashBatch;
 /**
  * Commentaire relatif au constructeur BasicBatch.
  */
@@ -29,6 +31,7 @@ public BasicBatch(javax.servlet.http.HttpServletRequest request) throws Exceptio
 /**
 Destruction
  */
+@SuppressWarnings("deprecation")
 public void abortTraitement() {
 	stop();
 	
@@ -41,7 +44,7 @@ public void abortTraitement() {
 /**
  Retourne vrai si le batch passé en param est en cours d'exécution
  */
-public static boolean arreterBatch(Class aClass) {
+public static boolean arreterBatch(Class<?> aClass) {
 	BasicBatch b = (BasicBatch)getHashBatch().get(aClass);
 	if (b!=null) {b.abortTraitement();}
 	return true;
@@ -75,10 +78,10 @@ public void fermerConnexion() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (08/10/2003 11:04:37)
- * @return java.util.Hashtable
+ * @return Hashtable
  */
-public static java.util.Hashtable getHashBatch() {
-	if (hashBatch == null) hashBatch = new java.util.Hashtable();
+public static Hashtable<Class<?>, BasicBatch> getHashBatch() {
+	if (hashBatch == null) hashBatch = new Hashtable<Class<?>, BasicBatch>();
 	return hashBatch;
 }
 /**
@@ -92,7 +95,7 @@ public nc.mairie.technique.Transaction getTransaction() {
 /**
  Retourne vrai si le batch passé en param est en cours d'exécution
  */
-public static boolean isBatchRunning(Class aClass) {
+public static boolean isBatchRunning(Class<?> aClass) {
 	return getHashBatch().containsKey(aClass);
 }
 /**

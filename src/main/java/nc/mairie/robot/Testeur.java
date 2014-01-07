@@ -2,6 +2,7 @@ package nc.mairie.robot;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,11 @@ import nc.mairie.technique.*;
  * @author : Générateur de process
 */
 public abstract class Testeur extends nc.mairie.technique.BasicProcess {
-	private java.lang.String[] LB_PROCESS;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8172071457030321618L;
+	private String[] LB_PROCESS;
 	private boolean instancie = false;
 /**
  * Constructeur du process ZZZTESTEUR.
@@ -28,7 +33,7 @@ public Testeur() {
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-public abstract java.lang.String [] definirListeProcess();
+public abstract String [] definirListeProcess();
 /**
  * Retourne le nom de la JSP du process
  * Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
@@ -55,7 +60,7 @@ private String [] getLB_PROCESS() {
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_LB_PROCESS() {
+public String getNOM_LB_PROCESS() {
 	return "NOM_LB_PROCESS";
 }
 /**
@@ -64,7 +69,7 @@ public java.lang.String getNOM_LB_PROCESS() {
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_LB_PROCESS_SELECT() {
+public String getNOM_LB_PROCESS_SELECT() {
 	return "NOM_LB_PROCESS_SELECT";
 }
 /**
@@ -73,7 +78,7 @@ public java.lang.String getNOM_LB_PROCESS_SELECT() {
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_PB_PROCEDER() {
+public String getNOM_PB_PROCEDER() {
 	return "NOM_PB_PROCEDER";
 }
 /**
@@ -82,7 +87,7 @@ public java.lang.String getNOM_PB_PROCEDER() {
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_PB_ANNULER() {
+public String getNOM_PB_ANNULER() {
 	return "NOM_PB_ANNULER";
 }
 /**
@@ -91,7 +96,7 @@ public java.lang.String getNOM_PB_ANNULER() {
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_PB_INSTANCIE() {
+public String getNOM_PB_INSTANCIE() {
 	return "NOM_PB_INSTANCIE";
 }
 /**
@@ -100,7 +105,7 @@ public java.lang.String getNOM_PB_INSTANCIE() {
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_PB_RAZ_ACTIVITE() {
+public String getNOM_PB_RAZ_ACTIVITE() {
 	return "NOM_PB_RAZ_ACTIVITE";
 }
 /**
@@ -109,7 +114,7 @@ public java.lang.String getNOM_PB_RAZ_ACTIVITE() {
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_ST_RESULTAT() {
+public String getNOM_ST_RESULTAT() {
 	return "NOM_ST_RESULTAT";
 }
 /**
@@ -119,7 +124,7 @@ public java.lang.String getNOM_ST_RESULTAT() {
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-public java.lang.String []  getVAL_LB_PROCESS() {
+public String []  getVAL_LB_PROCESS() {
 	return getLB_PROCESS();
 }
 /**
@@ -129,7 +134,7 @@ public java.lang.String []  getVAL_LB_PROCESS() {
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-public java.lang.String getVAL_LB_PROCESS_SELECT() {
+public String getVAL_LB_PROCESS_SELECT() {
 	return getZone(getNOM_LB_PROCESS_SELECT());
 }
 /**
@@ -138,7 +143,7 @@ public java.lang.String getVAL_LB_PROCESS_SELECT() {
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
  */
-public java.lang.String getVAL_ST_RESULTAT() {
+public String getVAL_ST_RESULTAT() {
 	return getZone(getNOM_ST_RESULTAT());
 }
 /**
@@ -147,7 +152,7 @@ public java.lang.String getVAL_ST_RESULTAT() {
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_EF_CLASSE() {
+public String getNOM_EF_CLASSE() {
 	return "NOM_EF_CLASSE";
 }
 /**
@@ -156,7 +161,7 @@ public java.lang.String getNOM_EF_CLASSE() {
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
-public java.lang.String getVAL_EF_CLASSE() {
+public String getVAL_EF_CLASSE() {
 	return getZone(getNOM_EF_CLASSE());
 }
 /**
@@ -165,7 +170,7 @@ public java.lang.String getVAL_EF_CLASSE() {
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_EF_ID() {
+public String getNOM_EF_ID() {
 	return "NOM_EF_ID";
 }
 /**
@@ -174,7 +179,7 @@ public java.lang.String getNOM_EF_ID() {
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
-public java.lang.String getVAL_EF_ID() {
+public String getVAL_EF_ID() {
 	return getZone(getNOM_EF_ID());
 }
 
@@ -184,7 +189,7 @@ public java.lang.String getVAL_EF_ID() {
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
-public java.lang.String getNOM_EF_ACTIVITE() {
+public String getNOM_EF_ACTIVITE() {
 	return "NOM_EF_ACTIVITE";
 }
 /**
@@ -193,7 +198,7 @@ public java.lang.String getNOM_EF_ACTIVITE() {
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
  */
-public java.lang.String getVAL_EF_ACTIVITE() {
+public String getVAL_EF_ACTIVITE() {
 	return getZone(getNOM_EF_ACTIVITE());
 }
 
@@ -229,7 +234,7 @@ public void initialiseZones(HttpServletRequestWrapper request) throws Exception{
 
 	if (etatStatut() != STATUT_MEME_PROCESS && etatStatut()!=STATUT_MESSAGE_INFO) {
 		String className = listeProcess()[etatStatut()].substring(listeProcess()[etatStatut()].lastIndexOf(".")+1);
-		Class [] classes = {HttpServletRequest.class};
+		Class<?> [] classes = {HttpServletRequest.class};
 		java.lang.reflect.Method methodeInitialise = null;
 		boolean methodeTrouvee = false;
 		try {
@@ -278,7 +283,7 @@ public void initialiseZones(HttpServletRequestWrapper request) throws Exception{
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-public java.lang.String [] listeProcess() {
+public String [] listeProcess() {
 	return definirListeProcess();
 }
 /**
@@ -286,8 +291,8 @@ public java.lang.String [] listeProcess() {
  *
  */
 public boolean performPB_RAZ_ACTIVITE(javax.servlet.http.HttpServletRequest request){
-	Hashtable h = getTransaction().getVariablesActivite();
-	Enumeration enume = h.keys();
+	Hashtable<String, Object> h = getTransaction().getVariablesActivite();
+	Enumeration<String> enume = h.keys();
 	String key;
 	while (enume.hasMoreElements()){
 		key = (String)enume.nextElement();
@@ -319,7 +324,7 @@ public boolean performPB_INSTANCIE(javax.servlet.http.HttpServletRequest request
 		return false;
 	}
 	
-	Class c;
+	Class<?> c;
 	try {
 		c=Class.forName(theClasse,false, getClass().getClassLoader());
 	} catch (Exception e) {
@@ -327,10 +332,10 @@ public boolean performPB_INSTANCIE(javax.servlet.http.HttpServletRequest request
 		return false;
 	}
 	
-	Class [] classLister = { Transaction.class};
-	Class [] classChercher = { Transaction.class, String.class};
+	Class<?> [] classLister = { Transaction.class};
+	Class<?> [] classChercher = { Transaction.class, String.class};
 	
-	Class [] classes = isListe ? classLister : classChercher;
+	Class<?> [] classes = isListe ? classLister : classChercher;
 	java.lang.reflect.Method methode = null;
 
 	//Recherche de la methode
@@ -423,8 +428,8 @@ public boolean performPB_PROCEDER(javax.servlet.http.HttpServletRequest request)
  */
 public String listerVarActivites() throws Exception{
 	
-	Hashtable h = getTransaction().getVariablesActivite();
-	Enumeration enume = h.keys();
+	Hashtable<String, Object> h = getTransaction().getVariablesActivite();
+	Enumeration<String> enume = h.keys();
 	String key;
 	String res="<hr><u>Liste des Var d'activité : </u>";
 	while (enume.hasMoreElements()){
@@ -449,7 +454,7 @@ public String listerVarActivites() throws Exception{
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
  */
-private void setLB_PROCESS(java.lang.String[] newLB_PROCESS) {
+private void setLB_PROCESS(String[] newLB_PROCESS) {
 	LB_PROCESS = newLB_PROCESS;
 }
 }

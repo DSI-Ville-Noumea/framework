@@ -73,15 +73,15 @@ public class MairieLDAP {
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
 	 */
-	public static Hashtable chercherUserLDAPAttributs(String userName) {
+	public static Hashtable<Object, Object> chercherUserLDAPAttributs(String userName) {
 		return chercherUserLDAPAttributs(Frontale.getMesParametres(), userName);
 	}
 
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
 	 */
-	public static Hashtable chercherUserLDAPAttributs(Hashtable parametres, String userName) {
-		Hashtable res = new Hashtable();
+	public static Hashtable<Object, Object> chercherUserLDAPAttributs(Hashtable<String, String> parametres, String userName) {
+		Hashtable<Object, Object> res = new Hashtable<Object, Object>();
 
 		try {
 			DirContext contextAdmin = null;
@@ -102,13 +102,13 @@ public class MairieLDAP {
 
 			// hurle NamingEnumeration enum = ctx.search(BASE_LDAP, "(cn="+user+")", constraints);
 			String critere = (String) parametres.get(MairieLDAP.CRITERE_RECHERCHE_LDAP);
-			NamingEnumeration enume = contextAdmin.search((String) parametres.get(MairieLDAP.BASE_LDAP),
+			NamingEnumeration<SearchResult> enume = contextAdmin.search((String) parametres.get(MairieLDAP.BASE_LDAP),
 					"(" + critere + "=" + userName + ")", constraints);
 
 			if (enume.hasMore()) {
 				SearchResult sr = (SearchResult) enume.next();
 				Attributes attr = sr.getAttributes();
-				NamingEnumeration ne = attr.getIDs();
+				NamingEnumeration<String> ne = attr.getIDs();
 
 				while (ne.hasMoreElements()) {
 					Object o = ne.nextElement();
@@ -137,7 +137,7 @@ public class MairieLDAP {
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
 	 */
-	public static boolean controlerHabilitation(Hashtable parametres, String userName, String userPassword) {
+	public static boolean controlerHabilitation(Hashtable<String, String> parametres, String userName, String userPassword) {
 
 		// Contrôles de base
 		if ((userName == null) || (userName.length() == 0) || (userPassword == null) || (userPassword.length() == 0)) {
@@ -163,7 +163,7 @@ public class MairieLDAP {
 
 			// hurle NamingEnumeration enum = ctx.search(BASE_LDAP, "(cn="+user+")", constraints);
 			String critere = (String) parametres.get(MairieLDAP.CRITERE_RECHERCHE_LDAP);
-			NamingEnumeration enume = contextAdmin.search((String) parametres.get(MairieLDAP.BASE_LDAP),
+			NamingEnumeration<SearchResult> enume = contextAdmin.search((String) parametres.get(MairieLDAP.BASE_LDAP),
 					"(" + critere + "=" + userName + ")", constraints);
 			String dn = "";
 
@@ -177,7 +177,7 @@ public class MairieLDAP {
 			dn = mettreGuillemet(dn);
 
 			// PREPARATION CONTROLE PWD
-			java.util.Hashtable newEnv = new java.util.Hashtable();
+			Hashtable<String, String> newEnv = new Hashtable<String, String>();
 
 			// initialisation du contexte
 			newEnv.put(Context.INITIAL_CONTEXT_FACTORY, (String) parametres.get(MairieLDAP.INITCTX_LDAP));
@@ -215,8 +215,8 @@ public class MairieLDAP {
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
 	 */
-	private static DirContext getAdminContext(java.util.Hashtable parametres) throws Exception {
-		java.util.Hashtable envAdmin = new java.util.Hashtable();
+	private static DirContext getAdminContext(Hashtable<String, String> parametres) throws Exception {
+		Hashtable<String, String> envAdmin = new Hashtable<String, String>();
 
 		// initialisation du contexte
 		String initctx_ldap = (String) parametres.get(MairieLDAP.INITCTX_LDAP);

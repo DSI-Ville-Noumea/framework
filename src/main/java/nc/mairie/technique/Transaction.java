@@ -1,6 +1,7 @@
 package nc.mairie.technique;
 
 import java.io.Serializable;
+import java.util.Hashtable;
 
 /**
  * Insérez la description du type à cet endroit.
@@ -8,13 +9,17 @@ import java.io.Serializable;
  * @author : Luc Bourdil
  */
 public class Transaction implements Serializable {
-	private java.lang.String messageErreur;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -60084285360938701L;
+	private String messageErreur;
 	private boolean erreur;
 	private java.sql.Connection connection;
 	protected transient java.beans.PropertyChangeSupport propertyChange;
 	private long fieldCptCommit = 0;
 	private long fieldCptRollBack = 0;
-	private java.util.Hashtable variablesActivite = new java.util.Hashtable();
+	private Hashtable<String, Object> variablesActivite = new Hashtable<String, Object>();
 /**
  * Commentaire relatif au constructeur Transaction.
  */
@@ -38,7 +43,7 @@ public synchronized void addPropertyChangeListener(java.beans.PropertyChangeList
 /**
  * La méthode addPropertyChangeListener a été générée pour supporter la zone propertyChange.
  */
-public synchronized void addPropertyChangeListener(java.lang.String propertyName, java.beans.PropertyChangeListener listener) {
+public synchronized void addPropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener) {
 	getPropertyChange().addPropertyChangeListener(propertyName, listener);
 }
 
@@ -46,7 +51,7 @@ public synchronized void addPropertyChangeListener(java.lang.String propertyName
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
  */
-public void ajouteVariable(java.lang.String nomVariable, java.lang.Object valeurVariable) {
+public void ajouteVariable(String nomVariable, java.lang.Object valeurVariable) {
 	getVariablesActivite().put(nomVariable, valeurVariable);
 }
 /**
@@ -63,7 +68,7 @@ public void commitTransaction() throws Exception{
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:49:28)
- * @param pMessageErreur java.lang.String
+ * @param pMessageErreur String
  */
 public boolean declarerErreur(String pMessageErreur) {
 	if(!isErreur()) { setErreur(true); setMessageErreur(pMessageErreur); return true; }
@@ -73,7 +78,7 @@ public boolean declarerErreur(String pMessageErreur) {
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
  */
-public void enleveVariable(java.lang.String nomVariable) {
+public void enleveVariable(String nomVariable) {
 	getVariablesActivite().remove(nomVariable);
 }
 /**
@@ -97,19 +102,19 @@ public void firePropertyChange(java.beans.PropertyChangeEvent evt) {
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
  */
-public void firePropertyChange(java.lang.String propertyName, int oldValue, int newValue) {
+public void firePropertyChange(String propertyName, int oldValue, int newValue) {
 	getPropertyChange().firePropertyChange(propertyName, oldValue, newValue);
 }
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
  */
-public void firePropertyChange(java.lang.String propertyName, java.lang.Object oldValue, java.lang.Object newValue) {
+public void firePropertyChange(String propertyName, java.lang.Object oldValue, java.lang.Object newValue) {
 	getPropertyChange().firePropertyChange(propertyName, oldValue, newValue);
 }
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
  */
-public void firePropertyChange(java.lang.String propertyName, boolean oldValue, boolean newValue) {
+public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
 	getPropertyChange().firePropertyChange(propertyName, oldValue, newValue);
 }
 /**
@@ -140,9 +145,9 @@ public long getCptRollBack() {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:47:01)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getMessageErreur() {
+public String getMessageErreur() {
 	return messageErreur;
 }
 /**
@@ -157,18 +162,18 @@ protected java.beans.PropertyChangeSupport getPropertyChange() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:31:16)
- * @return java.util.Hashtable
+ * @return Hashtable
  */
-public java.util.Hashtable getVariablesActivite() {
+public Hashtable<String, Object> getVariablesActivite() {
 	if (variablesActivite == null) {
-		variablesActivite = new java.util.Hashtable();
+		variablesActivite = new Hashtable<String, Object>();
 	}
 	return variablesActivite;
 }
 /**
  * La méthode hasListeners a été générée pour supporter la zone propertyChange.
  */
-public synchronized boolean hasListeners(java.lang.String propertyName) {
+public synchronized boolean hasListeners(String propertyName) {
 	return getPropertyChange().hasListeners(propertyName);
 }
 /**
@@ -193,7 +198,7 @@ public boolean isErreur() {
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
  */
-public java.lang.Object recupereVariable(java.lang.String nomVariable) {
+public java.lang.Object recupereVariable(String nomVariable) {
 	return getVariablesActivite().get(nomVariable);
 }
 /**
@@ -205,7 +210,7 @@ public synchronized void removePropertyChangeListener(java.beans.PropertyChangeL
 /**
  * La méthode removePropertyChangeListener a été générée pour supporter la zone propertyChange.
  */
-public synchronized void removePropertyChangeListener(java.lang.String propertyName, java.beans.PropertyChangeListener listener) {
+public synchronized void removePropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener) {
 	getPropertyChange().removePropertyChangeListener(propertyName, listener);
 }
 /**
@@ -258,23 +263,23 @@ public void setErreur(boolean newErreur) {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:47:01)
- * @param newMessageErreur java.lang.String
+ * @param newMessageErreur String
  */
-public void setMessageErreur(java.lang.String newMessageErreur) {
+public void setMessageErreur(String newMessageErreur) {
 	messageErreur = newMessageErreur;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:31:16)
- * @param newVariablesActivite java.util.Hashtable
+ * @param newVariablesActivite Hashtable
  */
-public void setVariablesActivite(java.util.Hashtable newVariablesActivite) {
+public void setVariablesActivite(Hashtable<String, Object> newVariablesActivite) {
 	variablesActivite = newVariablesActivite;
 }
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:54:12)
- * @return java.lang.String
+ * @return String
  */
 public String traiterErreur() {
 	//Si pas d'erreur on ne retourne rien

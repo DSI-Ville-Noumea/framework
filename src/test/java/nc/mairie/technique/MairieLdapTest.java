@@ -6,7 +6,6 @@ package nc.mairie.technique;
 
 import java.util.*;
 import java.util.logging.Logger;
-import junit.framework.TestCase;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.junit.Assert;
@@ -89,7 +88,7 @@ public class MairieLdapTest {
         
         
         
-        Hashtable<String, String> test = null;
+        Hashtable<Object, Object> test = null;
         
         Assert.assertTrue("la liste des logins de test n'est pas renseignée (champ [users], il faut renseigner au moins un user dans le fichier de properties", sAmaccountNames != null);
         Assert.assertTrue(sAmaccountNames.length > 0);

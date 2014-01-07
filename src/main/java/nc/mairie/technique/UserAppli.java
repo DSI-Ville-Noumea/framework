@@ -1,6 +1,7 @@
 package nc.mairie.technique;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Insérez la description du type ici.
@@ -8,10 +9,14 @@ import java.io.Serializable;
  * @author: 
  */
 public class UserAppli implements Serializable {
-	private java.lang.String userName;
-	private java.lang.String userPassword;
-	private java.lang.String serverName;
-	private java.util.ArrayList listeDroits;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 133004226206889793L;
+	private String userName;
+	private String userPassword;
+	private String serverName;
+	private ArrayList<String> listeDroits;
 /**
  * Commentaire relatif au constructeur UserAppli.
  */
@@ -24,64 +29,64 @@ public UserAppli(String aUserName, String aUserPassword, String aServerName) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (30/12/2002 10:23:42)
- * @return java.util.ArrayList
+ * @return ArrayList
  */
-public java.util.ArrayList getListeDroits() throws Exception {
+public ArrayList<String> getListeDroits() throws Exception {
 	if (listeDroits == null) {
-		listeDroits = new java.util.ArrayList();
+		listeDroits = new ArrayList<String>();
 	}
 	return listeDroits;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (07/05/2004 10:44:48)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getServerName() {
+public String getServerName() {
 	return serverName;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:00)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getUserName() {
+public String getUserName() {
 	return userName;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:15)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getUserPassword() {
+public String getUserPassword() {
 	return userPassword;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (07/05/2004 10:44:48)
- * @param newServerName java.lang.String
+ * @param newServerName String
  */
-public void setServerName(java.lang.String newServerName) {
+public void setServerName(String newServerName) {
 	serverName = newServerName;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:00)
- * @param newUserName java.lang.String
+ * @param newUserName String
  */
-public void setUserName(java.lang.String newUserName) {
+public void setUserName(String newUserName) {
 	userName = newUserName;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (22/10/2002 08:21:15)
- * @param newUserPassword java.lang.String
+ * @param newUserPassword String
  */
-public void setUserPassword(java.lang.String newUserPassword) {
+public void setUserPassword(String newUserPassword) {
 	userPassword = newUserPassword;
 }
 
-public void setListeDroits(java.util.ArrayList listeDroits) {
+public void setListeDroits(ArrayList<String> listeDroits) {
 	this.listeDroits = listeDroits;
 }
 }

@@ -6,10 +6,10 @@ package nc.mairie.technique;
  * @author: Administrator
  */
 public class BasicRecord {
-	private java.lang.String nomChamp;
-	private java.lang.String typeChamp;
+	private String nomChamp;
+	private String typeChamp;
 	private java.lang.reflect.Field attribut;
-	private java.lang.String typeAttribut;
+	private String typeAttribut;
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:30:47)
@@ -31,25 +31,25 @@ public java.lang.reflect.Field getAttribut() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getNomChamp() {
+public String getNomChamp() {
 	return nomChamp;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getTypeAttribut() {
+public String getTypeAttribut() {
 	return typeAttribut;
 }
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:38:33)
- * @return java.lang.String
+ * @return String
  */
-public java.lang.String getTypeChamp() {
+public String getTypeChamp() {
 	return typeChamp;
 }
 }

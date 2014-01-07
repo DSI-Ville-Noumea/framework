@@ -1,5 +1,8 @@
 package nc.mairie.technique;
 
+import java.util.Date;
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpSession;
 
 /**
@@ -9,7 +12,11 @@ import javax.servlet.http.HttpSession;
  */
 public class EtatSession implements javax.servlet.http.HttpSessionBindingListener, java.io.Serializable {
 
-	private java.util.Date lastAcces;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5250273558400186181L;
+	private Date lastAcces;
 	final public static String nameClass = "EtatConnecté" ;
 	private UserAppli userAppli;
 
@@ -19,14 +26,15 @@ public class EtatSession implements javax.servlet.http.HttpSessionBindingListene
 public EtatSession(UserAppli aUserAppli) {
 	super();
 	setUserAppli(aUserAppli);
-	setLastAcces(new java.util.Date());
+	setLastAcces(new Date());
 }
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (04/03/2002 16:33:48)
- * @return java.util.Date
+ * @return Date
  */
-private java.util.Date getLastAcces() {
+@SuppressWarnings("unused")
+private Date getLastAcces() {
 	return lastAcces;
 }
 /**
@@ -40,14 +48,14 @@ private UserAppli getUserAppli() {
 /**
  */
 public void modifierDateEtatSession() {
-	setLastAcces(new java.util.Date());
+	setLastAcces(new Date());
 }
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (04/03/2002 16:33:48)
- * @param newLastAcces java.util.Date
+ * @param newLastAcces Date
  */
-private void setLastAcces(java.util.Date newLastAcces) {
+private void setLastAcces(Date newLastAcces) {
 	lastAcces = newLastAcces;
 }
 /**
@@ -64,7 +72,7 @@ private void setUserAppli(UserAppli newUserAppli) {
 public void valueBound(javax.servlet.http.HttpSessionBindingEvent arg1) {
 	HttpSession session = (HttpSession)arg1.getSource();
 
-	System.out.println("Connexion de '"+getUserAppli().getUserName()+"' à '"+new java.util.Date()+"' avec TimeOut de "+session.getMaxInactiveInterval());
+	System.out.println("Connexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"' avec TimeOut de "+session.getMaxInactiveInterval());
 	return;
 }
 /**
@@ -73,17 +81,31 @@ public void valueBound(javax.servlet.http.HttpSessionBindingEvent arg1) {
 public void valueUnbound(javax.servlet.http.HttpSessionBindingEvent arg1) {
 	HttpSession session = (HttpSession)arg1.getSource();
 
-	System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new java.util.Date()+"'. Dernier accès : "+ new java.util.Date(session.getLastAccessedTime()));
+	System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'. Dernier accès : "+ new Date(session.getLastAccessedTime()));
 
-	//On enleve de la session toutes les données.
-	String [] names = session.getValueNames();
-	for (int i = 0; i < names.length; i++){
-		Object o = session.getValue(names[i]);
-		if ( ! names[i].equals(EtatSession.nameClass) && o instanceof BasicProcess) {
-			BasicProcess process = (BasicProcess)o;
+//	//On enleve de la session toutes les données.
+//	String [] names = session.getValueNames();
+//	for (int i = 0; i < names.length; i++){
+//		Object o = session.getValue(names[i]);
+//		if ( ! names[i].equals(EtatSession.nameClass) && o instanceof BasicProcess) {
+//			BasicProcess process = (BasicProcess)o;
+//			process.fermerConnexion();
+//			session.removeValue(names[i]);
+//		}
+//	}
+	
+	Enumeration<?> e = session.getAttributeNames();
+    while (e.hasMoreElements()) {
+      String name = (String) e.nextElement();
+      Object value = session.getAttribute(name);
+      
+      if ( ! name.equals(EtatSession.nameClass) && value instanceof BasicProcess) {
+			BasicProcess process = (BasicProcess)value;
 			process.fermerConnexion();
-			session.removeValue(names[i]);
+			session.removeAttribute(name);
 		}
-	}
+    }
+	
+
 }
 }

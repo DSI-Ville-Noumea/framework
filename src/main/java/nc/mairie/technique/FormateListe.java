@@ -1,5 +1,8 @@
 package nc.mairie.technique;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 /**
  * Insérez la description du type ici.
  * Date de création : (30/10/2002 14:48:55)
@@ -11,8 +14,8 @@ public class FormateListe {
 
 	private int[] taillesColonnes;
 	private String[] padding;
-	private java.util.ArrayList resultat = new java.util.ArrayList();
-	private static java.util.Hashtable hash;
+	private ArrayList<String> resultat = new ArrayList<String>();
+	private static Hashtable<String, String> hash;
 	private boolean separateur;
 /**
  * Commentaire relatif au constructeur Liste.
@@ -32,18 +35,18 @@ public FormateListe(int [] taillesColonnes, String [] padding, boolean separateu
 /**
  * Commentaire relatif au constructeur Liste.
  */
-public FormateListe(int [] taillesColonnes, java.util.ArrayList metiers, String [] nomAttributs) throws Exception {
+public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, String [] nomAttributs) throws Exception {
 	this(taillesColonnes, metiers, nomAttributs, false);
 }
 /**
  * Commentaire relatif au constructeur Liste.
  */
-public FormateListe(int [] taillesColonnes, java.util.ArrayList metiers, String [] nomAttributs, String [] padding, boolean separateur) throws Exception {
+public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, String [] nomAttributs, String [] padding, boolean separateur) throws Exception {
 	this(taillesColonnes, padding, separateur);
 
-	java.util.Iterator it = metiers.iterator();
+	java.util.Iterator<BasicMetier> it = metiers.iterator();
 	while (it.hasNext()) {
-		Object o = it.next();
+		BasicMetier o = it.next();
 		String [] ligne = new String [nomAttributs.length];
 		for (int i = 0; i < nomAttributs.length; i++){
 			String nom = nomAttributs[i];
@@ -62,7 +65,7 @@ public FormateListe(int [] taillesColonnes, java.util.ArrayList metiers, String 
 /**
  * Commentaire relatif au constructeur Liste.
  */
-public FormateListe(int [] taillesColonnes, java.util.ArrayList metiers, String [] nomAttributs, boolean separateur) throws Exception {
+public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, String [] nomAttributs, boolean separateur) throws Exception {
 	this(taillesColonnes,metiers, nomAttributs, null, separateur);
 }
 /**
@@ -117,11 +120,11 @@ public void ajouteLigne(String [] aLigne) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (31/10/2002 07:40:57)
- * @return java.util.Hashtable
+ * @return Hashtable
  */
-private java.util.Hashtable getHash() {
+private Hashtable<String, String> getHash() {
 	if (hash == null) {
-		hash = new java.util.Hashtable();
+		hash = new Hashtable<String, String>();
 		hash.put("\"","&quot;");
 //		hash.put(" ","&nbsp;"); //Espace en &nbsp
 //		hash.put(" ","&nbsp;"); //Alt 255 en &nbsp
@@ -165,9 +168,9 @@ public String [] getListeFormatee(boolean ligneZeroVide) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:54:12)
- * @return java.util.ArrayList[]
+ * @return ArrayList[]
  */
-private java.util.ArrayList getResultat() {
+private ArrayList<String> getResultat() {
 	return resultat;
 }
 /**

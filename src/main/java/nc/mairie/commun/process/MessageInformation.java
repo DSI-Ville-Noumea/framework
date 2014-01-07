@@ -7,6 +7,10 @@ import nc.mairie.technique.BasicProcess;
 */
 public class MessageInformation extends BasicProcess {
 /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5371520691420704935L;
+/**
  * Constructeur du process MessageInformation.
  */
 public MessageInformation() {
