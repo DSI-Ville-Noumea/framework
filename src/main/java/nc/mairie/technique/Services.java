@@ -570,27 +570,28 @@ public static String stringForHTML(String aString) {
 
 /**
 Cette méthode trie un vecteur d'objets Identiques
+ * @param <E>
 */
-@SuppressWarnings({ "rawtypes", "unchecked" })
-public static ArrayList trier(ArrayList a, String []nomChamps, boolean []croissants) throws Exception{
+public static <E> ArrayList<E> trier(ArrayList<E> a, String []nomChamps, boolean []croissants) throws Exception{
 	
-	Vector v = new Vector(a);
+	Vector<E> v = new Vector<E>(a);
 	
 	v=trier(v, nomChamps, croissants);
 	
-	return new ArrayList(v);
+	return new ArrayList<E>(v);
 }
 
 
 /**
 	Cette méthode trie un vecteur d'objets Identiques
+ * @param <E>
 */
-@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
-public static Vector trier(Vector v, String []nomChamps, boolean []croissants) throws Exception{
+@SuppressWarnings("deprecation")
+public static <E> Vector<E> trier(Vector<E> v, String []nomChamps, boolean []croissants) throws Exception{
 
 try {
 	//Vecteur des champs nulls
-	Vector vectorNull = new Vector();
+	Vector<E> vectorNull = new Vector<E>();
 
 	//Si vide on se casse
 	if (v == null || v.size() == 0)
@@ -614,27 +615,27 @@ try {
 	}
 
 	//Création de la hashTable du champ de recherche code = champ, valeur = vecteur de l'objet
-	Hashtable h = new Hashtable();
+	Hashtable<String, Vector<E>> h = new Hashtable<String, Vector<E>>();
 	
 	for (int i = 0; i < v.size(); i++){
-		Object o = v.elementAt(i);
-		Object champ;
+		E o = v.elementAt(i);
+		String champ;
 		try {
-			champ = field.get(o);
+			champ = (String)field.get(o);
 		} catch (Exception get) {
 			throw new Exception("Impossible de récupérer la valeur du champ "+nomChamp+" de l'objet ");
 		}
 
 		//Si c'est une date, la clé devient un long
 		try {
-			java.util.Date.parse((String)champ);
-			champ = lpad(String.valueOf(java.sql.Date.valueOf(Services.formateDateInternationale((String)champ)).getTime()) ,20,"0");
+			java.util.Date.parse(champ);
+			champ = lpad(String.valueOf(java.sql.Date.valueOf(Services.formateDateInternationale(champ)).getTime()) ,20,"0");
 		} catch (Exception dateParse) {
 			//Si exception ce n'est pas une date.
 			//On ne fait rien au champ
 			//Si numérique alors on padde (au hasard 20 caractères)
-			if (Services.estNumerique((String)champ)) {
-				champ = lpad((String)champ,20," "); 
+			if (Services.estNumerique(champ)) {
+				champ = lpad(champ,20," "); 
 			}
 		}
 	
@@ -643,17 +644,17 @@ try {
 			vectorNull.addElement(v.elementAt(i));
 		} else {
 			//Construction d'un vecteur avec comme clé la valeur du champ
-			Vector v2= (Vector)h.get(champ);
+			Vector<E> v2= h.get(champ);
 			if (v2 == null)
-				v2= new Vector();
+				v2= new Vector<E>();
 			v2.addElement(o);
 			h.put(champ,v2);
 		} 
 	}
 
 	//Tri des clés
-	Enumeration enumCles = h.keys();
-	Vector cles = new Vector();
+	Enumeration<String> enumCles = h.keys();
+	Vector<String> cles = new Vector<String>();
 	while (enumCles.hasMoreElements()) {
 		cles.addElement(enumCles.nextElement());
 	}
@@ -664,9 +665,9 @@ try {
 	}
 	
 	//boucle qui échange les données
-	Vector result = new Vector();
+	Vector<E> result = new Vector<E>();
 	for (int k = 0; k < cles.size(); k++){
-		Vector vTemp = (Vector)h.get(cles.elementAt(k));
+		Vector<E> vTemp = h.get(cles.elementAt(k));
 
 		//Si le nombre de champs est > 1 alors appel récursif
 		if (nomChamps.length > 1 && vTemp.size() > 1) {
