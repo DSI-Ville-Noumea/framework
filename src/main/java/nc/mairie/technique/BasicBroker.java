@@ -10,11 +10,11 @@ import java.util.Hashtable;
 import javax.sql.DataSource;
 
 /**
- * Insérez la description du type ici. Date de création : (16/10/2002 11:25:10)
+ * Insérez la description du type ici. Date de création : (16/10/2002 11:25:10) Modif:08/01/2014
  * 
  * @author:
  */
-public abstract class BasicBroker implements Cloneable {
+public abstract class BasicBroker<E extends BasicMetier> implements Cloneable {
 	public static final String AS400ServerName = "robin";
 	public static final String INITIAL_CONTEXT_FACTORY = "com.ibm.ejs.ns.jndi.CNInitialContextFactory";
 	public static final String TOMCAT_JDBC_CONTEXT = "java:comp/env/jdbc/";
@@ -56,7 +56,7 @@ public abstract class BasicBroker implements Cloneable {
 	/**
 	 * Commentaire relatif au constructeur BasicBroker.
 	 */
-	public BasicBroker(BasicMetier aMetier) {
+	public BasicBroker(E aMetier) {
 		super();
 		setMyBasicMetier(aMetier);
 	}
@@ -224,7 +224,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * 
 	 * @author Luc Bourdil
 	 */
-	protected abstract BasicMetier definirMyMetier();
+	protected abstract E definirMyMetier();
 
 	/**
 	 * Methode à définir dans chaque objet Broker pour déclarer le nom de la
@@ -388,11 +388,12 @@ public abstract class BasicBroker implements Cloneable {
 	 * @param Transaction
 	 * @param String
 	 *            requête SQL
+	 * @return 
 	 * @return BasicMetier
 	 */
-	protected ArrayList<BasicMetier> executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
+	protected ArrayList<E> executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
-		ArrayList<BasicMetier> result = new ArrayList<BasicMetier>();
+		ArrayList<E> result = new ArrayList<E>();
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
@@ -404,7 +405,7 @@ public abstract class BasicBroker implements Cloneable {
 
 			// Alimentation des objets
 			while (rs.next()) {
-				BasicMetier aBasicMetier = definirMyMetier();
+				E aBasicMetier = definirMyMetier();
 				mappeResultToMetier(rs, aBasicMetier);
 
 				// Mémorise le métier base

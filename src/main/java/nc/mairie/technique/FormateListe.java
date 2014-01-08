@@ -35,16 +35,16 @@ public FormateListe(int [] taillesColonnes, String [] padding, boolean separateu
 /**
  * Commentaire relatif au constructeur Liste.
  */
-public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, String [] nomAttributs) throws Exception {
+public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> metiers, String [] nomAttributs) throws Exception {
 	this(taillesColonnes, metiers, nomAttributs, false);
 }
 /**
  * Commentaire relatif au constructeur Liste.
  */
-public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, String [] nomAttributs, String [] padding, boolean separateur) throws Exception {
+public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> metiers, String [] nomAttributs, String [] padding, boolean separateur) throws Exception {
 	this(taillesColonnes, padding, separateur);
 
-	java.util.Iterator<BasicMetier> it = metiers.iterator();
+	java.util.Iterator<? extends BasicMetier> it = metiers.iterator();
 	while (it.hasNext()) {
 		BasicMetier o = it.next();
 		String [] ligne = new String [nomAttributs.length];
@@ -65,7 +65,7 @@ public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, Stri
 /**
  * Commentaire relatif au constructeur Liste.
  */
-public FormateListe(int [] taillesColonnes, ArrayList<BasicMetier> metiers, String [] nomAttributs, boolean separateur) throws Exception {
+public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> metiers, String [] nomAttributs, boolean separateur) throws Exception {
 	this(taillesColonnes,metiers, nomAttributs, null, separateur);
 }
 /**

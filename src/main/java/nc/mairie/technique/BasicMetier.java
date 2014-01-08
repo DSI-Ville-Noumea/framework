@@ -9,7 +9,7 @@ import java.util.Hashtable;
  * @author: 
  */
 public abstract class BasicMetier implements Cloneable, java.beans.PropertyChangeListener{
-	private BasicBroker myBasicBroker;
+	private BasicBroker<? extends BasicMetier> myBasicBroker;
 	private BasicMetier basicMetierBase;
 /**
  * Commentaire relatif au constructeur BasicMetier.
@@ -19,7 +19,7 @@ public BasicMetier() {
 }
 public Object clone() throws CloneNotSupportedException{
 	try {
-		BasicBroker aCloneBroker = (BasicBroker)getMyBasicBroker().clone();
+		BasicBroker<?> aCloneBroker = (BasicBroker<?>)getMyBasicBroker().clone();
 		BasicMetier aCloneMetier = (BasicMetier)super.clone();
 		aCloneMetier.mappeAttributsFromMetier(aCloneMetier);
 		aCloneMetier.setMyBasicBroker(aCloneBroker);
@@ -32,7 +32,7 @@ public Object clone() throws CloneNotSupportedException{
 /**
  Methode à définir dans chaque objet Métier pour instancier un Broker
  */
-protected abstract BasicBroker definirMyBroker();
+protected abstract BasicBroker<? extends BasicMetier> definirMyBroker();
 /**
  * Vérifie si deux objets sont égaux. Retourne un booléen qui indique
  *  si cet objet équivaut à celui indiqué. Cette méthode
@@ -85,7 +85,7 @@ public BasicMetier getBasicMetierBase() {
  *  Date de création : (18/11/2002 08:57:28)
  * @return nc.mairie.technique.BasicBroker
  */
-protected BasicBroker getMyBasicBroker() {
+protected BasicBroker<? extends BasicMetier> getMyBasicBroker() {
 	if (myBasicBroker == null) {
 		myBasicBroker = definirMyBroker();
 	}
@@ -180,7 +180,7 @@ public void razBasicMetierBase() {
  *  Date de création : (18/11/2002 08:57:28)
  * @param newMyBasicBroker nc.mairie.technique.BasicBroker
  */
-protected void setMyBasicBroker(BasicBroker newMyBasicBroker) {
+protected void setMyBasicBroker(BasicBroker<? extends BasicMetier> newMyBasicBroker) {
 	myBasicBroker = newMyBasicBroker;
 }
 }
