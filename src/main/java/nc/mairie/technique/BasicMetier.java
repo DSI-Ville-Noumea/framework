@@ -4,12 +4,12 @@ import java.lang.reflect.Field;
 import java.util.Hashtable;
 
 /**
- * Insérez la description du type ici.
- * Date de création : (18/11/2002 08:52:40)
+ * InsÃ©rez la description du type ici.
+ * Date de crÃ©ation : (18/11/2002 08:52:40)
  * @author: 
  */
 public abstract class BasicMetier implements Cloneable, java.beans.PropertyChangeListener{
-	private BasicBroker<? extends BasicMetier> myBasicBroker;
+	private BasicBroker myBasicBroker;
 	private BasicMetier basicMetierBase;
 /**
  * Commentaire relatif au constructeur BasicMetier.
@@ -19,7 +19,7 @@ public BasicMetier() {
 }
 public Object clone() throws CloneNotSupportedException{
 	try {
-		BasicBroker<?> aCloneBroker = (BasicBroker<?>)getMyBasicBroker().clone();
+		BasicBroker aCloneBroker = (BasicBroker)getMyBasicBroker().clone();
 		BasicMetier aCloneMetier = (BasicMetier)super.clone();
 		aCloneMetier.mappeAttributsFromMetier(aCloneMetier);
 		aCloneMetier.setMyBasicBroker(aCloneBroker);
@@ -30,21 +30,22 @@ public Object clone() throws CloneNotSupportedException{
 	}
 }
 /**
- Methode à définir dans chaque objet Métier pour instancier un Broker
+ Methode Ã  dÃ©finir dans chaque objet MÃ©tier pour instancier un Broker
+ * @param <E>
  */
-protected abstract BasicBroker<? extends BasicMetier> definirMyBroker();
+protected abstract BasicBroker definirMyBroker();
 /**
- * Vérifie si deux objets sont égaux. Retourne un booléen qui indique
- *  si cet objet équivaut à celui indiqué. Cette méthode
- *  est utilisée lorsqu'un objet est stocké dans une table de hachage.
+ * VÃ©rifie si deux objets sont Ã©gaux. Retourne un boolÃ©en qui indique
+ *  si cet objet Ã©quivaut Ã  celui indiquÃ©. Cette mÃ©thode
+ *  est utilisÃ©e lorsqu'un objet est stockÃ© dans une table de hachage.
  * @author Luc Bourdil
- * @param objl'objet à comparer avec
- * @return true si ces objets sont égaux ; false dans le cas contraire.
+ * @param objl'objet Ã  comparer avec
+ * @return true si ces objets sont Ã©gaux ; false dans le cas contraire.
  * @see Hashtable
  */
 public boolean equals(BasicMetier obj) throws Exception{
 
-	// Si pas la même classe alors faux
+	// Si pas la mÃªme classe alors faux
 	if (! obj.getClass().equals(getClass()))
 		return false;
 
@@ -55,12 +56,12 @@ public boolean equals(BasicMetier obj) throws Exception{
 		Object attributThis = fieldsThis[i].get(this);
 		Object attributObj  = obj.getClass().getField(name).get(obj);
 
-		//Teste si égaux (null est égal à null)
+		//Teste si Ã©gaux (null est Ã©gal Ã  null)
 		if (attributThis == attributObj)
 			continue;
 		
 		try {
-			//Si différents alors faux	
+			//Si diffÃ©rents alors faux	
 			if (! attributThis.equals(attributObj) )
 				return false;
 		} catch (Exception e) {
@@ -72,8 +73,8 @@ public boolean equals(BasicMetier obj) throws Exception{
 	return true;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (19/11/2002 09:09:16)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (19/11/2002 09:09:16)
  * @author Luc Bourdil
  * @return nc.mairie.technique.BasicMetier
  */
@@ -81,19 +82,19 @@ public BasicMetier getBasicMetierBase() {
 	return basicMetierBase;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (18/11/2002 08:57:28)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (18/11/2002 08:57:28)
  * @return nc.mairie.technique.BasicBroker
  */
-protected BasicBroker<? extends BasicMetier> getMyBasicBroker() {
+protected BasicBroker getMyBasicBroker() {
 	if (myBasicBroker == null) {
 		myBasicBroker = definirMyBroker();
 	}
 	return myBasicBroker;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (19/11/2002 08:57:28)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (19/11/2002 08:57:28)
  * @author Luc Bourdil
  * @param Transaction
  */
@@ -106,9 +107,9 @@ public void majBasicMetierBase() {
 	}
 }
 /**
- Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramètre
+ Le but de cette mÃ©thode est de recopier tous les attributs de l'objet origine passÃ© en paramÃ¨tre
  et d'alimenter les attributs de l'objet en cours.
- Seuls les attributs de type String ou boolean sont recopiés.
+ Seuls les attributs de type String ou boolean sont recopiÃ©s.
  */
 public void mappeAttributsFromMetier(BasicMetier metierOrigine) throws Exception  {
 try {
@@ -117,7 +118,7 @@ try {
 	Field [] fieldsOrigine = origine.getClass().getFields();
 	Field [] fieldsThis = this.getClass().getFields();
 
-	//HashTable qui contient en clé le nom de l'attribut de this et en valeur la position dans le tableau
+	//HashTable qui contient en clÃ© le nom de l'attribut de this et en valeur la position dans le tableau
 	Hashtable<String, String> nomFieldsThis = new Hashtable<String, String>();
 
 	//Je construit la Hashtable de This
@@ -131,7 +132,7 @@ try {
 		Class<?> classFieldOrigine = fieldsOrigine[i].getType();
 		if (classFieldOrigine.equals(boolean.class) || classFieldOrigine.equals(String.class)) {
 			String positionFieldThis = (String)nomFieldsThis.get(fieldsOrigine[i].getName());
-			//Si le field est trouvé dans la destination on l'alimente
+			//Si le field est trouvÃ© dans la destination on l'alimente
 			if (positionFieldThis != null) {
 				int pos = Integer.parseInt(positionFieldThis);
 				if (classFieldOrigine.equals(String.class)) {
@@ -167,8 +168,8 @@ public void propertyChange(java.beans.PropertyChangeEvent evt) {
 	}
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (06/12/2002 10:20:28)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (06/12/2002 10:20:28)
  * @author Luc Bourdil
  * @param Transaction
  */
@@ -176,11 +177,11 @@ public void razBasicMetierBase() {
 	basicMetierBase = null;
 }
 /**
- * Insérez la description de la méthode ici.
- *  Date de création : (18/11/2002 08:57:28)
+ * InsÃ©rez la description de la mÃ©thode ici.
+ *  Date de crÃ©ation : (18/11/2002 08:57:28)
  * @param newMyBasicBroker nc.mairie.technique.BasicBroker
  */
-protected void setMyBasicBroker(BasicBroker<? extends BasicMetier> newMyBasicBroker) {
+protected void setMyBasicBroker(BasicBroker newMyBasicBroker) {
 	myBasicBroker = newMyBasicBroker;
 }
 }
