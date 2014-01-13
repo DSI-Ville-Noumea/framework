@@ -10,7 +10,7 @@ import java.util.Hashtable;
 import javax.sql.DataSource;
 
 /**
- * InsÃ©rez la description du type ici. Date de crÃ©ation : (16/10/2002 11:25:10)
+ * Insérez la description du type ici. Date de création : (16/10/2002 11:25:10)
  * 
  * @author:
  */
@@ -66,8 +66,8 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode Ã  implÃ©menter et qui retourne le nom de la table de l'objet
-	 * mÃ©tier et sa valeur
+	 * Methode à  implémenter et qui retourne le nom de la table de l'objet
+	 * métier et sa valeur
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -113,7 +113,7 @@ public abstract class BasicBroker implements Cloneable {
 
 			}
 
-			// Si attribut type Date et champ numÃ©rique
+			// Si attribut type Date et champ numérique
 			if (aTypeAttribut.equals("DATE") && aType.equals("NUMERIC")) {
 				aValeur = (Services.estUneDate(aValeur) ? Services.convertitDate(Services.formateDate(aValeur), "dd/MM/yy", "yyyyMMdd") : "0");
 				// Si type Date
@@ -129,7 +129,7 @@ public abstract class BasicBroker implements Cloneable {
 				aValeur = "null";
 				// Si le type dans la base n'est pas un entier
 			} else if (!"NUMERIC".equals(aType) && !"DECIMAL".equals(aType) && !"INTEGER".equals(aType)) {
-				// On formate pour la base (on crÃ©Ã© '' pour ') et on met 'xxx'
+				// On formate pour la base (on créé '' pour ') et on met 'xxx'
 				aValeur = Services.stringForBase(aValeur);
 			} else {
 				if (aValeur.length() == 0)
@@ -146,7 +146,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode gÃ©nÃ©rique qui enregistre en base de donnÃ©e l'objet mÃ©tier en
+	 * Methode générique qui enregistre en base de donnée l'objet métier en
 	 * cours.
 	 * 
 	 * @author Luc Bourdil
@@ -156,7 +156,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			conn = aTransaction.getConnection();
 
-			// On rÃ©cupÃ¨re une HashTable qui contient le nom de colonne et sa
+			// On récupère une HashTable qui contient le nom de colonne et sa
 			// valeur
 			Hashtable<String, String> colonneValeur = construitColonneValeur(false);
 
@@ -170,7 +170,7 @@ public abstract class BasicBroker implements Cloneable {
 				clauseValues = clauseValues + (String) colonneValeur.get(key) + ",";
 			}
 
-			// On enlÃ¨ve la derniÃ¨re virgule
+			// On enlève la dernière virgule
 			clauseColonnes = clauseColonnes.substring(0, clauseColonnes.length() - 1) + ")";
 			clauseValues = clauseValues.substring(0, clauseValues.length() - 1) + ")";
 
@@ -179,10 +179,10 @@ public abstract class BasicBroker implements Cloneable {
 			stmt.executeUpdate("insert into " + getTable() + " " + clauseColonnes + " values " + clauseValues, Statement.RETURN_GENERATED_KEYS);
 
 			BasicRecord identityBR = getIdentityBasicRecord();
-			// Si un champ identity a Ã©tÃ© dÃ©fini, on va le rÃ©cupÃ©rer
+			// Si un champ identity a été défini, on va le récupérer
 			if (identityBR != null) {
 
-				// Si un champ identity a Ã©tÃ© gÃ©nÃ©rÃ©
+				// Si un champ identity a été généré
 				ResultSet rs = stmt.getGeneratedKeys();
 				if (rs.next()) {
 					String generatedKey = rs.getString(1);
@@ -211,7 +211,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode Ã  dÃ©finir dans chaque objet Broker pour dÃ©clarer la liste des
+	 * Methode à définir dans chaque objet Broker pour déclarer la liste des
 	 * colonnes et leur type
 	 * 
 	 * @author Luc Bourdil
@@ -219,16 +219,15 @@ public abstract class BasicBroker implements Cloneable {
 	protected abstract Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException;
 
 	/**
-	 * Methode Ã  dÃ©finir dans chaque objet Broker pour pouvoir instancier un
-	 * mÃ©tier
+	 * Methode à définir dans chaque objet Broker pour pouvoir instancier un
+	 * métier
 	 * 
 	 * @author Luc Bourdil
-	 * @param <E>
 	 */
 	protected abstract BasicMetier definirMyMetier();
 
 	/**
-	 * Methode Ã  dÃ©finir dans chaque objet Broker pour dÃ©clarer le nom de la
+	 * Methode à  définir dans chaque objet Broker pour déclarer le nom de la
 	 * table
 	 * 
 	 * @author Luc Bourdil
@@ -236,12 +235,12 @@ public abstract class BasicBroker implements Cloneable {
 	protected abstract String definirNomTable();
 
 	/**
-	 * Cette mÃ©thode permet de compter un nombre d'enregistrements. Le paramÃ¨tre
-	 * 'requeteSQL' est du type "select count(*) from ....." La mÃ©thode retourne
-	 * -1 si une erreur a Ã©tÃ© rencontrÃ©e.
+	 * Cette méthode permet de compter un nombre d'enregistrements. Le paramètre
+	 * 'requeteSQL' est du type "select count(*) from ....." La méthode retourne
+	 * -1 si une erreur a été rencontrée.
 	 * 
 	 * @author Luc Bourdil
-	 * @return rÃ©sultat de la requete
+	 * @return résultat de la requete
 	 */
 	protected int executeCompter(Transaction aTransaction, String requeteSQL) throws Exception {
 
@@ -263,28 +262,28 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Cette mÃ©thode permet de compter un nombre d'enregistrements. Le paramÃ¨tre
-	 * 'requeteSQL' est du type "select count(*) from ....." La mÃ©thode retourne
-	 * null si une erreur a Ã©tÃ© rencontrÃ©e.
+	 * Cette méthode permet de cumuler un nombre d'enregistrements. Le paramètre
+	 * 'requeteSQL' est du type "select sum(*) from ....." La méthode retourne
+	 * null si une erreur a été rencontrée.
 	 * 
 	 * @author Luc Bourdil
-	 * @return rÃ©sultat de la requete
+	 * @return résultat de la requete
 	 */
 	protected String executeCumuler(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
-			// Nombre Ã  retourner
+			// Nombre à  retourner
 			String nombre = "";
 
 			java.sql.Statement stmt = conn.createStatement();
 			java.sql.ResultSet result = stmt.executeQuery(requeteSQL);
 
-			// Si pas trouvÃ©
+			// Si pas trouvé
 			if (!result.next()) {
 
 				// Fermeture du resultSet
@@ -305,7 +304,7 @@ public abstract class BasicBroker implements Cloneable {
 				return null;
 			}
 
-			// On alimente l'objet Ã  retourner
+			// On alimente l'objet à retourner
 			nombre = result.getString(1);
 
 			// Fermeture du resultSet
@@ -325,12 +324,12 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Execute une requÃªte SQL et mappe le rÃ©sultat de la requÃªte dans l'objet.
+	 * Execute une requête SQL et mappe le résultat de la requête dans l'objet.
 	 * 
 	 * @author Luc Bourdil
 	 * @param Transaction
 	 * @param String
-	 *            requÃªte SQL
+	 *            requête SQL
 	 * @return BasicMetier
 	 */
 	protected BasicMetier executeSelect(Transaction aTransaction, String requeteSQL) throws Exception {
@@ -338,16 +337,16 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
-			// Objet Ã  retourner
+			// Objet à retourner
 			BasicMetier aBasicMetier = definirMyMetier();
 
 			java.sql.Statement stmt = conn.createStatement();
 			java.sql.ResultSet result = stmt.executeQuery(requeteSQL);
 
-			// Si pas trouvÃ©
+			// Si pas trouvé
 			if (!result.next()) {
 
 				// Fermeture du resultSet
@@ -358,17 +357,17 @@ public abstract class BasicBroker implements Cloneable {
 				return aBasicMetier;
 			}
 
-			// On alimente l'objet Ã  retourner
+			// On alimente l'objet à retourner
 			mappeResultToMetier(result, aBasicMetier);
 
 			// Fermeture du resultSet
 			result.close();
 			stmt.close();
 
-			// MÃ©morise le mÃ©tier base
+			// Mémorise le métier base
 			aBasicMetier.majBasicMetierBase();
 
-			// Retourne l'objet mÃ©tier
+			// Retourne l'objet métier
 			return aBasicMetier;
 
 		} catch (Exception e) {
@@ -382,14 +381,14 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Execute une requÃªte SQL et mappe le rÃ©sultat de la requÃªte dans un
+	 * Execute une requête SQL et mappe le résultat de la requête dans un
 	 * tableau de BAsicMetier.
 	 * 
 	 * @author Luc Bourdil
 	 * @param <E>
 	 * @param Transaction
 	 * @param String
-	 *            requÃªte SQL
+	 *            requête SQL
 	 * @return BasicMetier
 	 */
 	protected <E extends BasicMetier> ArrayList<E> executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
@@ -398,7 +397,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			java.sql.Statement stmt = conn.createStatement();
@@ -410,10 +409,10 @@ public abstract class BasicBroker implements Cloneable {
 				E aBasicMetier = (E)definirMyMetier();
 				mappeResultToMetier(rs, aBasicMetier);
 
-				// MÃ©morise le mÃ©tier base
+				// MÃ©morise le métier base
 				aBasicMetier.majBasicMetierBase();
 
-				// Ajoute l'objet mÃ©tier
+				// Ajoute l'objet métier
 				result.add(aBasicMetier);
 			}
 
@@ -434,7 +433,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Met Ã  jour un Insert, update ou delete
+	 * Met à jour un Insert, update ou delete
 	 * 
 	 * @author Luc Bourdil
 	 * @return boolean
@@ -446,7 +445,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			java.sql.Statement stmt = conn.createStatement();
@@ -468,7 +467,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Met Ã  jour un Insert, update ou delete
+	 * Met à jour un Insert, update ou delete
 	 * 
 	 * @author Luc Bourdil
 	 * @return boolean
@@ -478,7 +477,7 @@ public abstract class BasicBroker implements Cloneable {
 		try {
 			// Controle de la Transaction
 			if (aTransaction.getConnection() == null || aTransaction.getConnection().isClosed()) {
-				throw new Exception("La connexion de la transaction est fermÃ©e ou nulle.");
+				throw new Exception("La connexion de la transaction est fermée ou nulle.");
 			}
 
 			java.sql.Statement stmt = conn.createStatement();
@@ -495,7 +494,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. Date de crÃ©ation : (17/10/2002
+	 * Insérez la description de la méthode ici. Date de création : (17/10/2002
 	 * 13:37:12) pour jboss et websphere
 	 * 
 	 * @author Luc Bourdil
@@ -516,7 +515,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. Date de crÃ©ation : (17/10/2002
+	 * Insérez la description de la méthode ici. Date de création : (17/10/2002
 	 * 13:37:12) pour jboss et websphere
 	 * 
 	 * @author Luc Bourdil
@@ -536,7 +535,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. pour tomcat 7 Date de crÃ©ation
+	 * Insérez la description de la méthode ici. pour tomcat 7 Date de création
 	 * : (17/10/2002 13:37:12)
 	 * 
 	 * @author Luc Bourdil
@@ -560,7 +559,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Transforme une date rÃ©cupÃ©rÃ©e de la base au format SSAA/MM/JJ vers le
+	 * Transforme une date récupérée de la base au format SSAA/MM/JJ vers le
 	 * format JJ/MM/SSAA
 	 */
 	public static String getFrenchFormattedDate(String pDate) {
@@ -571,7 +570,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. Date de crÃ©ation : (07/05/2004
+	 * Insérez la description de la méthode ici. Date de création : (07/05/2004
 	 * 11:10:05)
 	 * 
 	 * @return Hashtable
@@ -584,7 +583,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. Date de crÃ©ation : (17/10/2002
+	 * Insérez la description de la méthode ici. Date de création : (17/10/2002
 	 * 13:36:26)
 	 * 
 	 * @author Luc Bourdil
@@ -611,7 +610,7 @@ public abstract class BasicBroker implements Cloneable {
 	/**
 	 * Retourne les colonnes de la table
 	 * 
-	 * @author Luc Bourdil Date de crÃ©ation : (04/12/2002 14:19:26)
+	 * @author Luc Bourdil Date de création : (04/12/2002 14:19:26)
 	 */
 	protected Hashtable<String, BasicRecord> getMappageTable() throws NoSuchFieldException {
 		if (mappageTable == null) {
@@ -621,7 +620,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. Date de crÃ©ation : (18/11/2002
+	 * Insérez la description de la méthode ici. Date de création : (18/11/2002
 	 * 09:21:37)
 	 * 
 	 * @author Luc Bourdil
@@ -632,8 +631,8 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode Ã  implÃ©menter et qui retourne le nom de la table de l'objet
-	 * mÃ©tier
+	 * Methode à implémenter et qui retourne le nom de la table de l'objet
+	 * métier
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -645,7 +644,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode qui retourne le nom de la table de l'objet mÃ©tier
+	 * Methode qui retourne le nom de la table de l'objet métier
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -692,7 +691,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Retourne une connection au SGBD pour un userrAppli donnÃ©
+	 * Retourne une connection au SGBD pour un userrAppli donné
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -719,7 +718,7 @@ public abstract class BasicBroker implements Cloneable {
 	 */
 
 	/**
-	 * Fait le mappage entre un rÃ©sultset et l'objet mÃ©tier
+	 * Fait le mappage entre un resultset et l'objet métier
 	 * 
 	 * @author Luc Bourdil
 	 * @param <E>
@@ -827,7 +826,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode gÃ©nÃ©rique qui modifie en base de donnÃ©e l'objet mÃ©tier en cours.
+	 * Methode générique qui modifie en base de donnée l'objet métier en cours.
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -835,7 +834,7 @@ public abstract class BasicBroker implements Cloneable {
 
 		// ContrÃ´le si l'objet vient de la base
 		if (getMyBasicMetier().getBasicMetierBase() == null) {
-			aTransaction.declarerErreur("Modification impossible. L'objet n'a pas Ã©tÃ© rÃ©cupÃ©rÃ© du rÃ©fÃ©rentiel.");
+			aTransaction.declarerErreur("Modification impossible. L'objet n'a pas été récupéré du référentiel.");
 			return false;
 		}
 
@@ -883,10 +882,10 @@ public abstract class BasicBroker implements Cloneable {
 			// Rajout du propertychange
 			aTransaction.addPropertyChangeListener(getMyBasicMetier());
 
-			// Si aucune mise Ã  jour
+			// Si aucune mise à jour
 			if (nbMaj == 0) {
 				aTransaction.declarerErreur("L'objet de la table " + getTable()
-						+ " n'a pu Ãªtre mis Ã  jour. Il est introuvable ou a peut-Ãªtre Ã©tÃ© modifiÃ© par quelqu'un d'autre.");
+						+ " n'a pu être mis à jour. Il est introuvable ou a peut-être été modifié par quelqu'un d'autre.");
 				aTransaction.rollbackTransaction();
 				aTransaction.fermerConnexion();
 				return false;
@@ -905,7 +904,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * InsÃ©rez la description de la mÃ©thode ici. Date de crÃ©ation : (18/11/2002
+	 * Insérez la description de la méthode ici. Date de création : (18/11/2002
 	 * 09:21:37)
 	 * 
 	 * @author Luc Bourdil
@@ -917,7 +916,7 @@ public abstract class BasicBroker implements Cloneable {
 	}
 
 	/**
-	 * Methode gÃ©nÃ©rique qui supprime en base de donnÃ©e l'objet mÃ©tier en cours.
+	 * Methode générique qui supprime en base de donnée l'objet métier en cours.
 	 * 
 	 * @author Luc Bourdil
 	 */
@@ -925,7 +924,7 @@ public abstract class BasicBroker implements Cloneable {
 
 		// ContrÃ´le si l'objet vient de la base
 		if (getMyBasicMetier().getBasicMetierBase() == null) {
-			aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas Ã©tÃ© rÃ©cupÃ©rÃ© du rÃ©fÃ©rentiel.");
+			aTransaction.declarerErreur("Suppression impossible. L'objet n'a pas été récupéré du référentiel.");
 			return false;
 		}
 
@@ -961,10 +960,10 @@ public abstract class BasicBroker implements Cloneable {
 			// Rajout du propertychange
 			aTransaction.addPropertyChangeListener(getMyBasicMetier());
 
-			// Si aucune mise Ã  jour
+			// Si aucune mise à jour
 			if (nbMaj == 0) {
 				aTransaction.declarerErreur("L'objet de la table " + getTable()
-						+ " n'a pu Ãªtre mis Ã  jour. Il est introuvable ou a peut-Ãªtre Ã©tÃ© modifiÃ© par quelqu'un d'autre.");
+						+ " n'a pu être mis à jour. Il est introuvable ou a peut-être été modifié par quelqu'un d'autre.");
 				aTransaction.rollbackTransaction();
 				aTransaction.fermerConnexion();
 				return false;

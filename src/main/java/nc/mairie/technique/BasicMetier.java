@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 import java.util.Hashtable;
 
 /**
- * InsÃ©rez la description du type ici.
- * Date de crÃ©ation : (18/11/2002 08:52:40)
+ * Insérez la description du type ici.
+ * Date de création : (18/11/2002 08:52:40)
  * @author: 
  */
 public abstract class BasicMetier implements Cloneable, java.beans.PropertyChangeListener{
@@ -30,17 +30,17 @@ public Object clone() throws CloneNotSupportedException{
 	}
 }
 /**
- Methode Ã  dÃ©finir dans chaque objet MÃ©tier pour instancier un Broker
+ Methode à définir dans chaque objet Métier pour instancier un Broker
  * @param <E>
  */
 protected abstract BasicBroker definirMyBroker();
 /**
- * VÃ©rifie si deux objets sont Ã©gaux. Retourne un boolÃ©en qui indique
- *  si cet objet Ã©quivaut Ã  celui indiquÃ©. Cette mÃ©thode
- *  est utilisÃ©e lorsqu'un objet est stockÃ© dans une table de hachage.
+ * Vérifie si deux objets sont égaux. Retourne un booléen qui indique
+ *  si cet objet Ã©quivaut Ã  celui indiquÃ©. Cette méthode
+ *  est utilisée lorsqu'un objet est stocké dans une table de hachage.
  * @author Luc Bourdil
- * @param objl'objet Ã  comparer avec
- * @return true si ces objets sont Ã©gaux ; false dans le cas contraire.
+ * @param objl'objet à comparer avec
+ * @return true si ces objets sont égaux ; false dans le cas contraire.
  * @see Hashtable
  */
 public boolean equals(BasicMetier obj) throws Exception{
@@ -73,8 +73,8 @@ public boolean equals(BasicMetier obj) throws Exception{
 	return true;
 }
 /**
- * InsÃ©rez la description de la mÃ©thode ici.
- *  Date de crÃ©ation : (19/11/2002 09:09:16)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (19/11/2002 09:09:16)
  * @author Luc Bourdil
  * @return nc.mairie.technique.BasicMetier
  */
@@ -82,8 +82,8 @@ public BasicMetier getBasicMetierBase() {
 	return basicMetierBase;
 }
 /**
- * InsÃ©rez la description de la mÃ©thode ici.
- *  Date de crÃ©ation : (18/11/2002 08:57:28)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (18/11/2002 08:57:28)
  * @return nc.mairie.technique.BasicBroker
  */
 protected BasicBroker getMyBasicBroker() {
@@ -93,8 +93,8 @@ protected BasicBroker getMyBasicBroker() {
 	return myBasicBroker;
 }
 /**
- * InsÃ©rez la description de la mÃ©thode ici.
- *  Date de crÃ©ation : (19/11/2002 08:57:28)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (19/11/2002 08:57:28)
  * @author Luc Bourdil
  * @param Transaction
  */
@@ -107,7 +107,7 @@ public void majBasicMetierBase() {
 	}
 }
 /**
- Le but de cette mÃ©thode est de recopier tous les attributs de l'objet origine passÃ© en paramÃ¨tre
+ Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramêtre
  et d'alimenter les attributs de l'objet en cours.
  Seuls les attributs de type String ou boolean sont recopiÃ©s.
  */
@@ -168,8 +168,8 @@ public void propertyChange(java.beans.PropertyChangeEvent evt) {
 	}
 }
 /**
- * InsÃ©rez la description de la mÃ©thode ici.
- *  Date de crÃ©ation : (06/12/2002 10:20:28)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (06/12/2002 10:20:28)
  * @author Luc Bourdil
  * @param Transaction
  */
@@ -177,8 +177,8 @@ public void razBasicMetierBase() {
 	basicMetierBase = null;
 }
 /**
- * InsÃ©rez la description de la mÃ©thode ici.
- *  Date de crÃ©ation : (18/11/2002 08:57:28)
+ * Insérez la description de la méthode ici.
+ *  Date de création : (18/11/2002 08:57:28)
  * @param newMyBasicBroker nc.mairie.technique.BasicBroker
  */
 protected void setMyBasicBroker(BasicBroker newMyBasicBroker) {
