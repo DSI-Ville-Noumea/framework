@@ -36,7 +36,7 @@ public Object clone() throws CloneNotSupportedException{
 protected abstract BasicBroker definirMyBroker();
 /**
  * Vérifie si deux objets sont égaux. Retourne un booléen qui indique
- *  si cet objet Ã©quivaut Ã  celui indiquÃ©. Cette méthode
+ *  si cet objet équivaut à celui indiqué. Cette méthode
  *  est utilisée lorsqu'un objet est stocké dans une table de hachage.
  * @author Luc Bourdil
  * @param objl'objet à comparer avec
@@ -45,7 +45,7 @@ protected abstract BasicBroker definirMyBroker();
  */
 public boolean equals(BasicMetier obj) throws Exception{
 
-	// Si pas la mÃªme classe alors faux
+	// Si pas la même classe alors faux
 	if (! obj.getClass().equals(getClass()))
 		return false;
 
@@ -56,12 +56,12 @@ public boolean equals(BasicMetier obj) throws Exception{
 		Object attributThis = fieldsThis[i].get(this);
 		Object attributObj  = obj.getClass().getField(name).get(obj);
 
-		//Teste si Ã©gaux (null est Ã©gal Ã  null)
+		//Teste si égaux (null est égal à null)
 		if (attributThis == attributObj)
 			continue;
 		
 		try {
-			//Si diffÃ©rents alors faux	
+			//Si différents alors faux	
 			if (! attributThis.equals(attributObj) )
 				return false;
 		} catch (Exception e) {
@@ -109,7 +109,7 @@ public void majBasicMetierBase() {
 /**
  Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramêtre
  et d'alimenter les attributs de l'objet en cours.
- Seuls les attributs de type String ou boolean sont recopiÃ©s.
+ Seuls les attributs de type String ou boolean sont recopiés.
  */
 public void mappeAttributsFromMetier(BasicMetier metierOrigine) throws Exception  {
 try {
@@ -118,7 +118,7 @@ try {
 	Field [] fieldsOrigine = origine.getClass().getFields();
 	Field [] fieldsThis = this.getClass().getFields();
 
-	//HashTable qui contient en clÃ© le nom de l'attribut de this et en valeur la position dans le tableau
+	//HashTable qui contient en clé le nom de l'attribut de this et en valeur la position dans le tableau
 	Hashtable<String, String> nomFieldsThis = new Hashtable<String, String>();
 
 	//Je construit la Hashtable de This
@@ -132,7 +132,7 @@ try {
 		Class<?> classFieldOrigine = fieldsOrigine[i].getType();
 		if (classFieldOrigine.equals(boolean.class) || classFieldOrigine.equals(String.class)) {
 			String positionFieldThis = (String)nomFieldsThis.get(fieldsOrigine[i].getName());
-			//Si le field est trouvÃ© dans la destination on l'alimente
+			//Si le field est trouvé dans la destination on l'alimente
 			if (positionFieldThis != null) {
 				int pos = Integer.parseInt(positionFieldThis);
 				if (classFieldOrigine.equals(String.class)) {
