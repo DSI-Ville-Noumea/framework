@@ -107,7 +107,7 @@ public void majBasicMetierBase() {
 	}
 }
 /**
- Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramêtre
+ Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramètre
  et d'alimenter les attributs de l'objet en cours.
  Seuls les attributs de type String ou boolean sont recopiés.
  */

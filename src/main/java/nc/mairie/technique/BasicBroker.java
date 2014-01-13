@@ -290,7 +290,7 @@ public abstract class BasicBroker implements Cloneable {
 				result.close();
 				stmt.close();
 
-				aTransaction.declarerErreur("La requete '" + requeteSQL + "' n'a ramenÃ© aucun Ã©lÃ©ment.");
+				aTransaction.declarerErreur("La requete '" + requeteSQL + "' n'a ramené aucun élément.");
 				return null;
 			}
 
@@ -754,7 +754,7 @@ public abstract class BasicBroker implements Cloneable {
 
 				// Si l'attribut de l'objet est de type boolean
 				if (aField.getType().equals(boolean.class))
-					// On affecte le champs avec true si la valeur est égale à  1
+					// On affecte le champs avec true si la valeur est égale à 1
 					try {
 						aField.setBoolean(object, valeur.equals("1"));
 					} catch (Exception setBoolean) {
