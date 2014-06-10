@@ -1,7 +1,6 @@
 package nc.mairie.technique;
 
 import java.util.Date;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpSession;
 
@@ -79,22 +78,12 @@ public void valueBound(javax.servlet.http.HttpSessionBindingEvent arg1) {
  * Methode qui intercepte la fin de session de l'objet arg1
  */
 public void valueUnbound(javax.servlet.http.HttpSessionBindingEvent arg1) {
-	HttpSession session = (HttpSession)arg1.getSource();
 
-	System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'. Dernier accès : "+ new Date(session.getLastAccessedTime()));
+	//System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'. Dernier accès : "+ new Date(session.getLastAccessedTime()));
+	System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'.");
 
-//	//On enleve de la session toutes les données.
-//	String [] names = session.getValueNames();
-//	for (int i = 0; i < names.length; i++){
-//		Object o = session.getValue(names[i]);
-//		if ( ! names[i].equals(EtatSession.nameClass) && o instanceof BasicProcess) {
-//			BasicProcess process = (BasicProcess)o;
-//			process.fermerConnexion();
-//			session.removeValue(names[i]);
-//		}
-//	}
-	
-	Enumeration<?> e = session.getAttributeNames();
+	//A ce niveau là, la session est invalidée, donc impossible de parcourir les AttributeNames...
+	/*Enumeration<?> e = session.getAttributeNames();
     while (e.hasMoreElements()) {
       String name = (String) e.nextElement();
       Object value = session.getAttribute(name);
@@ -104,7 +93,7 @@ public void valueUnbound(javax.servlet.http.HttpSessionBindingEvent arg1) {
 			process.fermerConnexion();
 			session.removeAttribute(name);
 		}
-    }
+    }*/
 	
 
 }
