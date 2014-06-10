@@ -98,7 +98,7 @@ public class StarjetGenerationVFS {
 //			}
 //			
 //		}
-//		System.out.println(sb.toString());
+//		logger.info(sb.toString());
 //		return sb.toString();
 //	}
 	

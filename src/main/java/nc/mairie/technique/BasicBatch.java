@@ -1,6 +1,7 @@
 package nc.mairie.technique;
 
 import java.util.Hashtable;
+import java.util.logging.Logger;
 
 /**
  * Insérez la description du type ici.
@@ -8,6 +9,7 @@ import java.util.Hashtable;
  * @author: Administrator
  */
 public abstract class BasicBatch extends Thread {
+	private final static Logger logger = Logger.getLogger(BasicBatch.class.getName());
 	private nc.mairie.technique.Transaction transaction;
 	private static Hashtable<Class<?>, BasicBatch> hashBatch;
 /**
@@ -114,7 +116,7 @@ public void run() {
 	try {
 		traitement();
 	} catch (Exception e) {
-		System.out.println("Exception interceptée dans "+this.getClass());
+		logger.info("Exception interceptée dans "+this.getClass());
 		e.printStackTrace();
 	}
 

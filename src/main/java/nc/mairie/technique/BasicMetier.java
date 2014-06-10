@@ -2,6 +2,7 @@ package nc.mairie.technique;
 
 import java.lang.reflect.Field;
 import java.util.Hashtable;
+import java.util.logging.Logger;
 
 /**
  * Insérez la description du type ici.
@@ -9,6 +10,7 @@ import java.util.Hashtable;
  * @author: 
  */
 public abstract class BasicMetier implements Cloneable, java.beans.PropertyChangeListener{
+	private final static Logger logger = Logger.getLogger(BasicMetier.class.getName());
 	private BasicBroker myBasicBroker;
 	private BasicMetier basicMetierBase;
 /**
@@ -145,7 +147,7 @@ try {
 		}
 	}
 } catch (Exception e) {
-	System.err.println("Exception dans 'mappeAttributsFromMetier' : " +e );
+	logger.severe("Exception dans 'mappeAttributsFromMetier' : " +e );
 	throw e;
 }
 		

@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Properties;
+import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ public abstract class Frontale extends javax.servlet.http.HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = -5225287987424248946L;
+	private final static Logger logger = Logger.getLogger(Frontale.class.getName());
 	private nc.mairie.robot.Robot robot;
 	private static Hashtable<String, String> mesParametres;
 	private boolean veutGererActivitite = true;
@@ -226,7 +228,7 @@ private void initialiseParametreHab(){
 			String cleParametre = (String)e.nextElement();
 			String valParametre = prop.getProperty(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+			logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 		}
 		
 	} catch (Exception e) {
@@ -245,7 +247,7 @@ private void initialiseParametreInitiaux() {
 
 	boolean doitPrendreInit = getServletContext().getInitParameterNames().hasMoreElements();
 
-	System.out.println("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+	logger.info("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 	if (getMesParametres().size() == 0) {
 
 		//Initialisation des parametres dans le fichier properties
@@ -259,7 +261,7 @@ private void initialiseParametreInitiaux() {
 				if (cleParametre != null && ! cleParametre.startsWith("com.ibm.websphere") ) {
 					String valParametre = doitPrendreInit ? (String)getServletContext().getInitParameter(cleParametre) : (String)getServletContext().getAttribute(cleParametre);
 					getMesParametres().put(cleParametre,valParametre);
-					System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+					logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 				}
 			} catch (Exception e) {
 				continue;
@@ -272,11 +274,11 @@ private void initialiseParametreInitiaux() {
 			String cleParametre = (String)enumServlet.nextElement();
 			String valParametre = (String)getInitParameter(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			System.out.println("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+			logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 		}
 	}
 	
-	System.out.println("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+	logger.info("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 }
 /**
  * Insérez la description de la méthode à cet endroit.
@@ -409,7 +411,7 @@ protected BasicProcess performChangeActivite(javax.servlet.http.HttpServletReque
  */
 protected void performException(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant, Throwable theException) {
 
-	System.err.println("EXCEPTION dans : "+getClass().getName()+" : "+theException);
+	logger.severe("EXCEPTION dans : "+getClass().getName()+" : "+theException);
 	if (processCourant != null) {
 		processCourant.fermerConnexion();
 	}
@@ -436,7 +438,7 @@ protected void performException(javax.servlet.http.HttpServletRequest request, j
 		rd.forward(request, response);
 	} catch (Exception eeee) {
 		// are occuring to aid in debugging the problem.
-		System.err.println("CON D'EXCEPTION : "+theException);
+		logger.severe("CON D'EXCEPTION : "+theException);
 		processCourant.fermerConnexion();
 		newProcess.fermerConnexion();
 		theException.printStackTrace();

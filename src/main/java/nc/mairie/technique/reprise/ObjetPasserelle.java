@@ -137,7 +137,6 @@ public class ObjetPasserelle {
 				for (int i = 0; i < dest.champs.length; i++) {
 					try {
 						stDest.setString(i+1,rsOrg.getString(i+1));
-//System.out.print(rsOrg.getString(i+1)+";");
 					} catch (DataTruncation Exception) {
 						//Quedalle !!!
 						log.log("La valeur "+rsOrg.getString(org.champs[i])+" pour "+org.champs[i]+" est trop grand : tronqué");

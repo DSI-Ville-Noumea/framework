@@ -1,6 +1,7 @@
 package nc.mairie.technique;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ public class EtatSession implements javax.servlet.http.HttpSessionBindingListene
 	 * 
 	 */
 	private static final long serialVersionUID = -5250273558400186181L;
+	private final static Logger logger = Logger.getLogger(BasicBatch.class.getName());
 	private Date lastAcces;
 	final public static String nameClass = "EtatConnecté" ;
 	private UserAppli userAppli;
@@ -71,7 +73,7 @@ private void setUserAppli(UserAppli newUserAppli) {
 public void valueBound(javax.servlet.http.HttpSessionBindingEvent arg1) {
 	HttpSession session = (HttpSession)arg1.getSource();
 
-	System.out.println("Connexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"' avec TimeOut de "+session.getMaxInactiveInterval());
+	logger.info("Connexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"' avec TimeOut de "+session.getMaxInactiveInterval());
 	return;
 }
 /**
@@ -79,8 +81,8 @@ public void valueBound(javax.servlet.http.HttpSessionBindingEvent arg1) {
  */
 public void valueUnbound(javax.servlet.http.HttpSessionBindingEvent arg1) {
 
-	//System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'. Dernier accès : "+ new Date(session.getLastAccessedTime()));
-	System.out.println("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'.");
+	//logger.info("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'. Dernier accès : "+ new Date(session.getLastAccessedTime()));
+	logger.info("Déconnexion de '"+getUserAppli().getUserName()+"' à '"+new Date()+"'.");
 
 	//A ce niveau là, la session est invalidée, donc impossible de parcourir les AttributeNames...
 	/*Enumeration<?> e = session.getAttributeNames();

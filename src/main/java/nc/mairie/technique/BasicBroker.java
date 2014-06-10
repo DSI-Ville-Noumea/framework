@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
  * @author:
  */
 public abstract class BasicBroker implements Cloneable {
+	private final static Logger logger = Logger.getLogger(BasicBroker.class.getName());
 	public static final String AS400ServerName = "robin";
 	public static final String INITIAL_CONTEXT_FACTORY = "com.ibm.ejs.ns.jndi.CNInitialContextFactory";
 	public static final String TOMCAT_JDBC_CONTEXT = "java:comp/env/jdbc/";
@@ -504,9 +506,9 @@ public abstract class BasicBroker implements Cloneable {
 		if (getHashDataSource().get(serveurName) == null) {
 			try {
 
-				System.out.println("Serveur name : " + STANDARD_JDBC_CONTEXT + serveurName);
+				logger.info("Serveur name : " + STANDARD_JDBC_CONTEXT + serveurName);
 				getHashDataSource().put(serveurName, (DataSource) getInitialContext().lookup(STANDARD_JDBC_CONTEXT + serveurName));
-				System.out.println("serveur ok (jboss ou websphere) : [" + STANDARD_JDBC_CONTEXT + serveurName + "]");
+				logger.info("serveur ok (jboss ou websphere) : [" + STANDARD_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
 				throw e;
 			}
@@ -528,7 +530,7 @@ public abstract class BasicBroker implements Cloneable {
 			try {
 				return getDataSourceDefault(serveurName);
 			} catch (Exception ex) {
-				System.err.println("Aucun datasource envisagé : " + ex.getMessage());
+				logger.severe("Aucun datasource envisagé : " + ex.getMessage());
 				throw ex;
 			}
 		}
@@ -544,13 +546,13 @@ public abstract class BasicBroker implements Cloneable {
 	private static javax.sql.DataSource getDataSourceTomcat(String serveurName) throws Exception {
 		if (getHashDataSource().get(serveurName) == null) {
 			try {
-				System.out.println("Serveur name : " + TOMCAT_JDBC_CONTEXT + serveurName);
+				logger.info("Serveur name : " + TOMCAT_JDBC_CONTEXT + serveurName);
 				/*InitialContext ctx = new InitialContext();
 				DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/"+serveurName);
 				Connection con = ds.getConnection();
-				System.out.println("Connexion : " + con.getMetaData().getDatabaseMajorVersion())*/
+				logger.info("Connexion : " + con.getMetaData().getDatabaseMajorVersion())*/
 				getHashDataSource().put(serveurName, (DataSource) getInitialContext().lookup(TOMCAT_JDBC_CONTEXT + serveurName));
-				System.out.println("serveur ok (tomcat) : [" + TOMCAT_JDBC_CONTEXT + serveurName + "]");
+				logger.info("serveur ok (tomcat) : [" + TOMCAT_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
 				throw e;
 			}
@@ -600,7 +602,7 @@ public abstract class BasicBroker implements Cloneable {
 				 */
 				initialContext = new javax.naming.InitialContext();
 			} catch (Exception e) {
-				System.err.println("Exception dans 'getInitialContext' : " + e);
+				logger.severe("Exception dans 'getInitialContext' : " + e);
 				throw e;
 			}
 		}
@@ -672,18 +674,18 @@ public abstract class BasicBroker implements Cloneable {
 					// websphere
 					conn = getDataSource(serveurName).getConnection(nom, password);
 				} catch (Exception ex) {
-					System.err.println("Exception dans getUneConnexion (nom,password) : " + ex);
+					logger.severe("Exception dans getUneConnexion (nom,password) : " + ex);
 					throw ex;
 				}
 			}
-			System.out.println("Connexion : " + conn.getMetaData().getUserName());
+			logger.info("Connexion : " + conn.getMetaData().getUserName());
 
 			conn.setAutoCommit(false);
 			// Enlevé le 05/09/11 par LB car pas en mode transactionnel !!!
 			// conn.setTransactionIsolation(
 			// java.sql.Connection.TRANSACTION_NONE);
 		} catch (Exception e) {
-			System.err.println("Exception dans getUneConnexion : " + e);
+			logger.severe("Exception dans getUneConnexion : " + e);
 			throw e;
 
 		}
@@ -714,7 +716,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * null; try { Class.forName(drv); con =
 	 * DriverManager.getConnection("jdbc:as400://robinnw", nom, password);
 	 * con.setAutoCommit(false); } catch (Exception ex) {
-	 * System.out.println("erreur driver : " + ex); return null; } return con; }
+	 * logger.info("erreur driver : " + ex); return null; } return con; }
 	 */
 
 	/**
