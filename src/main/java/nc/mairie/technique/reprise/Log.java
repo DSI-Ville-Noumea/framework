@@ -25,6 +25,11 @@ public class Log {
 	private String className = null;
 	private String pathName = null; 
 	
+	public static void main (String [] args) {
+		Log l = new Log();
+		System.out.println(getRoot(l));
+	}
+	
 	public Log() {
 		// TODO Auto-generated constructor stub
 		this("Log",".\\");
@@ -46,7 +51,7 @@ public class Log {
 	
 	public static String getRoot(Object obj) {
 		//recup du root
-		Class cl = obj.getClass();
+		Class<? extends Object> cl = obj.getClass();
 		String root = cl.getProtectionDomain().getCodeSource().getLocation().getFile();
 		if (root.toUpperCase().endsWith("JAR") || root.toUpperCase().endsWith("CLASS") ) {
 			root=root.substring(0, root.lastIndexOf('/') +1);

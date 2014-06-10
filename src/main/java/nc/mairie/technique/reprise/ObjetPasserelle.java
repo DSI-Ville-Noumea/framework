@@ -34,10 +34,7 @@ public class ObjetPasserelle {
 		table=aTable;
 		champs=aChamps;
 	}
-	private ObjetPasserelle() {
-		super();
-	}
-	
+
 	public Connection getConnection() throws Exception {
 		
 		return superConnection.getConnection();
