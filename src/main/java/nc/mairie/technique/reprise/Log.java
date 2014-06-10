@@ -25,11 +25,7 @@ public class Log {
 	private String className = null;
 	private String pathName = null; 
 	
-	public static void main (String [] args) {
-		Log l = new Log();
-		System.out.println(getRoot(l));
-	}
-	
+
 	public Log() {
 		// TODO Auto-generated constructor stub
 		this("Log",".\\");
