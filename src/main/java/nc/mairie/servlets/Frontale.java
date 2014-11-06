@@ -707,6 +707,9 @@ public void performTask(javax.servlet.http.HttpServletRequest request, javax.ser
 		// Rollback pour fermer les connexions ouvertes par initialisezone
 		processCourant.rollbackTransaction();
 		
+		//fermeture de la connexion pour la rendre au pool
+		processCourant.fermerConnexion();
+		
 		//Si fichier impression
 		if (processCourant.getNomFichierImpression() != null && processCourant.getNomFichierImpression().length() != 0) {
 			performFichierImpression(request,response,processCourant);
