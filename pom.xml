@@ -1,11 +1,11 @@
-﻿
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nc.mairie</groupId>
 	<artifactId>framework</artifactId>
 	<packaging>jar</packaging>
-	<version>2.2-SNAPSHOT</version>
+	<version>2.2</version>
 	<name>Framework Mairie</name>
 	<url>http://maven.apache.org</url>
 	
@@ -216,6 +216,7 @@
 			<version>1.4</version>
 		</dependency>
 	</dependencies>
+<!-- 	Doit rester en 1.5 car c'est la version java de l'AS400 pour certaines applis -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.5</java.version>
