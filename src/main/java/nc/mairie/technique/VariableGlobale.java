@@ -16,7 +16,10 @@ public class VariableGlobale implements nc.mairie.commun.technique.ListeVariable
 /**
  * Méthode qui ajoute dans la session une variable globale
  * Date de création : (08/11/2002 14:53:28)
- * @ Author : Luc Bourdil
+ * @param request request 
+ * @param cle cle 
+ * @param valeur valeur 
+ * @Author : Luc Bourdil
  */
 public static void ajouter(javax.servlet.http.HttpServletRequest request, String cle, Object valeur) {
 	//request.getSession().putValue(cle,valeur);
@@ -25,7 +28,9 @@ public static void ajouter(javax.servlet.http.HttpServletRequest request, String
 /**
  * Méthode qui enlève de la session une variable globale
  * Date de création : (08/11/2002 14:53:28)
- * @ Author : Luc Bourdil
+ * @param request request 
+ * @param cle cle 
+ * @Author : Luc Bourdil
  */
 public static void enlever(javax.servlet.http.HttpServletRequest request, String cle) {
 	//request.getSession().removeValue(cle);
@@ -34,7 +39,10 @@ public static void enlever(javax.servlet.http.HttpServletRequest request, String
 /**
  * Méthode qui recupere dans la session une variable globale
  * Date de création : (08/11/2002 14:53:28)
- * @ Author : Luc Bourdil
+ * @param request request 
+ * @param cle cle 
+ * @return object
+ * @Author : Luc Bourdil
  */
 public static Object recuperer(javax.servlet.http.HttpServletRequest request, String cle) {
 	//return request.getSession().getValue(cle);

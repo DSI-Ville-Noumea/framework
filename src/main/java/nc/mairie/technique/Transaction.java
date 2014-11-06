@@ -1,5 +1,6 @@
 package nc.mairie.technique;
 
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Hashtable;
 
@@ -22,6 +23,7 @@ public class Transaction implements Serializable {
 	private Hashtable<String, Object> variablesActivite = new Hashtable<String, Object>();
 /**
  * Commentaire relatif au constructeur Transaction.
+ * @param  aConnection 
  */
 public Transaction(java.sql.Connection aConnection) {
 	super();
@@ -30,18 +32,23 @@ public Transaction(java.sql.Connection aConnection) {
 }
 /**
  * Commentaire relatif au constructeur Transaction.
+ * @param aUserAppli aUserAppli 
+ * @throws Exception 
  */
 public Transaction(UserAppli aUserAppli) throws Exception{
 	this(BasicBroker.getUneConnexion(aUserAppli));
 }
 /**
  * La méthode addPropertyChangeListener a été générée pour supporter la zone propertyChange.
+ * @param listener listener 
  */
 public synchronized void addPropertyChangeListener(java.beans.PropertyChangeListener listener) {
 	getPropertyChange().addPropertyChangeListener(listener);
 }
 /**
  * La méthode addPropertyChangeListener a été générée pour supporter la zone propertyChange.
+ * @param propertyName propertyName 
+ * @param listener listener 
  */
 public synchronized void addPropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener) {
 	getPropertyChange().addPropertyChangeListener(propertyName, listener);
@@ -50,6 +57,8 @@ public synchronized void addPropertyChangeListener(String propertyName, java.bea
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
+ * @param nomVariable nomVariable 
+ * @param valeurVariable valeurVariable 
  */
 public void ajouteVariable(String nomVariable, java.lang.Object valeurVariable) {
 	getVariablesActivite().put(nomVariable, valeurVariable);
@@ -58,6 +67,7 @@ public void ajouteVariable(String nomVariable, java.lang.Object valeurVariable) 
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
  * @author Luc Bourdil
+ * @throws Exception Exception 
  */
 public void commitTransaction() throws Exception{
 	if (isConnexionOuverte()) {
@@ -69,6 +79,7 @@ public void commitTransaction() throws Exception{
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/2002 14:49:28)
  * @param pMessageErreur String
+ * @return boolean
  */
 public boolean declarerErreur(String pMessageErreur) {
 	if(!isErreur()) { setErreur(true); setMessageErreur(pMessageErreur); return true; }
@@ -77,12 +88,14 @@ public boolean declarerErreur(String pMessageErreur) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
+ * @param nomVariable nomVariable 
  */
 public void enleveVariable(String nomVariable) {
 	getVariablesActivite().remove(nomVariable);
 }
 /**
  * Ferme la connexion courante si elle est ouverte
+ * @return boolean
  */
 public boolean fermerConnexion() {
 	try {
@@ -95,24 +108,34 @@ public boolean fermerConnexion() {
 }
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
+ * @param evt evt
  */
 public void firePropertyChange(java.beans.PropertyChangeEvent evt) {
 	getPropertyChange().firePropertyChange(evt);
 }
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
+ * @param propertyName propertyName 
+ * @param oldValue oldValue 
+ * @param newValue newValue 
  */
 public void firePropertyChange(String propertyName, int oldValue, int newValue) {
 	getPropertyChange().firePropertyChange(propertyName, oldValue, newValue);
 }
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
+ * @param propertyName propertyName 
+ * @param oldValue oldValue 
+ * @param newValue newValue 
  */
 public void firePropertyChange(String propertyName, java.lang.Object oldValue, java.lang.Object newValue) {
 	getPropertyChange().firePropertyChange(propertyName, oldValue, newValue);
 }
 /**
  * La méthode firePropertyChange a été générée pour supporter la zone propertyChange.
+ * @param propertyName propertyName 
+ * @param oldValue oldValue 
+ * @param newValue newValue 
  */
 public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
 	getPropertyChange().firePropertyChange(propertyName, oldValue, newValue);
@@ -152,8 +175,9 @@ public String getMessageErreur() {
 }
 /**
  * Mécanisme d'accès à la zone propertyChange.
+ * @return PropertyChangeSupport 
  */
-protected java.beans.PropertyChangeSupport getPropertyChange() {
+protected PropertyChangeSupport getPropertyChange() {
 	if (propertyChange == null) {
 		propertyChange = new java.beans.PropertyChangeSupport(this);
 	};
@@ -172,12 +196,15 @@ public Hashtable<String, Object> getVariablesActivite() {
 }
 /**
  * La méthode hasListeners a été générée pour supporter la zone propertyChange.
+ * @param propertyName boolean
+ * @return boolean 
  */
 public synchronized boolean hasListeners(String propertyName) {
 	return getPropertyChange().hasListeners(propertyName);
 }
 /**
  * Teste si la connexion courante est ouverte.
+ * @return boolean
 */
 public boolean isConnexionOuverte(){
 	try {
@@ -197,18 +224,23 @@ public boolean isErreur() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (13/01/2003 11:27:08)
+ * @param nomVariable nomVariable 
+ * @return object
  */
-public java.lang.Object recupereVariable(String nomVariable) {
+public Object recupereVariable(String nomVariable) {
 	return getVariablesActivite().get(nomVariable);
 }
 /**
  * La méthode removePropertyChangeListener a été générée pour supporter la zone propertyChange.
+ * @param listener listener 
  */
 public synchronized void removePropertyChangeListener(java.beans.PropertyChangeListener listener) {
 	getPropertyChange().removePropertyChangeListener(listener);
 }
 /**
  * La méthode removePropertyChangeListener a été générée pour supporter la zone propertyChange.
+ * @param propertyName propertyName 
+ * @param listener listener 
  */
 public synchronized void removePropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener) {
 	getPropertyChange().removePropertyChangeListener(propertyName, listener);
@@ -216,6 +248,7 @@ public synchronized void removePropertyChangeListener(String propertyName, java.
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
+ * @throws Exception exception
  */
 public void rollbackTransaction() throws Exception{
 	if (isConnexionOuverte()) {

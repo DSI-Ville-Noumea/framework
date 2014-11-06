@@ -33,7 +33,7 @@ public Object clone() throws CloneNotSupportedException{
 }
 /**
  Methode à définir dans chaque objet Métier pour instancier un Broker
- * @param <E>
+ * @return BasicBroker
  */
 protected abstract BasicBroker definirMyBroker();
 /**
@@ -41,9 +41,9 @@ protected abstract BasicBroker definirMyBroker();
  *  si cet objet équivaut à celui indiqué. Cette méthode
  *  est utilisée lorsqu'un objet est stocké dans une table de hachage.
  * @author Luc Bourdil
- * @param objl'objet à comparer avec
+ * @param obj l'objet à comparer avec
  * @return true si ces objets sont égaux ; false dans le cas contraire.
- * @see Hashtable
+ * @throws Exception Exception 
  */
 public boolean equals(BasicMetier obj) throws Exception{
 
@@ -98,7 +98,6 @@ protected BasicBroker getMyBasicBroker() {
  * Insérez la description de la méthode ici.
  *  Date de création : (19/11/2002 08:57:28)
  * @author Luc Bourdil
- * @param Transaction
  */
 public void majBasicMetierBase() {
 	try {
@@ -112,6 +111,8 @@ public void majBasicMetierBase() {
  Le but de cette méthode est de recopier tous les attributs de l'objet origine passé en paramètre
  et d'alimenter les attributs de l'objet en cours.
  Seuls les attributs de type String ou boolean sont recopiés.
+ * @param metierOrigine metierOrigine 
+ * @throws Exception Exception 
  */
 public void mappeAttributsFromMetier(BasicMetier metierOrigine) throws Exception  {
 try {
@@ -173,7 +174,6 @@ public void propertyChange(java.beans.PropertyChangeEvent evt) {
  * Insérez la description de la méthode ici.
  *  Date de création : (06/12/2002 10:20:28)
  * @author Luc Bourdil
- * @param Transaction
  */
 public void razBasicMetierBase() {
 	basicMetierBase = null;

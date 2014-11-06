@@ -25,6 +25,10 @@ public class ObjetPasserelle {
 	private Log log;
 
 	/**
+	 * @param aLog aLog 
+	 * @param aSuperConnection aSuperConnection 
+	 * @param aTable aTable 
+	 * @param aChamps aChamps 
 	 * 
 	 */
 	public ObjetPasserelle(Log aLog, SuperConnection aSuperConnection, String aTable, String [] aChamps) {

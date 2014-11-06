@@ -53,6 +53,7 @@ protected void addZone(String zone, String valeur) {
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
  * @author Luc Bourdil
+ * @throws Exception Exception 
  */
 public void commitTransaction() throws Exception{
 	if (getTransaction() != null)
@@ -68,6 +69,7 @@ public boolean estAutoReaffecteZones() {
 }
 /**
  * Teste si la connexion courante est ouverte.
+ * @return boolean
 */
 public boolean estConnexionOuverte(){
 	try {
@@ -102,6 +104,7 @@ public int etatStatut() {
 }
 /**
  * Ferme la connexion courante si elle est ouverte
+ * @return boolean
  */
 public boolean fermerConnexion() {
 	try {
@@ -117,7 +120,7 @@ public boolean fermerConnexion() {
  * 
  * @param name
  * @param value
- * @return
+ * @return String
  */
 
 public String forCheckBoxHTML(String name, String value) {
@@ -135,7 +138,7 @@ public String forCheckBoxHTML(String name, String value) {
  * 
  * @param liste
  * @param select
- * @return
+ * @return String
  */
 public String forComboHTML(String [] liste, String select) {
 	return forComboHTML(liste, null, select);
@@ -146,7 +149,7 @@ public String forComboHTML(String [] liste, String select) {
  * @param liste
  * @param colors
  * @param select
- * @return
+ * @return String
  */
 public String forComboHTML(String [] liste, String [] colors, String select) {
 	return forComboHTML(liste, colors, null, select);
@@ -159,7 +162,7 @@ public String forComboHTML(String [] liste, String [] colors, String select) {
  * @param colors
  * @param fonds
  * @param select
- * @return
+ * @return String
  */
 public String forComboHTML(String [] liste, String [] colors, String [] fonds, String select) {
 	return forComboHTML(liste, colors, fonds, null, select);
@@ -173,7 +176,7 @@ public String forComboHTML(String [] liste, String [] colors, String [] fonds, S
  * @param fonds
  * @param titles
  * @param select
- * @return
+ * @return String
  */
 
 public String forComboHTML(String [] liste, String [] colors, String [] fonds, String [] titles, String select) {
@@ -247,7 +250,7 @@ public String forComboHTML(String [] liste, String [] colors, String [] fonds, S
  * @param NOM_RG
  * @param NOM_RB
  * @param VAL_RG
- * @return
+ * @return String
  */
 
 public String forRadioHTML(String NOM_RG, String NOM_RB, String VAL_RG) {
@@ -265,7 +268,7 @@ public String forRadioHTML(String NOM_RG, String NOM_RB, String VAL_RG) {
  * 
  * @param NOM_RG
  * @param NOM_RB
- * @return
+ * @return String
  */
 public String forRadioHTML(String NOM_RG, String NOM_RB) {
 
@@ -276,6 +279,8 @@ public String forRadioHTML(String NOM_RG, String NOM_RB) {
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
+ * @return boolean
+ * @throws Exception 
  */
 public boolean gererRecuperationStatut(javax.servlet.http.HttpServletRequest request) throws Exception {
 
@@ -299,12 +304,14 @@ private String getActivite() {
 }
 /**
 	Retourne l'état d'un check bouton dans la JSP
+ * @return String
  */
 public String getCHECKED_OFF() {
 	return "CHECKED_OFF";
 }
 /**
 	Retourne l'état d'un check bouton dans la JSP
+ * @return String
  */
 public String getCHECKED_ON() {
 	return "CHECKED_ON";
@@ -312,6 +319,7 @@ public String getCHECKED_ON() {
 /**
 	Retourne le nom de la JSP du process
 	Zone à utiliser dans un champ caché dans chaque formulaire de la JSP.
+ * @return String
  */
 public abstract String getJSP();
 /* 	Méthode utilisée dans les JSP qui possèdent une List Box
@@ -383,6 +391,8 @@ public String [] initialiseLazyLB() {
 }
 /**
 	Initialisation des zones à afficher dans le JSP
+ * @param request request
+ * @throws Exception exception
  */
 public abstract void initialiseZones(javax.servlet.http.HttpServletRequest request) throws Exception;
 /**
@@ -398,6 +408,7 @@ public MairiePDF prepareImpressionPDF() {
 /**
 	Méthode qui : 
 	- Réaffecte les zones de saisie dans la fenêtre
+ * @param request request
  */
 public void reaffecteZones(javax.servlet.http.HttpServletRequest request) {
 
@@ -446,6 +457,8 @@ public void reaffecteZones(javax.servlet.http.HttpServletRequest request) {
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
+ * @return boolean
+ * @throws Exception Exception  
  */
 public boolean recupererOnglet(javax.servlet.http.HttpServletRequest request) throws Exception{
 	String newOnglet = request.getParameter("NOM_PB_ONGLET");
@@ -459,6 +472,8 @@ public boolean recupererOnglet(javax.servlet.http.HttpServletRequest request) th
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
+ * @return boolean
+ * @throws Exception Exception 
  */
 public boolean recupererPreControles(javax.servlet.http.HttpServletRequest request) throws Exception {
 	//Si pas de TAG JSP
@@ -478,11 +493,14 @@ public boolean recupererPreControles(javax.servlet.http.HttpServletRequest reque
  * Process incoming requests for information
  * 
  * @param request Object that encapsulates the request to the servlet 
+ * @return boolean
+ * @throws Exception Exception 
  */
 public abstract boolean recupererStatut(javax.servlet.http.HttpServletRequest request) throws Exception;
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
+ * @throws Exception Exception
  */
 public void rollbackTransaction() throws Exception{
 	if (getTransaction() != null)
@@ -491,7 +509,7 @@ public void rollbackTransaction() throws Exception{
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 14:03:48)
- * @param newActicite String
+ * @param newActivite String
  */
 public void setActivite(String newActivite) {
 	activite = newActivite;
@@ -544,9 +562,9 @@ public void setStatut(int newStatut, boolean veutRetour) {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (31/10/99 11:32:39)
- * @param newStatut int
- * @param veutRetour boolean
- * @param message String
+ * @param newStatut newStatut 
+ * @param newRetour newRetour 
+ * @param message message 
  */
 public void setStatut(int newStatut, boolean newRetour, String message) {
 
@@ -579,6 +597,9 @@ public void setTransaction(nc.mairie.technique.Transaction newTransaction) {
 }
 /**
 	Méthode qui teste si un paramètre se trouve dans le formulaire
+ * @param request request 
+ * @param param param 
+ * @return boolean
 */
 public boolean testerParametre(javax.servlet.http.HttpServletRequest request, String param) {
 	return (request.getParameter(param) != null || request.getParameter(param + ".x") != null);

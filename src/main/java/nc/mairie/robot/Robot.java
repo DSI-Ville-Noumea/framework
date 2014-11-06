@@ -26,11 +26,16 @@ public Robot() {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
+ * @return BasicProcess
+ * @throws Exception 
  */
 public abstract BasicProcess getDefaultProcess() throws Exception;
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
+ * @param activite 
+ * @return BasicProcess
+ * @throws Exception 
  */
 public abstract BasicProcess getFirstProcess(String activite) throws Exception ;
 
@@ -38,6 +43,9 @@ public abstract BasicProcess getFirstProcess(String activite) throws Exception ;
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
+ * @param activite activite
+ * @return BasicProcess
+ * @throws Exception 
  */
 public BasicProcess getFirstProcessActivite(String activite) throws Exception {
 	//Si null alors erreur
@@ -73,6 +81,9 @@ private Hashtable<String, String> getNavigation() {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (31/10/99 10:16:34)
+ * @param process processCourant
+ * @return nextProcess
+ * @throws Exception 
  */
 public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 
@@ -106,11 +117,13 @@ public BasicProcess getNextProcess(BasicProcess process) throws Exception {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
+ * @return Hashtable<String, String>
  */
 protected abstract Hashtable<String, String> initialiseNavigation() ;
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (28/10/02 10:16:34)
+ * @return Testeur
  */
 protected abstract Testeur initialiseTesteur() ;
 /**

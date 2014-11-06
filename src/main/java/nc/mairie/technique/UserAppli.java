@@ -19,6 +19,9 @@ public class UserAppli implements Serializable {
 	private ArrayList<String> listeDroits;
 /**
  * Commentaire relatif au constructeur UserAppli.
+ * @param aUserName aUserName 
+ * @param aUserPassword aUserPassword 
+ * @param aServerName aServerName 
  */
 public UserAppli(String aUserName, String aUserPassword, String aServerName) {
 	super();
@@ -29,7 +32,8 @@ public UserAppli(String aUserName, String aUserPassword, String aServerName) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (30/12/2002 10:23:42)
- * @return ArrayList
+ * @return ArrayList 
+ * @throws Exception exception
  */
 public ArrayList<String> getListeDroits() throws Exception {
 	if (listeDroits == null) {

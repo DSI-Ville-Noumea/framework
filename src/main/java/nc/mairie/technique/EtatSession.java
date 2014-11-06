@@ -23,6 +23,7 @@ public class EtatSession implements javax.servlet.http.HttpSessionBindingListene
 
 /**
  * Commentaire relatif au constructeur MyClass.
+ * @param aUserAppli aUserAppli 
  */
 public EtatSession(UserAppli aUserAppli) {
 	super();

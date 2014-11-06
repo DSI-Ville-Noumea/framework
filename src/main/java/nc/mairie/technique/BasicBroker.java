@@ -57,6 +57,7 @@ public abstract class BasicBroker implements Cloneable {
 
 	/**
 	 * Commentaire relatif au constructeur BasicBroker.
+	 * @param aMetier aMetier 
 	 */
 	public BasicBroker(BasicMetier aMetier) {
 		super();
@@ -152,6 +153,9 @@ public abstract class BasicBroker implements Cloneable {
 	 * cours.
 	 * 
 	 * @author Luc Bourdil
+	 * @param aTransaction aTransaction 
+	 * @return boolean
+	 * @throws Exception exception 
 	 */
 	protected boolean creer(Transaction aTransaction) throws Exception {
 		java.sql.Connection conn = null;
@@ -217,6 +221,8 @@ public abstract class BasicBroker implements Cloneable {
 	 * colonnes et leur type
 	 * 
 	 * @author Luc Bourdil
+	 * @return Hashtable<String, BasicRecord>
+	 * @throws NoSuchFieldException exception
 	 */
 	protected abstract Hashtable<String, BasicRecord> definirMappageTable() throws NoSuchFieldException;
 
@@ -225,6 +231,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * métier
 	 * 
 	 * @author Luc Bourdil
+	 * @return BasicMetier
 	 */
 	protected abstract BasicMetier definirMyMetier();
 
@@ -233,6 +240,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * table
 	 * 
 	 * @author Luc Bourdil
+	 * @return String
 	 */
 	protected abstract String definirNomTable();
 
@@ -242,7 +250,10 @@ public abstract class BasicBroker implements Cloneable {
 	 * -1 si une erreur a été rencontrée.
 	 * 
 	 * @author Luc Bourdil
-	 * @return résultat de la requete
+	 * @param aTransaction aTransaction  
+	 * @param requeteSQL requeteSQL
+	 * @return int
+	 * @throws Exception exception
 	 */
 	protected int executeCompter(Transaction aTransaction, String requeteSQL) throws Exception {
 
@@ -269,7 +280,10 @@ public abstract class BasicBroker implements Cloneable {
 	 * null si une erreur a été rencontrée.
 	 * 
 	 * @author Luc Bourdil
-	 * @return résultat de la requete
+	 * @param aTransaction aTransaction
+	 * @param requeteSQL requeteSQL 
+	 * @return String
+	 * @throws Exception Exception 
 	 */
 	protected String executeCumuler(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
@@ -329,10 +343,12 @@ public abstract class BasicBroker implements Cloneable {
 	 * Execute une requête SQL et mappe le résultat de la requête dans l'objet.
 	 * 
 	 * @author Luc Bourdil
-	 * @param Transaction
-	 * @param String
-	 *            requête SQL
-	 * @return BasicMetier
+	 * @param aTransaction aTransaction 
+	 * @param requeteSQL requeteSQL 
+	 * @param Transaction Transaction
+	 * @param String  requête SQL
+	 * @return BasicMetier BasicMetier
+	 * @throws Exception exception
 	 */
 	protected BasicMetier executeSelect(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
@@ -387,11 +403,10 @@ public abstract class BasicBroker implements Cloneable {
 	 * tableau de BAsicMetier.
 	 * 
 	 * @author Luc Bourdil
-	 * @param <E>
-	 * @param Transaction
-	 * @param String
-	 *            requête SQL
-	 * @return BasicMetier
+	 * @param aTransaction  aTransaction
+	 * @param requeteSQL requête SQL
+	 * @return BasicMetier basicmetier
+	 * @throws Exception exception
 	 */
 	protected <E extends BasicMetier> ArrayList<E> executeSelectListe(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
@@ -438,7 +453,10 @@ public abstract class BasicBroker implements Cloneable {
 	 * Met à jour un Insert, update ou delete
 	 * 
 	 * @author Luc Bourdil
-	 * @return boolean
+	 * @param aTransaction aTransaction 
+	 * @param requeteSQL requeteSQL 
+	 * @return boolean boolean
+	 * @throws Exception Exception 
 	 */
 	protected boolean executeTesteExiste(Transaction aTransaction, String requeteSQL) throws Exception {
 
@@ -472,7 +490,10 @@ public abstract class BasicBroker implements Cloneable {
 	 * Met à jour un Insert, update ou delete
 	 * 
 	 * @author Luc Bourdil
-	 * @return boolean
+	 * @param aTransaction aTransaction 
+	 * @param requeteSQL requeteSQL 
+	 * @return boolean boolean
+	 * @throws Exception Exception 
 	 */
 	protected boolean executeUpdate(Transaction aTransaction, String requeteSQL) throws Exception {
 		java.sql.Connection conn = aTransaction.getConnection();
@@ -563,6 +584,8 @@ public abstract class BasicBroker implements Cloneable {
 	/**
 	 * Transforme une date récupérée de la base au format SSAA/MM/JJ vers le
 	 * format JJ/MM/SSAA
+	 * @param pDate pDate
+	 * @return String
 	 */
 	public static String getFrenchFormattedDate(String pDate) {
 		if (pDate.length() > 0 && pDate != null)
@@ -613,6 +636,8 @@ public abstract class BasicBroker implements Cloneable {
 	 * Retourne les colonnes de la table
 	 * 
 	 * @author Luc Bourdil Date de création : (04/12/2002 14:19:26)
+	 * @return Hashtable<String, BasicRecord>
+	 * @throws NoSuchFieldException  exception
 	 */
 	protected Hashtable<String, BasicRecord> getMappageTable() throws NoSuchFieldException {
 		if (mappageTable == null) {
@@ -649,6 +674,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * Methode qui retourne le nom de la table de l'objet métier
 	 * 
 	 * @author Luc Bourdil
+	 * @return String
 	 */
 	public String getTable() {
 		return getNomTable();
@@ -658,6 +684,11 @@ public abstract class BasicBroker implements Cloneable {
 	 * Retourne une connection au SGBD pour un user/pwd donné
 	 * 
 	 * @author Luc Bourdil
+	 * @param nom nom 
+	 * @param password password 
+	 * @param serveurName serveurName 
+	 * @return Connection
+	 * @throws Exception Exception 
 	 */
 	public static Connection getUneConnexion(String nom, String password, String serveurName) throws Exception {
 		Connection conn = null;
@@ -696,6 +727,9 @@ public abstract class BasicBroker implements Cloneable {
 	 * Retourne une connection au SGBD pour un userrAppli donné
 	 * 
 	 * @author Luc Bourdil
+	 * @param aUserAppli aUserAppli 
+	 * @return Connection
+	 * @throws Exception Exception 
 	 */
 	public static Connection getUneConnexion(UserAppli aUserAppli) throws Exception {
 		// Si param débile alors on retourne null
@@ -831,6 +865,9 @@ public abstract class BasicBroker implements Cloneable {
 	 * Methode générique qui modifie en base de donnée l'objet métier en cours.
 	 * 
 	 * @author Luc Bourdil
+	 * @param aTransaction aTransaction 
+	 * @return boolean
+	 * @throws Exception exception
 	 */
 	protected boolean modifier(Transaction aTransaction) throws Exception {
 
@@ -910,8 +947,7 @@ public abstract class BasicBroker implements Cloneable {
 	 * 09:21:37)
 	 * 
 	 * @author Luc Bourdil
-	 * @param newMyBAsicMetier
-	 *            nc.mairie.technique.BasicMetier
+	 * @param newMyBasicMetier  nc.mairie.technique.BasicMetier
 	 */
 	protected void setMyBasicMetier(BasicMetier newMyBasicMetier) {
 		myBasicMetier = newMyBasicMetier;
@@ -921,6 +957,9 @@ public abstract class BasicBroker implements Cloneable {
 	 * Methode générique qui supprime en base de donnée l'objet métier en cours.
 	 * 
 	 * @author Luc Bourdil
+	 * @param aTransaction aTransaction 
+	 * @return boolean
+	 * @throws Exception Exception 
 	 */
 	protected boolean supprimer(Transaction aTransaction) throws Exception {
 

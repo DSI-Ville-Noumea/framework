@@ -19,13 +19,17 @@ public class FormateListe {
 	private boolean separateur;
 /**
  * Commentaire relatif au constructeur Liste.
+ * @param taillesColonnes taillesColonnes 
  */
 public FormateListe(int [] taillesColonnes) {
 	this(taillesColonnes, null, false);
 }
 /**
  * Commentaire relatif au constructeur Liste.
- */
+ * @param taillesColonnes taillesColonnes 
+ * @param padding padding 
+ * @param separateur separateur 
+  */
 public FormateListe(int [] taillesColonnes, String [] padding, boolean separateur) {
 	super();
 	this.taillesColonnes = taillesColonnes;
@@ -34,12 +38,22 @@ public FormateListe(int [] taillesColonnes, String [] padding, boolean separateu
 }
 /**
  * Commentaire relatif au constructeur Liste.
- */
+ * @param taillesColonnes taillesColonnes 
+ * @param metiers metiers 
+ * @param nomAttributs nomAttributs 
+ * @throws Exception Exception 
+ * */
 public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> metiers, String [] nomAttributs) throws Exception {
 	this(taillesColonnes, metiers, nomAttributs, false);
 }
 /**
  * Commentaire relatif au constructeur Liste.
+ * @param taillesColonnes taillesColonnes 
+ * @param metiers metiers 
+ * @param nomAttributs nomAttributs 
+ * @param padding padding 
+ * @param separateur separateur 
+ * @throws Exception Exception 
  */
 public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> metiers, String [] nomAttributs, String [] padding, boolean separateur) throws Exception {
 	this(taillesColonnes, padding, separateur);
@@ -64,6 +78,11 @@ public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> met
 }
 /**
  * Commentaire relatif au constructeur Liste.
+ * @param taillesColonnes taillesColonnes 
+ * @param metiers metiers 
+ * @param nomAttributs nomAttributs 
+ * @param separateur separateur 
+ * @throws Exception Exception 
  */
 public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> metiers, String [] nomAttributs, boolean separateur) throws Exception {
 	this(taillesColonnes,metiers, nomAttributs, null, separateur);
@@ -71,6 +90,7 @@ public FormateListe(int [] taillesColonnes, ArrayList<? extends BasicMetier> met
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
+ * @param aLigne aLigne 
  */
 public void ajouteLigne(String [] aLigne) {
 	//nombre de zones dans la chaine
@@ -135,6 +155,7 @@ private Hashtable<String, String> getHash() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
+ * @return String
  */
 public String [] getListeFormatee() {
 
@@ -144,6 +165,8 @@ public String [] getListeFormatee() {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (30/10/2002 14:50:53)
+ * @param ligneZeroVide ligneZeroVide 
+ * @return String
  */
 public String [] getListeFormatee(boolean ligneZeroVide) {
 

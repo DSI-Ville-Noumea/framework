@@ -28,6 +28,7 @@ public String getJSP() {
 /**
  Retourne le nom d'un bouton pour la JSP :
  PB_OK
+ * @return String
  */
 public String getNOM_PB_OK() {
 	return "NOM_PB_OK";
@@ -37,6 +38,7 @@ public String getNOM_PB_OK() {
  * ST_MESSAGE
  * Date de création : (07/11/02 08:59:41)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_ST_MESSAGE() {
 	return "NOM_ST_MESSAGE";
@@ -46,6 +48,7 @@ public String getNOM_ST_MESSAGE() {
  * ST_MESSAGE
  * Date de création : (07/11/02 08:59:41)
  * @author : Générateur de process
+ * @return String
  */
 public String getVAL_ST_MESSAGE() {
 	return getZone(getNOM_ST_MESSAGE());

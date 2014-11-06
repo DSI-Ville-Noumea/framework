@@ -40,11 +40,11 @@ public class MairieLDAP {
 	}
 
 	/** Génère une liste aléatoire des serveurs, cf variable HOST_LDAP.
-	 * @param serversList, la liste des serveurs ldap, en une seule chaîne,
+	 * @param serversList la liste des serveurs ldap, en une seule chaîne,
 	 * séparée par des espaces simples, tel que défini dans la norme, et renvoie
 	 * cette même liste, dans un ordre différent
 	 *
-	 * @return
+	 * @return String
 	 */
 	public static String randomizeLdapServersList(String serversList) {
 		String out = null;
@@ -72,6 +72,8 @@ public class MairieLDAP {
 
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
+	 * @param userName userName 
+	 * @return Hashtable<Object, Object>
 	 */
 	public static Hashtable<Object, Object> chercherUserLDAPAttributs(String userName) {
 		return chercherUserLDAPAttributs(Frontale.getMesParametres(), userName);
@@ -79,6 +81,9 @@ public class MairieLDAP {
 
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
+	 * @param parametres parametres 
+	 * @param userName userName 
+	 * @return Hashtable<Object, Object>
 	 */
 	public static Hashtable<Object, Object> chercherUserLDAPAttributs(Hashtable<String, String> parametres, String userName) {
 		Hashtable<Object, Object> res = new Hashtable<Object, Object>();
@@ -129,6 +134,9 @@ public class MairieLDAP {
 
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
+	 * @param userName userName 
+	 * @param userPassword userPassword 
+	 * @return boolean
 	 */
 	public static boolean controlerHabilitation(String userName, String userPassword) {
 		return controlerHabilitation(Frontale.getMesParametres(), userName, userPassword);
@@ -136,6 +144,10 @@ public class MairieLDAP {
 
 	/**
 	 * Methode controlerHabilitation qui retourne true ou false
+	 * @param parametres parametres 
+	 * @param userName userName 
+	 * @param userPassword userPassword 
+	 * @return boolean
 	 */
 	public static boolean controlerHabilitation(Hashtable<String, String> parametres, String userName, String userPassword) {
 

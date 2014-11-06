@@ -13,6 +13,10 @@ public class BasicRecord {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (05/03/2003 09:30:47)
+ * @param aNomChamp aNomChamp 
+ * @param aTypeChamp aTypeChamp 
+ * @param aAttribut aAttribut 
+ * @param aTypeAttribut aTypeAttribut 
  */
 public BasicRecord(String aNomChamp, String aTypeChamp, java.lang.reflect.Field aAttribut, String aTypeAttribut) {
 	nomChamp = aNomChamp;

@@ -13,6 +13,10 @@ import com.lowagie.text.Image;
 public class ConvertImageToPDF {
 /**
  * Commentaire relatif au constructeur ConvertImageToPDF.
+ * @param image image 
+ * @param fileOut fileOut 
+ * @return boolean
+ * @throws Exception Exception 
  */
 public static boolean convertir(Image image, File fileOut) throws Exception {
 
@@ -20,6 +24,10 @@ public static boolean convertir(Image image, File fileOut) throws Exception {
 }
 /**
  * Commentaire relatif au constructeur ConvertImageToPDF.
+ * @param image image 
+ * @param output output 
+ * @return boolean
+ * @throws Exception Exception 
  */
 public static boolean convertir(Image image, java.io.OutputStream output) throws Exception {
 
@@ -41,6 +49,10 @@ public static boolean convertir(Image image, java.io.OutputStream output) throws
 }
 /**
  * Commentaire relatif au constructeur ConvertImageToPDF.
+ * @param fileIn fileIn 
+ * @param fileOut fileOut 
+ * @return boolean
+ * @throws Exception Exception 
  */
 public static boolean convertir(File fileIn, File fileOut) throws Exception {
 
@@ -50,6 +62,10 @@ public static boolean convertir(File fileIn, File fileOut) throws Exception {
 }
 /**
  * Commentaire relatif au constructeur ConvertImageToPDF.
+ * @param fileIn fileIn 
+ * @param output output 
+ * @return boolean
+ * @throws Exception Exception 
  */
 public static boolean convertir(File fileIn, java.io.OutputStream output) throws Exception {
 

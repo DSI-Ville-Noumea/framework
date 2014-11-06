@@ -78,6 +78,8 @@ private static String getDefautMessage(String nomMessage) {
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
+ * @param codeMessage codeMessage 
+ * @return String
  */
 public static String getLibelleCodeMessage(String codeMessage) {
 
@@ -92,6 +94,8 @@ private static Hashtable<String, String> getListeMessages() {
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
+ * @param nomMessage nomMessage 
+ * @return String
  */
 public static String getMessage(String nomMessage) {
 
@@ -115,6 +119,9 @@ private static String getMessage(String nomMessage, String []params) {
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
+ * @param nomMessage nomMessage 
+ * @param param1 param1
+ * @return String
  */
 public static String getMessage(String nomMessage, String param1) {
 	
@@ -123,6 +130,10 @@ public static String getMessage(String nomMessage, String param1) {
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
+ * @param nomMessage nomMessage 
+ * @param param1 param1
+ * @param param2 param2 
+ * @return String
  */
 public static String getMessage(String nomMessage, String param1, String param2) {
 	
@@ -131,6 +142,11 @@ public static String getMessage(String nomMessage, String param1, String param2)
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
+ * @param nomMessage nomMessage 
+ * @param param1 param1
+ * @param param2 param2 
+ * @param param3 param3 
+ * @return String
  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3) {
 	
@@ -139,6 +155,12 @@ public static String getMessage(String nomMessage, String param1, String param2,
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
+ * @param nomMessage nomMessage 
+ * @param param1 param1
+ * @param param2 param2 
+ * @param param3 param3 
+ * @param param4 param4 
+ * @return String
  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3, String param4) {
 	
@@ -147,7 +169,14 @@ public static String getMessage(String nomMessage, String param1, String param2,
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
- */
+ * @param nomMessage nomMessage 
+ * @param param1 param1
+ * @param param2 param2 
+ * @param param3 param3 
+ * @param param4 param4 
+ * @param param5 param5 
+ * @return String
+  */
 public static String getMessage(String nomMessage, String param1, String param2, String param3, String param4, String param5) {
 	
 	String []params = {param1,param2,param3,param4,param5};
@@ -155,7 +184,14 @@ public static String getMessage(String nomMessage, String param1, String param2,
 }
 /**
 * Methode statique utilisée pour retourner le libellé d'un code message passé en paramêtre.
- */
+ * @param nomMessage nomMessage 
+ * @param param1 param1
+ * @param param2 param2 
+ * @param param3 param3 
+ * @param param4 param4 
+ * @param param5 param5  
+ * @param param6 param6 
+ * @return String */
 public static String getMessage(String nomMessage, String param1, String param2, String param3, String param4, String param5, String param6) {
 	
 	String []params = {param1,param2,param3,param4,param5,param6};
@@ -163,6 +199,8 @@ public static String getMessage(String nomMessage, String param1, String param2,
 }
 /**
 * Methode statique qui retourne les libellés contenant les chaines passées en param.
+ * @param chaines chaines
+ * @return String
  */
 public static String listerMessagesContenant(String [] chaines) {
 

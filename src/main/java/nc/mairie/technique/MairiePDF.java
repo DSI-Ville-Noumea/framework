@@ -12,6 +12,8 @@ public class MairiePDF {
 	private Hashtable hashChamps;
 /**
  * Commentaire relatif au constructeur MairiePDF.
+ * @param nomMasque nomMasque 
+ * @param hashChamps hashChamps 
  */
 public MairiePDF(String nomMasque, @SuppressWarnings("rawtypes") Hashtable hashChamps) {
 	super();

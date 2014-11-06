@@ -10,6 +10,7 @@ import java.util.zip.GZIPInputStream;
 
 import javax.servlet.http.HttpServletResponse;
 
+import nc.mairie.robot.Robot;
 import nc.mairie.technique.*;
 
 import org.apache.commons.codec.binary.Base64;
@@ -25,7 +26,7 @@ public abstract class Frontale extends javax.servlet.http.HttpServlet {
 	 */
 	private static final long serialVersionUID = -5225287987424248946L;
 	private final static Logger logger = Logger.getLogger(Frontale.class.getName());
-	private nc.mairie.robot.Robot robot;
+	private Robot robot;
 	private static Hashtable<String, String> mesParametres;
 	private boolean veutGererActivitite = true;
 
@@ -38,7 +39,7 @@ public abstract class Frontale extends javax.servlet.http.HttpServlet {
 /**
  * Méthode qui contrôle l'habilitation d'un utilisateur qui se connecte
  * @author Luc Bourdil
- * @param HttpServletRequest
+ * @param request request
  * @return boolean
  */
 public static boolean controlerHabilitation(javax.servlet.http.HttpServletRequest request) {
@@ -139,6 +140,7 @@ public void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.
 /**
  * Returns the servlet info string.
  * @author Luc Bourdil
+ * @return Hashtable<String, String>
  */
 public static Hashtable<String, String> getMesParametres() {
 	if (mesParametres == null) {
@@ -149,9 +151,9 @@ public static Hashtable<String, String> getMesParametres() {
 /**
  * Retourne le robot de navigation de la servlet
  * @author: Luc Bourdil
- * @return nc.mairie.robot.Robot
+ * @return Robot
  */
-private nc.mairie.robot.Robot getRobot() {
+private Robot getRobot() {
 	if (robot == null)
 		robot = getServletRobot();
 	return robot;
@@ -168,8 +170,9 @@ public String getServletInfo() {
 /**
  * Retourne le robot de navigation de la servlet
  * @author: Luc Bourdil
+ * @return Robot
  */
-protected abstract nc.mairie.robot.Robot getServletRobot();
+protected abstract Robot getServletRobot();
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (28/10/2002 11:17:51)
@@ -241,7 +244,6 @@ private void initialiseParametreHab(){
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/02/2002 10:51:46)
- * @return fr.averse.servlets.Contexte
  */
 private void initialiseParametreInitiaux() {
 
@@ -283,7 +285,6 @@ private void initialiseParametreInitiaux() {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/02/2002 10:51:46)
- * @return fr.averse.servlets.Contexte
  */
 protected void initialiseAutresParametres() {
 	setVeutGererActivitite(true);
@@ -311,6 +312,8 @@ private void nettoyageProcessAppelant(BasicProcess processCourant) {
  *
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
+ * @return boolean
+ * @throws Exception exception 
  */
 protected boolean performControleHabilitation(javax.servlet.http.HttpServletRequest request) throws Exception {
 	return controlerHabilitation(request);
@@ -321,7 +324,8 @@ protected boolean performControleHabilitation(javax.servlet.http.HttpServletRequ
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
+ * @param processCourant processCourant
+ * @throws Exception exception
  */
 protected void performAffecteTransaction(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception {
 
@@ -342,6 +346,7 @@ protected void performAffecteTransaction(javax.servlet.http.HttpServletRequest r
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
+ * @throws Exception exception
  */
 protected void performAuthentification(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws Exception {
 
@@ -359,8 +364,10 @@ protected void performAuthentification(javax.servlet.http.HttpServletRequest req
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
- * @param activite
+ * @param processCourant processCourant
+ * @param activite activite
+ * @return BasicProcess
+ * @throws Exception exception
  */
 protected BasicProcess performChangeActivite(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant, String activite) throws Exception{
 
@@ -451,7 +458,8 @@ protected void performException(javax.servlet.http.HttpServletRequest request, j
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
+ * @param processCourant processCourant
+ * @throws Exception Exception 
  */
 protected void performFichierImpression(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception {
 	//On redirige vers le fichier
@@ -465,7 +473,9 @@ protected void performFichierImpression(javax.servlet.http.HttpServletRequest re
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param activite
+ * @param activite activite
+ * @return BasicProcess
+ * @throws Exception exception
  */
 protected BasicProcess performFirstProcess(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, String activite) throws Exception{
 
@@ -487,6 +497,8 @@ protected BasicProcess performFirstProcess(javax.servlet.http.HttpServletRequest
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
+ * @return BasicProcess
+ * @throws Exception exception 
  */
 protected BasicProcess performInfoTimeout(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws Exception{
 
@@ -509,7 +521,8 @@ protected BasicProcess performInfoTimeout(javax.servlet.http.HttpServletRequest 
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
+ * @param processCourant processCourant
+ * @throws Exception exception 
  */
 protected void performJSP(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception {
 	//On forwarde la JSP du process en cours
@@ -526,7 +539,9 @@ protected void performJSP(javax.servlet.http.HttpServletRequest request, javax.s
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
+ * @param processCourant processCourant
+ * @return BasicProcess
+ * @throws Exception exception
  */
 protected BasicProcess performProcessAppelant(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception{
 	BasicProcess processAppelant = processCourant.getProcessAppelant();
@@ -549,7 +564,9 @@ protected BasicProcess performProcessAppelant(javax.servlet.http.HttpServletRequ
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
+ * @param processCourant processCourant
+ * @return BasicProcess
+ * @throws Exception exception
  */
 protected BasicProcess performProcessSuivant(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception{
 
@@ -583,7 +600,9 @@ protected BasicProcess performProcessSuivant(javax.servlet.http.HttpServletReque
  * @author Luc Bourdil
  * @param request Object that encapsulates the request to the servlet 
  * @param response Object that encapsulates the response from the servlet
- * @param processCourant
+ * @param processCourant processCourant
+ * @return BasicProcess
+ * @throws Exception exception
  */
 protected boolean performRecupererStatut(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response, BasicProcess processCourant) throws Exception {
 

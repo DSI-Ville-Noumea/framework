@@ -14,6 +14,8 @@ public abstract class BasicBatch extends Thread {
 	private static Hashtable<Class<?>, BasicBatch> hashBatch;
 /**
  * Commentaire relatif au constructeur BasicBatch.
+ * @param request request
+ * @throws Exception exception
  */
 public BasicBatch(javax.servlet.http.HttpServletRequest request) throws Exception {
 	super();
@@ -45,6 +47,8 @@ public void abortTraitement() {
 }
 /**
  Retourne vrai si le batch passé en param est en cours d'exécution
+ * @param aClass aClass
+ * @return boolean
  */
 public static boolean arreterBatch(Class<?> aClass) {
 	BasicBatch b = (BasicBatch)getHashBatch().get(aClass);
@@ -55,6 +59,7 @@ public static boolean arreterBatch(Class<?> aClass) {
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
  * @author Luc Bourdil
+ * @throws Exception exception
  */
 public void commitTransaction() throws Exception{
 	if (getTransaction() != null)
@@ -96,6 +101,8 @@ public nc.mairie.technique.Transaction getTransaction() {
 }
 /**
  Retourne vrai si le batch passé en param est en cours d'exécution
+ * @param aClass aClass
+ * @return boolean
  */
 public static boolean isBatchRunning(Class<?> aClass) {
 	return getHashBatch().containsKey(aClass);
@@ -103,6 +110,7 @@ public static boolean isBatchRunning(Class<?> aClass) {
 /**
  * Insérez la description de la méthode à cet endroit.
  *  Date de création : (22/10/02 08:57:18)
+ * @throws Exception exception
  */
 public void rollbackTransaction() throws Exception{
 	if (getTransaction() != null)
@@ -137,6 +145,8 @@ private void setTransaction(nc.mairie.technique.Transaction newTransaction) {
 /**
  * Insérez la description de la méthode ici.
  *  Date de création : (06/10/2003 16:18:41)
+ * @return boolean
+ * @throws Exception exception 
  */
 public abstract boolean traitement() throws Exception;
 }

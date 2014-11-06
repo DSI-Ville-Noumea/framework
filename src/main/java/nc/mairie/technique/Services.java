@@ -133,6 +133,9 @@ public static int compteJoursEntreDates(String uneDate, String autreDate) throws
 }
 /**
  * Commentaire relatif au constructeur USerBroker.
+ * @param object object 
+ * @return String
+ * @throws Exception Exception 
  */
 @SuppressWarnings("rawtypes")
 public static String contenuMetierToString(Object object) throws Exception {
@@ -172,6 +175,9 @@ public static String contenuMetierToString(Object object) throws Exception {
 }
 /**
  * Commentaire relatif au constructeur USerBroker.
+ * @param aList aList 
+ * @return String
+ * @throws Exception Exception 
  */
 @SuppressWarnings("rawtypes")
 public static String contenuMetierToString(ArrayList aList) throws Exception {
@@ -215,6 +221,10 @@ public static String convertitDate(String aDate, String patternOrg, String patte
  	pTailleSource     : 10
 	pCaractPading     : "*"
  	Résultat obtenu   : "***hello**"
+ * @param pChaineSource pChaineSource 
+ * @param pTailleChamp pTailleChamp 
+ * @param pCaractPading pCaractPading 
+ * @return String
 
  */
 public static String cpad(String pChaineSource, int pTailleChamp, String pCaractPading) {
@@ -244,6 +254,7 @@ public static String cpad(String pChaineSource, int pTailleChamp, String pCaract
 }
 /**
 * Cette méthode retourne la date courante sous la forme jj/mm/aaaa
+ * @return String
 **/
 
 public static String dateDuJour() {
@@ -285,6 +296,8 @@ public static String enleveMois(String uneDate, int nbMois) {
  * Cette méthode contrôle si la chaine de caractères passée en paramètre est alphaBETIQUE.
  * Si alphabétique retourne true
  * Sinon retourne false
+ * @param param param 
+ * @return boolean
  */
 public static boolean estAlphabetique(String param) {
 	if (param == null || param.length() == 0)
@@ -303,6 +316,8 @@ public static boolean estAlphabetique(String param) {
  * Cette méthode contrôle si la chaine de caractères passée en paramètre est alphaNUMERIQUE.
  * Si alphabétique retourne true
  * Sinon retourne false
+ * @param param param
+ * @return boolean
  */
 public static boolean estAlphaNumerique(String param) {
 	if (param == null || param.length() == 0)
@@ -323,6 +338,8 @@ public static boolean estAlphaNumerique(String param) {
  * ex : 200.15
  * Si float retourne true
  * Sinon retourne false
+ * @param param param
+ * @return boolean
  */
 public static boolean estFloat(String param) {
 	try {
@@ -336,6 +353,8 @@ public static boolean estFloat(String param) {
  * Cette méthode contrôle si la chaine de caractères passée en paramètre est numérique.
  * Si numérique retourne true
  * Sinon retourne false
+ * @param param param
+ * @return boolean
  */
 public static boolean estNumerique(String param) {
 	try {
@@ -466,6 +485,10 @@ public static String formateDateInternationale(String uneDate) throws Exception{
  	pTailleSource     : 10
 	pCaractPading     : "*"
  	Résultat obtenu   : "*****hello"
+ * @param pChaineSource pChaineSource 
+ * @param pTailleChamp pTailleChamp 
+ * @param pCaractPading pCaractPading 
+ * @return String
 
 */
 
@@ -494,6 +517,10 @@ public static String lpad(String pChaineSource, int pTailleChamp, String pCaract
  	pTailleSource     : 10
 	pCaractPading     : "*"
  	Résultat obtenu   : "hello*****"
+ * @param pChaineSource pChaineSource 
+ * @param pTailleChamp pTailleChamp 
+ * @param pCaractPading pCaractPading 
+ * @return String
 
  */
 public static String rpad(String pChaineSource, int pTailleChamp, String pCaractPading) {
@@ -518,6 +545,8 @@ public static String rpad(String pChaineSource, int pTailleChamp, String pCaract
  * - remplacant les ' par ''
  * - rajoutant ' au début et à la fin du string
  * @author Luc Bourdil
+ * @param aString aString 
+ * @return String
  */
 public static String stringForBase(String aString){
 	
@@ -570,7 +599,11 @@ public static String stringForHTML(String aString) {
 
 /**
 Cette méthode trie un vecteur d'objets Identiques
- * @param <E>
+ * @param a a 
+ * @param nomChamps nomChamps 
+ * @param croissants croissants 
+ * @return ArrayList 
+ * @throws Exception exception 
 */
 public static <E> ArrayList<E> trier(ArrayList<E> a, String []nomChamps, boolean []croissants) throws Exception{
 	
@@ -584,7 +617,11 @@ public static <E> ArrayList<E> trier(ArrayList<E> a, String []nomChamps, boolean
 
 /**
 	Cette méthode trie un vecteur d'objets Identiques
- * @param <E>
+ * @param v v 
+ * @param nomChamps nomChamps 
+ * @param croissants croissants 
+ * @return Vector
+ * @throws Exception Exception 
 */
 @SuppressWarnings("deprecation")
 public static <E> Vector<E> trier(Vector<E> v, String []nomChamps, boolean []croissants) throws Exception{

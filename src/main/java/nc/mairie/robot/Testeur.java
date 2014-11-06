@@ -32,6 +32,7 @@ public Testeur() {
  * NOM_LB_PROCESS_SELECT
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public abstract String [] definirListeProcess();
 /**
@@ -59,6 +60,7 @@ private String [] getLB_PROCESS() {
  * NOM_LB_PROCESS
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_LB_PROCESS() {
 	return "NOM_LB_PROCESS";
@@ -68,6 +70,7 @@ public String getNOM_LB_PROCESS() {
  * NOM_LB_PROCESS_SELECT
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_LB_PROCESS_SELECT() {
 	return "NOM_LB_PROCESS_SELECT";
@@ -77,6 +80,7 @@ public String getNOM_LB_PROCESS_SELECT() {
  * PB_OECOMMUNEFSELECTION
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_PB_PROCEDER() {
 	return "NOM_PB_PROCEDER";
@@ -86,6 +90,7 @@ public String getNOM_PB_PROCEDER() {
  * PB_ANNULER
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_PB_ANNULER() {
 	return "NOM_PB_ANNULER";
@@ -95,6 +100,7 @@ public String getNOM_PB_ANNULER() {
  * PB_INSTANCIE
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_PB_INSTANCIE() {
 	return "NOM_PB_INSTANCIE";
@@ -104,6 +110,7 @@ public String getNOM_PB_INSTANCIE() {
  * PB_RAZ_ACTIVITE
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_PB_RAZ_ACTIVITE() {
 	return "NOM_PB_RAZ_ACTIVITE";
@@ -113,6 +120,7 @@ public String getNOM_PB_RAZ_ACTIVITE() {
  * ST_RESULTAT
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_ST_RESULTAT() {
 	return "NOM_ST_RESULTAT";
@@ -123,6 +131,7 @@ public String getNOM_ST_RESULTAT() {
  * LB_PROCESS
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public String []  getVAL_LB_PROCESS() {
 	return getLB_PROCESS();
@@ -133,6 +142,7 @@ public String []  getVAL_LB_PROCESS() {
  * LB_PROCESS
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public String getVAL_LB_PROCESS_SELECT() {
 	return getZone(getNOM_LB_PROCESS_SELECT());
@@ -142,6 +152,7 @@ public String getVAL_LB_PROCESS_SELECT() {
  * ST_RESULTAT
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @return String
  */
 public String getVAL_ST_RESULTAT() {
 	return getZone(getNOM_ST_RESULTAT());
@@ -151,6 +162,7 @@ public String getVAL_ST_RESULTAT() {
  * EF_CLASSE
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_EF_CLASSE() {
 	return "NOM_EF_CLASSE";
@@ -160,6 +172,7 @@ public String getNOM_EF_CLASSE() {
  * EF_CANDIDAT
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
+ * @return String
  */
 public String getVAL_EF_CLASSE() {
 	return getZone(getNOM_EF_CLASSE());
@@ -169,6 +182,7 @@ public String getVAL_EF_CLASSE() {
  * EF_ID
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_EF_ID() {
 	return "NOM_EF_ID";
@@ -178,6 +192,7 @@ public String getNOM_EF_ID() {
  * EF_ID
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
+ * @return String
  */
 public String getVAL_EF_ID() {
 	return getZone(getNOM_EF_ID());
@@ -188,6 +203,7 @@ public String getVAL_EF_ID() {
  * EF_ACTIVITE
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
+ * @return String
  */
 public String getNOM_EF_ACTIVITE() {
 	return "NOM_EF_ACTIVITE";
@@ -197,6 +213,7 @@ public String getNOM_EF_ACTIVITE() {
  * EF_ACTIVITE
  * Date de création : (17/01/07 14:03:23)
  * @author : Générateur de process
+ * @return String
  */
 public String getVAL_EF_ACTIVITE() {
 	return getZone(getNOM_EF_ACTIVITE());
@@ -209,6 +226,8 @@ public String getVAL_EF_ACTIVITE() {
  * Utilisation de la méthode addZone(getNOMxxx, String);
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @param request request
+ * @throws Exception exception
  */
 public void resultatDefault(HttpServletRequestWrapper request) throws Exception{
 	
@@ -224,6 +243,8 @@ public void resultatDefault(HttpServletRequestWrapper request) throws Exception{
  * Utilisation de la méthode addZone(getNOMxxx, String);
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
+ * @param request request
+ * @throws Exception exception
  */
 public void initialiseZones(HttpServletRequestWrapper request) throws Exception{
 
@@ -282,11 +303,14 @@ public void initialiseZones(HttpServletRequestWrapper request) throws Exception{
  * NOM_LB_PROCESS_SELECT
  * Date de création : (27/01/03 15:56:56)
  * @author : Générateur de process
+ * @return String
  */
 public String [] listeProcess() {
 	return definirListeProcess();
 }
 /**
+ * @param request request
+ * @return boolean
  * 
  *
  */
@@ -301,6 +325,8 @@ public boolean performPB_RAZ_ACTIVITE(javax.servlet.http.HttpServletRequest requ
 	return true;
 }
 /**
+ * @param request request
+ * @return boolean
  * 
  *
  */
@@ -309,6 +335,9 @@ public boolean performPB_ANNULER(javax.servlet.http.HttpServletRequest request){
 	return true;
 }
 /**
+ * @param request request
+ * @return boolean
+ * @throws Exception exception 
  * 
  *
  */
@@ -406,7 +435,10 @@ public boolean recupererStatut(javax.servlet.http.HttpServletRequest request) th
  *   setStatut(STATUT, boolean veutRetour) ou setStatut(STATUT,Message d'erreur)
  * Date de création : (23/01/03 15:13:31)
  * @author : Générateur de process
- */
+ * @param request request
+ * @return boolean
+ * @throws Exception exception 
+*/
 public boolean performPB_PROCEDER(javax.servlet.http.HttpServletRequest request) throws Exception {
 
 	int indice = (Services.estAlphaNumerique(getZone(getNOM_LB_PROCESS_SELECT())) ? Integer.parseInt(getZone(getNOM_LB_PROCESS_SELECT())) : -1);
@@ -425,6 +457,8 @@ public boolean performPB_PROCEDER(javax.servlet.http.HttpServletRequest request)
 /**
  * 
  *
+ * @return boolean
+ * @throws Exception exception 
  */
 public String listerVarActivites() throws Exception{
 	
