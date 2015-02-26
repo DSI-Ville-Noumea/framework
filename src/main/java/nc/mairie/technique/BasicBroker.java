@@ -701,7 +701,7 @@ public abstract class BasicBroker implements Cloneable {
 				try {
 					// Si param débile alors on retourne null
 					if (nom == null || password == null)
-						return null;
+						throw new Exception("nom et password sont nulls et "+e.getMessage());
 					// websphere
 					conn = getDataSource(serveurName).getConnection(nom, password);
 				} catch (Exception ex) {
