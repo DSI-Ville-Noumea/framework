@@ -5,7 +5,7 @@
 	<groupId>nc.mairie</groupId>
 	<artifactId>framework</artifactId>
 	<packaging>jar</packaging>
-	<version>2.4-SNAPSHOT</version>
+	<version>2.4</version>
 	<name>Framework Mairie</name>
 	<url>http://maven.apache.org</url>
 	
