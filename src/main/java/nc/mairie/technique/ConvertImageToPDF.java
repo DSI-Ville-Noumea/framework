@@ -103,29 +103,34 @@ public static boolean convertir(File fileIn, File fileOut) throws Exception {
 	
 	RandomAccessFileOrArray ra = new RandomAccessFileOrArray(fileIn.getAbsolutePath());
 	
-	int pages = 0;
-	
-	try { 
-		pages = TiffImage.getNumberOfPages(ra);
-	} catch (Exception e) {
-		pages =1;
-	}
+	try {
+		int pages = 0;
+		
+		try { 
+			pages = TiffImage.getNumberOfPages(ra);
+		} catch (Exception e) {
+			pages =1;
+		}
 
-	//si une seule page
-	if (pages == 1) {
-		Image image = Image.getInstance(fileIn.getAbsolutePath());
-		return 	convertir(image, fileOut);
+		//si une seule page
+		if (pages == 1) {
+			Image image = Image.getInstance(fileIn.getAbsolutePath());
+			return 	convertir(image, fileOut);
+		}
+		
+		ArrayList<Image> images = new ArrayList<Image>();
+		
+		for (int i = 0; i < TiffImage.getNumberOfPages(ra); i++) {
+			images.add(TiffImage.getTiffImage(ra, i+1));
+		}
+		
+		
+		return 	convertir(images, fileOut);
+	} catch (Exception e) {
+		throw e;
+	} finally {
+		ra.close();
 	}
-	
-	ArrayList<Image> images = new ArrayList<Image>();
-	
-	for (int i = 0; i < TiffImage.getNumberOfPages(ra); i++) {
-		images.add(TiffImage.getTiffImage(ra, i+1));
-	}
-	
-	ra.close();
-	
-	return 	convertir(images, fileOut);
 }
 /**
  * Commentaire relatif au constructeur ConvertImageToPDF.
