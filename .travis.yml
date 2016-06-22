@@ -6,6 +6,23 @@ cache:
   - $HOME/.m2
 install: true
 script: mvn -Dmaven.test.skip=true clean install
+before_deploy:
+  - export RELEASE_PKG_FILE=$(ls target/*.jar)
+  - export RELEASE_PKG_MD5_FILE=$(ls target/*.jar.md5)
+  - export RELEASE_PKG_SHA_FILE=$(ls target/*.jar.sha1)
+  - echo "deploying $RELEASE_PKG_FILE , $RELEASE_PKG_MD5_FILE , $RELEASE_PKG_SHA_FILE to GitHub releases"
+deploy:
+  provider: releases
+  api_key:
+    secure: iQaNHm+rpLThLoSgr+dr6pRc8mA/kCYKohkxp38htQh6OmLZyuePSPsPOdMijKVonoJRR4hLOmSnaYqDjCEHL2LQu6ydwsvzo4EMEO3+MYEp+HQpvoAjWCtumZ3TkMpAFK6LVsVB/c1hdWyaklGCHH2rx1JEtRvnUyJGoHEXJDP+iPgBSO2xrfyEtZCw1+Bc4mF4pS5oaV6L9LpKmzRq8fRSK5VPUZ/zco5at7KUc9kFmLmn3ZeZIdU7U6wWO0Io3ZtMjMyftuVFXCxmD/jbvWKwtB5aWk5WzqaqdiX0KwT5cqhVNKr+MXLOBMlzIgP4fyNcXPcroCGPX8xX3JRfEyVujKYq5Ccca9HI2ppdVACxeSGff/1vkPFepNYZc/DEr7gXSrKtOGwnZSiFh4dg+jFeEtTOHPbloURNAy8IN7JLsDGdjWlTdsPyfZOp8/nSciZQ/mSzth8Lo7c1c61/3ejzru7mEfyPTbdAHEPkycaHagD0xFChcDEGb4K7F5ui/P1AEWx9gFbltrgz2uk7xIytwPAQqdnP4dsSDR5ttQWGMuK8jT5LFtOkysMyiLdh5WW1tK9xyC4ZnK6J6IE67xdgc6i6cJFk2sB5UgEhHRjcwo3EXISc59jV1yZEL/cAtKFwcWgdOQ5008qPs6NpqerphMWY3n/jc90o+lOvuSg=
+  file:
+  - "${RELEASE_PKG_FILE}"
+  - "${RELEASE_PKG_MD5_FILE}"
+  - "${RELEASE_PKG_SHA_FILE}"
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: DSI-Ville-Noumea/framework
 notifications:
   slack:
     rooms:
