@@ -247,7 +247,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.5</java.version>
-		<commun.version>commun-1.4</commun.version>
+		<commun.version>commun-1.5</commun.version>
         <itextpdf.version>5.5.9</itextpdf.version>
 		<!-- Utilitaires -->
 		<checksum-maven-plugin.version>1.3</checksum-maven-plugin.version>
