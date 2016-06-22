@@ -18,6 +18,19 @@
   		<maven>2.2.1</maven>
 	</prerequisites>
 
+    <licenses>
+        <license>
+            <name>GNU General Public License (GPL) v3</name>
+            <url>http://www.gnu.org/copyleft/gpl.html</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/DSI-Ville-Noumea/framework.git</connection>
+        <developerConnection>scm:git:git@github.com:DSI-Ville-Noumea/framework.git</developerConnection>
+        <url>https://github.com/DSI-Ville-Noumea/framework</url>
+    </scm>
+
     <build>
         <resources>
 		<resource>
@@ -100,7 +113,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.3</version>
+				<version>${maven-site-plugin.version}</version>
 				<configuration>
 					<reportPlugins>
 						<plugin>
@@ -183,7 +196,7 @@
 						<fileSet>
 							<directory>target</directory>
 							<includes>
-								<include>${project.artifactId}##${project.version}.war</include>
+								<include>${project.artifactId}-${project.version}.jar</include>
 							</includes>
 						</fileSet>
 					</fileSets>
@@ -264,6 +277,7 @@
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
         <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
+        <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
 	</properties>
 
 	<repositories>
