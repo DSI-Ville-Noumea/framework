@@ -4,8 +4,7 @@ jdk:
 cache:
   directories:
   - $HOME/.m2
-before_install:
-- export TZ=Pacific/Noumea
-install: mvn clean install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -B -V
+install: true
+script: mvn -Dmaven.test.skip=true clean install
 notifications:
   slack: dsi-mairie-noumea:MxlOz1t5uMHw8BYH0qjlv0R1
