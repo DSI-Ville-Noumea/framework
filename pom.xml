@@ -5,7 +5,7 @@
 	<groupId>nc.mairie</groupId>
 	<artifactId>framework</artifactId>
 	<packaging>jar</packaging>
-	<version>2.4</version>
+	<version>2.5-SNAPSHOT</version>
 	<name>Framework Mairie</name>
 	<url>http://maven.apache.org</url>
 	
@@ -199,10 +199,9 @@
 		      <scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<!-- Ne passe pas en 4.2.2 car tous le packag change => risque de grosse regression -->
-			<version>4.2.1</version>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>${itextpdf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -212,14 +211,23 @@
 
 <!-- Dependances mairie -->
 		<dependency>
-			<groupId>nc.mairie</groupId>
+			<groupId>com.github.DSI-Ville-Noumea</groupId>
 			<artifactId>commun</artifactId>
-			<version>1.4</version>
+			<version>${commun.version}</version>
 		</dependency>
 	</dependencies>
 <!-- 	Doit rester en 1.5 car c'est la version java de l'AS400 pour certaines applis -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.5</java.version>
+		<commun.version>commun-1.4</commun.version>
+        <itextpdf.version>5.5.9</itextpdf.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 </project>
