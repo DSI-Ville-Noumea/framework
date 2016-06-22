@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/framework.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/framework)
+[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/framework.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/framework) [![Dependency Status](https://www.versioneye.com/user/projects/576b05a6fdabcd004d3fd35c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/576b05a6fdabcd004d3fd35c)
