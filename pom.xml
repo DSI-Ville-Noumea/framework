@@ -202,6 +202,15 @@
 					</fileSets>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>com.versioneye</groupId>
+                <artifactId>versioneye-maven-plugin</artifactId>
+                <version>${versioneye-maven-plugin.version}</version>
+                <configuration>
+                    <apiKey>${versioneye-maven-plugin.apiKey}</apiKey>
+                    <projectId>${versioneye-maven-plugin.projectId}</projectId>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -278,6 +287,10 @@
         <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
         <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
         <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
+
+        <versioneye-maven-plugin.version>3.9.2</versioneye-maven-plugin.version>
+        <versioneye-maven-plugin.apiKey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apiKey>
+        <versioneye-maven-plugin.projectId>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectId>
 	</properties>
 
 	<repositories>

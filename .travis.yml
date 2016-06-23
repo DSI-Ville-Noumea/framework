@@ -4,21 +4,26 @@ jdk:
 cache:
   directories:
   - $HOME/.m2
+env:
+  global:
+  - secure: GF8+INXnTXelAlfwHEv2OYNZTguf7xRs+QaO1OvK2fnqRVEAlzD0BQjqc8J1teSwEK+PAlRiCjjTQZcIll/edFUNG9f9uRH8DJgg7+FUk7AA7j7pw44rCnsjJIvR+ccL/GXSpVeG4ffc+eGyw4G6zTC10NvZwhJ5fVSsUjhCF3o8BJj4SOYDDeVqKQ6NpUgB2YRoqZFkQ694fvAlitU9STS8fyHqmVNnJrAWon2tHT86tTXT6cafNbnHVllh6NVdizMV8QMoeqqLR75q2U32dhUWpZUMgFAdTWkatozX3Q2d+15X7Wp+aA2GPEBRs1srCFL/m4QVR87i0g9kUsZ8Pv8QVTNDZ7vrZgJfqOGAHYXCUZoh0Jwo03yKJbK0M/Y1gEKM4dimnSzTtKjzqYMKej25LPpZ3lGC8NtRk7HQz/GSJ0/1F+Tu2qyk8q9R0p1vdBfGjc1gZPpu2mbtHqzQZeRWr57Fp00lpjCbEESVknX2K6najXupzSHnlPQ0nMsLCkk+Zs4IBMelrQ6fxc1OyL6o4YihT5hDZoNHXibE/FsJr+yUpQXfHKjq4Fc4ijJgHKzmjXORaBEk3Izs+aVy8RkidGXcmK74c5lWJlrja6rUzouKeumsPw7Fi6fFMd3SnpG3Rw7yztF8cWilqTX3I26U6cCwMzlu9MPq/d7Sywg=
+  - secure: Z/IFCYqwPv85gIf0/vxL7jjK51y+f2Qo15T7laqDLuLadpYZjyLzm+ugt2gxE9CbC+P3y8AGYkkfX5rXmiPRvF40qg/ixmBU1xghivtX67e3jULq4mak0itxNpEKKBdgRCd067YLMjYMTX9r0+O/p5dH4DTFt+x+N5WZDmAhqWUN27VQA1bNcdxsw4OzQmG8l7T4rt3cQoMurGUTAsJplgM5RoJ4Rqs9e9dL7ImtPFht2bkWuqYeMoRY3sNyo8yG0s0SNBMzb+FqM8beEMQ3WjqPElmg2Lf1xWpRXOcC3+sdiAiMBtXbHp8/bjJ99Xe+9ISm7NMJVC+rYe7qMEn3K9kDXkB41/p6mh5IiM+YH398caEvlyfRF4QW/8N9vtlN2wvMYJM7u19q8rD2L0ir2pS1Es5D1amcxYnhWHkCRWqqidHWCpzsj0f4LFI7oHmxKUPK8Jvs7jyNg4N6Xya5rLIY5f7j2SGU1Xk7/iTkjwyMSl1UI32c39ASfV/FcB5u4GL1goJ/4TPRAjLBTeMuW1oaHqnUyCQToOftJB342ic/+NE7mh1Hy9t5Qu3u5DD5LFVw+KRIudWUIS1xWOva2lVQb2u7oMZvcn2Gxdq4DTk3q1Ekxf7ixlDtXcSIFzg/U0GrpHsD9ZKDC/8xNewxM2FwEqdBkUX5xFjSFwQZxVU=
 install: true
 script: mvn -Dmaven.test.skip=true versioneye:update clean install
 before_deploy:
-  - export RELEASE_PKG_FILE=$(ls target/*.jar)
-  - export RELEASE_PKG_MD5_FILE=$(ls target/*.jar.md5)
-  - export RELEASE_PKG_SHA_FILE=$(ls target/*.jar.sha1)
-  - echo "deploying $RELEASE_PKG_FILE , $RELEASE_PKG_MD5_FILE , $RELEASE_PKG_SHA_FILE to GitHub releases"
+- export RELEASE_PKG_FILE=$(ls target/*.jar)
+- export RELEASE_PKG_MD5_FILE=$(ls target/*.jar.md5)
+- export RELEASE_PKG_SHA_FILE=$(ls target/*.jar.sha1)
+- echo "deploying $RELEASE_PKG_FILE , $RELEASE_PKG_MD5_FILE , $RELEASE_PKG_SHA_FILE
+  to GitHub releases"
 deploy:
   provider: releases
   api_key:
     secure: iQaNHm+rpLThLoSgr+dr6pRc8mA/kCYKohkxp38htQh6OmLZyuePSPsPOdMijKVonoJRR4hLOmSnaYqDjCEHL2LQu6ydwsvzo4EMEO3+MYEp+HQpvoAjWCtumZ3TkMpAFK6LVsVB/c1hdWyaklGCHH2rx1JEtRvnUyJGoHEXJDP+iPgBSO2xrfyEtZCw1+Bc4mF4pS5oaV6L9LpKmzRq8fRSK5VPUZ/zco5at7KUc9kFmLmn3ZeZIdU7U6wWO0Io3ZtMjMyftuVFXCxmD/jbvWKwtB5aWk5WzqaqdiX0KwT5cqhVNKr+MXLOBMlzIgP4fyNcXPcroCGPX8xX3JRfEyVujKYq5Ccca9HI2ppdVACxeSGff/1vkPFepNYZc/DEr7gXSrKtOGwnZSiFh4dg+jFeEtTOHPbloURNAy8IN7JLsDGdjWlTdsPyfZOp8/nSciZQ/mSzth8Lo7c1c61/3ejzru7mEfyPTbdAHEPkycaHagD0xFChcDEGb4K7F5ui/P1AEWx9gFbltrgz2uk7xIytwPAQqdnP4dsSDR5ttQWGMuK8jT5LFtOkysMyiLdh5WW1tK9xyC4ZnK6J6IE67xdgc6i6cJFk2sB5UgEhHRjcwo3EXISc59jV1yZEL/cAtKFwcWgdOQ5008qPs6NpqerphMWY3n/jc90o+lOvuSg=
   file:
-  - "${RELEASE_PKG_FILE}"
-  - "${RELEASE_PKG_MD5_FILE}"
-  - "${RELEASE_PKG_SHA_FILE}"
+  - ${RELEASE_PKG_FILE}
+  - ${RELEASE_PKG_MD5_FILE}
+  - ${RELEASE_PKG_SHA_FILE}
   skip_cleanup: true
   on:
     tags: true
