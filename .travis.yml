@@ -5,7 +5,7 @@ cache:
   directories:
   - $HOME/.m2
 install: true
-script: mvn -Dmaven.test.skip=true clean install
+script: mvn -Dmaven.test.skip=true versioneye:update clean install
 before_deploy:
   - export RELEASE_PKG_FILE=$(ls target/*.jar)
   - export RELEASE_PKG_MD5_FILE=$(ls target/*.jar.md5)
