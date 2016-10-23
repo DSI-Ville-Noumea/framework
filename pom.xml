@@ -274,7 +274,7 @@
 		<commun.version>commun-1.5</commun.version>
 
         <!-- Utilitaires -->
-        <itextpdf.version>5.5.9</itextpdf.version>
+        <itextpdf.version>5.5.10</itextpdf.version>
 
 		<!-- Plugins Maven -->
 		<checksum-maven-plugin.version>1.3</checksum-maven-plugin.version>
