@@ -195,7 +195,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>servlet-api</artifactId>
-		      <version>6.0.45</version>
+		      <version>6.0.47</version>
 		      <scope>provided</scope>
 		</dependency>
 		<dependency>
