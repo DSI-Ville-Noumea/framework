@@ -553,6 +553,7 @@ public abstract class BasicBroker implements Cloneable {
 			} catch (Exception ex) {
 				logger.severe("Aucun datasource envisagé Tomcat : " + e.getMessage());
 				logger.severe("Aucun datasource envisagé JBOSS/WAS : " + ex.getMessage());
+				ex.initCause(e);
 				throw ex;
 			}
 		}
