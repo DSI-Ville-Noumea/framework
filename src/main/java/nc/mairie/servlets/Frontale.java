@@ -231,7 +231,7 @@ private void initialiseParametreHab(){
 			String cleParametre = (String)e.nextElement();
 			String valParametre = prop.getProperty(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+			logger.config("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 		}
 		
 	} catch (Exception e) {
@@ -249,7 +249,7 @@ private void initialiseParametreInitiaux() {
 
 	boolean doitPrendreInit = getServletContext().getInitParameterNames().hasMoreElements();
 
-	logger.info("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+	logger.config("Chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 	if (getMesParametres().size() == 0) {
 
 		//Initialisation des parametres dans le fichier properties
@@ -263,7 +263,7 @@ private void initialiseParametreInitiaux() {
 				if (cleParametre != null && ! cleParametre.startsWith("com.ibm.websphere") ) {
 					String valParametre = doitPrendreInit ? (String)getServletContext().getInitParameter(cleParametre) : (String)getServletContext().getAttribute(cleParametre);
 					getMesParametres().put(cleParametre,valParametre);
-					logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+					logger.config("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 				}
 			} catch (Exception e) {
 				continue;
@@ -276,11 +276,11 @@ private void initialiseParametreInitiaux() {
 			String cleParametre = (String)enumServlet.nextElement();
 			String valParametre = (String)getInitParameter(cleParametre);
 			getMesParametres().put(cleParametre,valParametre);
-			logger.info("Chargement de la clé : "+cleParametre+" avec "+valParametre);
+			logger.config("Chargement de la clé : "+cleParametre+" avec "+valParametre);
 		}
 	}
 	
-	logger.info("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
+	logger.config("Fin de chargement des paramètres initiaux dans la servlet : "+getClass().getName());
 }
 /**
  * Insérez la description de la méthode à cet endroit.
