@@ -551,7 +551,8 @@ public abstract class BasicBroker implements Cloneable {
 			try {
 				return getDataSourceDefault(serveurName);
 			} catch (Exception ex) {
-				logger.severe("Aucun datasource envisagé : " + ex.getMessage());
+				logger.severe("Aucun datasource envisagé Tomcat : " + e.getMessage());
+				logger.severe("Aucun datasource envisagé JBOSS/WAS : " + ex.getMessage());
 				throw ex;
 			}
 		}
@@ -575,6 +576,7 @@ public abstract class BasicBroker implements Cloneable {
 				getHashDataSource().put(serveurName, (DataSource) getInitialContext().lookup(TOMCAT_JDBC_CONTEXT + serveurName));
 				logger.info("serveur ok (tomcat) : [" + TOMCAT_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
+				//Faire qq chose
 				throw e;
 			}
 		}
