@@ -576,7 +576,6 @@ public abstract class BasicBroker implements Cloneable {
 				getHashDataSource().put(serveurName, (DataSource) getInitialContext().lookup(TOMCAT_JDBC_CONTEXT + serveurName));
 				logger.info("serveur ok (tomcat) : [" + TOMCAT_JDBC_CONTEXT + serveurName + "]");
 			} catch (Exception e) {
-				//Faire qq chose
 				throw e;
 			}
 		}
