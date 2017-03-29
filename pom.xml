@@ -23,7 +23,7 @@
 		<commun.version>commun-1.5</commun.version>
 
         <!-- Utilitaires -->
-        <itextpdf.version>5.5.10</itextpdf.version>
+        <itextpdf.version>5.5.11</itextpdf.version>
 
 		<!-- Plugins Maven -->
 		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
@@ -37,7 +37,7 @@
         <checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
         <servlet-api.version>6.0.51</servlet-api.version>
 		<commons-vfs.version>20050307052300</commons-vfs.version>
-        <versioneye-maven-plugin.version>3.11.1</versioneye-maven-plugin.version>
+        <versioneye-maven-plugin.version>3.11.2</versioneye-maven-plugin.version>
         <versioneye-maven-plugin.apiKey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apiKey>
         <versioneye-maven-plugin.projectId>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectId>
 	</properties>
